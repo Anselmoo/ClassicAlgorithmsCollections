@@ -6,9 +6,9 @@ Compute the residuum of the base raised to the exponent, which is divided by the
 
 ...
 # Arguments
-- `base::Integer`:
-- `exponent::Integer`:
-- `modulus ::Integer`:
+- `base::Integer`: base
+- `exponent::Integer`: exponent
+- `modulus ::Integer`: modulus
 ...
 
 # Examples
