@@ -1,29 +1,45 @@
-module NumberTheory
+"""
+    modular_exponentiation(base::Int, exponent::Int, modulus::Int)
 
-function power(x, y, p)
-    res = 1     # Initialize result 
+Compute the residuum of the base raised to the exponent, which is divided by the modulus.
+
+
+...
+# Arguments
+- `base::Integer`:
+- `exponent::Integer`:
+- `modulus ::Integer`:
+...
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15)
+8
+```
+"""
+function modular_exponentiation(base::Int, exponent::Int, modulus::Int)
+    residuum = 1     # Initialize result 
   
-    # Update x if it is more 
-    # than or equal to p 
-    x = x % p  
+    # Update base if it is more 
+    # than or equal to modulus 
+    base = base % modulus  
       
-    if (x == 0)  
+    if (base == 0)  
         return 0
     end
   
-    while (y > 0)  
+    while (exponent > 0)  
           
-        # If y is odd, multiply 
-        # x with result 
-        if ((y & 1) == 1)  
-            res = (res * x) % p 
+        # If exponent is odd, multiplexponent 
+        # base with result 
+        if ((exponent & 1) == 1)  
+            residuum = (residuum * base) % modulus 
         end 
-        # y must be even now 
-        y = y >> 1      # y = y/2 
-        x = (x * x) % p 
+        # exponent must be even now 
+        exponent = exponent >> 1      # exponent = exponent/2 
+        base = (base * base) % modulus 
     end 
 
-    return res 
-end
-
+    return residuum 
 end

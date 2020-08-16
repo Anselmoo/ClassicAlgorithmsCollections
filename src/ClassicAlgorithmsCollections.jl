@@ -1,7 +1,11 @@
 module ClassicAlgorithmsCollections
-#import ohmyrepl
-#Base.include(@__MODULE__,"ohmyrepl.jl")
-Base.include(@__MODULE__,"NumberTheory.jl")
-greet() = print("Hello World!")
+export hello
+"""
+    hello(who::String)
+Return "Hello, `who`".
+"""
+hello(who::String) = "Hello, $who"
+include("NumberTheory.jl")
 
+export modular_exponentiation
 end # module

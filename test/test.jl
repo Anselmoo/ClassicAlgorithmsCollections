@@ -1,3 +1,3 @@
 import ClassicAlgorithmsCollections
 
-ClassicAlgorithmsCollections.greet() == ClassicAlgorithmsCollections.greet() 
+# ClassicAlgorithmsCollections.greet() == ClassicAlgorithmsCollections.greet() 

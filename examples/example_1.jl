@@ -2,6 +2,6 @@ using ClassicAlgorithmsCollections
 
 
 
-res = ClassicAlgorithmsCollections.NumberTheory.power(2, 3, 15)
+res = ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15)
 
 println("Power is ", res)
