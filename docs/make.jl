@@ -1,7 +1,5 @@
 using Documenter, ClassicAlgorithmsCollections
 
-makedocs(
-    sitename = "ClassicAlgorithmsCollections.jl",
-    modules = [ClassicAlgorithmsCollections],
-    #pages = Any["Home" => "index.md"]
-)
+makedocs(modules = [ClassicAlgorithmsCollections], sitename = "ClassicAlgorithmsCollections.jl")
+
+#deploydocs(repo = "github.com/JuliaLang/Example.jl.git")
