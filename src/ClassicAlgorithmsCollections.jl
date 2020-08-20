@@ -1,6 +1,6 @@
 module ClassicAlgorithmsCollections
 
 include("NumberTheory.jl")
-
-export modular_exponentiation
+include("Graph.jl")
+export modular_exponentiation, breadth_first_search
 end # module

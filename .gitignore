@@ -1,3 +1,5 @@
 docs/.DS_Store
 .DS_Store
 cross_check
+.vscode/launch.json
+.vscode/settings.json
