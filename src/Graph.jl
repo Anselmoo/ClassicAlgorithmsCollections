@@ -10,7 +10,7 @@ For more information see: https://en.wikipedia.org/wiki/Breadth-first_search
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint of my graph-traveling process
+- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
 ...
 
 # Examples
@@ -68,7 +68,7 @@ of the graph.
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint of my graph-traveling process
+- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
 - `visited::Array{Bool,1}`: Visited nodes of my graph
 - `solution::Array{Int64,1}`: Solution of my raph-traveling proces
 ...
@@ -105,7 +105,7 @@ DFS is stack-based For more information see: https://en.wikipedia.org/wiki/Depth
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint of my graph-traveling process
+- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
 ...
 
 # Examples
@@ -127,3 +127,75 @@ function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
     result = dfs_recrusive(graph, start, visited, solution)
     return result
 end
+
+
+function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
+    # Define intial infinity weight & next matrix for given data type
+    vertex_size = length(collect(keys(graph)))
+    dist = fill(99999, (vertex_size, vertex_size))
+    next = zeros(Int64, (vertex_size, vertex_size))
+    # Updating the matrix with actual vertex values
+    for (key, elements) in  graph
+    # Setting the diagonal-elements of the weight matrix to 0
+        dist[key, key] = 0
+    # Setting the diagonal-elements of the next matrix to vertex
+        next[key, key] = key
+    # Weigthing of the edges
+        for value in elements
+            dist[key, value[1]] = value[2]
+            next[key, value[1]] = value[1]
+        end
+    end
+    return dist, next, vertex_size
+end
+
+function get_path(next::Array{Int64,2}, u::Int64, v::Int64)
+    if next[u, v] == 0
+        return zeros(Int64, false)
+    end
+
+    path = [u]
+
+    while u != v
+        u = next[u, v]
+        append!(path, u)
+        
+    end
+    return path
+end
+
+function shortest_next(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
+    
+    dist, next, vertex_size = initialize_matrices(graph)
+
+    for k in 1:vertex_size
+        for i in 1:vertex_size
+            for j in 1:vertex_size
+                if dist[i, j] > dist[i, k] + dist[k, j]
+                    dist[i, j] = dist[i, k] + dist[k, j]
+                    next[i, j] = next[i, k]
+                end
+            end
+        end
+    end
+    
+    
+    if !(isnothing(u) & isnothing(v))
+        return dist, get_path(next, u, v)
+    else
+        return dist
+    end
+
+    
+end
+
+
+
+graph_wiki = Dict(
+    1 => [(3, -2)],
+    2 => [(1, 4),(3, 3)],
+    3 => [(4, 2)],
+    4 => [(2, -1)]
+
+)
+shortest_next(graph_wiki, 2, 4)
