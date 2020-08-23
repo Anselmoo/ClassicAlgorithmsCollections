@@ -10,7 +10,7 @@ For more information see: https://en.wikipedia.org/wiki/Breadth-first_search
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
+- `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
 ...
 
 # Examples
@@ -68,9 +68,9 @@ of the graph.
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
-- `visited::Array{Bool,1}`: Visited nodes of my graph
-- `solution::Array{Int64,1}`: Solution of my raph-traveling proces
+- `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
+- `visited::Array{Bool,1}`: Visited nodes of the graph
+- `solution::Array{Int64,1}`: Solution of the raph-traveling proces
 ...
 
 """
@@ -100,12 +100,13 @@ end
 The depth-first search (DFS) is an algorithm dedicated to traversing or searching for 
 tree or graph data structures. It starts at a specified tree root (start) for exploring 
 as far as possible at each branch. Afterthat the BFS starts automatically backtracking. 
-DFS is stack-based For more information see: https://en.wikipedia.org/wiki/Depth-first_search
+DFS is stack-based. 
+For more information see: https://en.wikipedia.org/wiki/Depth-first_search
 
 ...
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-- `start::Int64`: Startpoint (first selected vertex) of my graph-traveling process
+- `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
 ...
 
 # Examples
@@ -128,7 +129,16 @@ function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
     return result
 end
 
+"""
+    initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
 
+Initialize the matrices for distances and pathes.
+
+...
+# Arguments
+- `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
+...
+"""
 function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     # Define intial infinity weight & next matrix for given data type
     vertex_size = length(collect(keys(graph)))
@@ -149,7 +159,18 @@ function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     return dist, next, vertex_size
 end
 
-function get_path(next::Array{Int64,2}, u::Int64, v::Int64)
+"""
+    path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
+
+Reconstruction of the actual path between any two endpoint vertices (u & v).
+...
+# Arguments
+- `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
+- `u::Int64`: Startpoint of the to investigated path
+- `v::Int64`: Endpoint of the to investigated path
+...
+"""
+function path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
     if next[u, v] == 0
         return zeros(Int64, false)
     end
@@ -164,7 +185,28 @@ function get_path(next::Array{Int64,2}, u::Int64, v::Int64)
     return path
 end
 
-function shortest_next(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
+"""
+    shortest_path_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
+
+The Shortest Path Tree (SPT) algorithm solves the shortest path problem between every 
+pair of vertices in a given edge-weighted directed Graph based on the Floyd–Warshall 
+algorithm. Optional, the SPT also provides the total parts between a start- (u) and end-
+point (v). For more information see: https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm
+
+# Arguments
+- `next::Array{Int64,2}`: Vertex matrix of the connected nodes
+- `u::Int64`: Startpoint of the to investigated path; optional
+- `v::Int64`: Endpoint of the to investigated path; optional
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> graph = = Dict( 1 => [(3, -2)], 2 => [(1, 4),(3, 3)], 3 => [(4, 2)], 4 => [(2, -1)]
+julia> ClassicAlgorithmsCollections.shortest_path_tree(graph, 2, 4)
+([0 -1 -2 0; 4 0 2 4; 5 1 0 2; 3 -1 1 0], [2, 1, 3, 4])
+```
+"""
+function shortest_path_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
     
     dist, next, vertex_size = initialize_matrices(graph)
 
@@ -181,21 +223,10 @@ function shortest_next(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing
     
     
     if !(isnothing(u) & isnothing(v))
-        return dist, get_path(next, u, v)
+        return dist, path_reconstruction(next, u, v)
     else
         return dist
     end
 
     
 end
-
-
-
-graph_wiki = Dict(
-    1 => [(3, -2)],
-    2 => [(1, 4),(3, 3)],
-    3 => [(4, 2)],
-    4 => [(2, -1)]
-
-)
-shortest_next(graph_wiki, 2, 4)
