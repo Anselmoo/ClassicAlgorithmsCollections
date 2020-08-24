@@ -54,10 +54,10 @@ function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},
             # Check if new local maximum becomes global maximum
             if local_maximum[1] > global_maximum
                 global_maximum = local_maximum[1]
+            end
+
         end
-        
-        end
-        
+
     end
     return global_maximum
 end
@@ -366,14 +366,90 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
                 return true
             end
             x_set = find_parent(parent, x, vertex_size)
-                y_set = find_parent(parent, y, vertex_size)
-                parent[x_set] = y_set
+            y_set = find_parent(parent, y, vertex_size)
+            parent[x_set] = y_set
         end
     end
     return false
 
 end
 
+"""
+Provided by: https://discourse.julialang.org/t/sort-matrix-based-on-the-elements-of-a-specific-column/23475/5
+"""
+function sortrows(M, by = zeros(0))
+    if by == zeros(0)
+        order = copy(M)
+    else
+        order = copy(by)
+    end
+    if size(order, 2) > 1
+        order = Int64.(order .- minimum(order, dims = 1))
+        order = (order ./ maximum(order, dims = 1)) * (10) .^ (size(order, 2):-1:1)
+    end
+    order = sortperm(order[:, 1])
+    return M[order, :], order
+end
+
+function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
+    vertex_size = find_global_maximum_complex(graph)
+
+    # Because step on is sorting all the edges in non-decreasing order of their 
+    # weight, the dictionary has to be translated into an array to be able to be 
+    # sorted.
+    graph_array = zeros(Int64, (vertex_size, 3))
+
+    for (key, value) in graph
+        for items in value
+            graph_array[key, :] = [key, items[1], items[2]]
+        end
+    end
+
+
+    graph_array = sortrows(graph_array, graph_array[:, [3]])
+
+    # Create subsets in the size of the vertex with single elements
+    parent = collect(Int64, 1:vertex_size)
+    rank = zeros(Int64, vertex_size)
+    result = zeros(Int64, false)
+    # Number of edges to be taken is equal to vertex_size 
+    i = 1 # An index variable, used for sorted edges 
+    e = 1 # An index variable, used for result[] 
+    while e < vertex_size
+
+        # Step 2: Pick the smallest edge and increment the index for next iteration 
+        u, v, w = graph_array[i]
+        i += 1
+        x = find_parent(parent, u, vertex_size)
+        y = find_parent(parent, v, vertex_size)
+
+        # If including this edge does't cause cycle, include it in result and 
+        # increment the index of result for next edge 
+        if x != y
+            e += 1
+            append!(result, [u, v, w])
+            #  union of two sets of x and y by ranking 
+            xroot = find_parent(parent, x, vertex_size)
+            yroot = find_parent(parent, y, vertex_size)
+
+            # Attach smaller rank tree under root of high rank tree (Union by Rank) 
+            if rank[xroot] < rank[yroot]
+                parent[xroot] = yroot
+            elseif rank[xroot] > rank[yroot]
+                parent[yroot] = xroot
+
+            # If ranks are same, then make one as root and increment its rank by one 
+            else
+                parent[yroot] = xroot
+                rank[xroot] += 1
+            end
+        end
+        # Else discard the edge
+    end
+    return result
+end
+
 graph_with_weights_1 =
     Dict(1 => [(3, -2)], 2 => [(1, 4), (3, 3)], 3 => [(4, 2)], 4 => [(2, -1)])
-find_global_maximum_complex(graph_with_weights_1)
+minimum_spanning_tree(graph_with_weights_1)
+#find_global_maximum_complex(graph_with_weights_1)
