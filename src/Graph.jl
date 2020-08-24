@@ -2,8 +2,9 @@
 
     find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
 
-Find the total global maximum based on the intial vertex, the dictionary key, and the 
-accesible vertexes, the array-list.
+Find the total global maximum based on a comparsion between the intial vertex 
+(`global_maximum = 0`), the current dictionary key, and the accesible vertexes from 
+the array-list (value).
 
 ...
 # Arguments
@@ -24,6 +25,39 @@ function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
         if local_maximum > global_maximum
             global_maximum = local_maximum
         end
+    end
+    return global_maximum
+end
+
+"""
+
+    find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
+
+`find_global_maximum_complex` is similar to `find_global_maximum` instead is desigend 
+for handling graphs with weights.    
+    
+...
+# Arguments
+- `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
+...
+"""
+function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
+    global_maximum = 0
+    # Going through the dictionary
+    for (key, value) in graph
+        # Check the keys as new global maximum
+        if key > global_maximum
+            global_maximum = key
+        end
+        # Check the values as new local maximum
+        for local_maximum in value
+            # Check if new local maximum becomes global maximum
+            if local_maximum[1] > global_maximum
+                global_maximum = local_maximum[1]
+        end
+        
+        end
+        
     end
     return global_maximum
 end
@@ -173,7 +207,7 @@ Initialize the matrices for distances and pathes.
 """
 function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     # Define intial infinity weight & next matrix for given data type
-    vertex_size = length(collect(keys(graph)))
+    vertex_size = find_global_maximum_complex(graph)
     dist = fill(99999, (vertex_size, vertex_size))
     next = zeros(Int64, (vertex_size, vertex_size))
 
@@ -286,9 +320,7 @@ function find_parent(parent::Array{Int64,1}, i::Int64, vertex_size::Int64)
     if parent[i] == vertex_size
         return i
     end
-    if parent[i] != vertex_size
-        return find_parent(parent, parent[i], vertex_size)
-    end
+    return find_parent(parent, parent[i], vertex_size)
 end
 
 
@@ -342,3 +374,6 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
 
 end
 
+graph_with_weights_1 =
+    Dict(1 => [(3, -2)], 2 => [(1, 4), (3, 3)], 3 => [(4, 2)], 4 => [(2, -1)])
+find_global_maximum_complex(graph_with_weights_1)
