@@ -19,3 +19,9 @@ graph_with_weights_2 =
 
 @test ClassicAlgorithmsCollections.shortest_path_tree(graph_with_weights_2) ==
       [0 -1 -2 0; 4 0 2 4; 5 1 0 2; 3 -1 -1 0]
+
+graph_cycle_true = Dict(1 => [2], 2 => [3], 3 => [1, 4])
+@test ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_true) == true
+
+graph_cycle_false = Dict(1 => [2], 2 => [5], 3 => [1, 4])
+@test ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_false) == false

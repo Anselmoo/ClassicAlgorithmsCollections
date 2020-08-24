@@ -1,4 +1,34 @@
 """
+
+    find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+
+Find the total global maximum based on the intial vertex, the dictionary key, and the 
+accesible vertexes, the array-list.
+
+...
+# Arguments
+- `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
+...
+"""
+function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+    global_maximum = 0
+    # Going through the dictionary
+    for (key, value) in graph
+        # Check the keys as new global maximum
+        if key > global_maximum
+            global_maximum = key
+        end
+        # Check the values as new local maximum
+        local_maximum = maximum(value)
+        # Check if new local maximum becomes global maximum
+        if local_maximum > global_maximum
+            global_maximum = local_maximum
+        end
+    end
+    return global_maximum
+end
+
+"""
     breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
 The breadth-first search (BFS) is an algorithm dedicated to traversing or searching for 
@@ -24,7 +54,8 @@ julia> ClassicAlgorithmsCollections.breadth_first_search(graph, 3)
 function breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
     # Mark all the vertices as not visited 
-    visited = zeros(Bool, (length(collect(keys(graph)))))
+    # visited = zeros(Bool, (length(collect(keys(graph))))) # Old
+    visited = zeros(Bool, (find_global_maximum(graph)))
 
     # Create a queue for BFS 
     queue = zeros(Int64, false)
@@ -120,7 +151,8 @@ julia> ClassicAlgorithmsCollections.breadth_first_search(graph, 3)
 function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
     # Mark all the vertices as not visited 
-    visited = zeros(Bool, (length(collect(keys(graph)))))
+    # visited = zeros(Bool, (length(collect(keys(graph))))) # Old
+    visited = zeros(Bool, (find_global_maximum(graph)))
 
     # Create array-list for the searching solution 
     solution = zeros(Int64, false)
@@ -144,13 +176,14 @@ function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     vertex_size = length(collect(keys(graph)))
     dist = fill(99999, (vertex_size, vertex_size))
     next = zeros(Int64, (vertex_size, vertex_size))
+
     # Updating the matrix with actual vertex values
-    for (key, elements) in  graph
-    # Setting the diagonal-elements of the weight matrix to 0
+    for (key, elements) in graph
+        # Setting the diagonal-elements of the weight matrix to 0
         dist[key, key] = 0
-    # Setting the diagonal-elements of the next matrix to vertex
+        # Setting the diagonal-elements of the next matrix to vertex
         next[key, key] = key
-    # Weigthing of the edges
+        # Weigthing of the edges and pathes
         for value in elements
             dist[key, value[1]] = value[2]
             next[key, value[1]] = value[1]
@@ -171,16 +204,17 @@ Reconstruction of the actual path between any two endpoint vertices (u & v).
 ...
 """
 function path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
+    # Check if path exists
     if next[u, v] == 0
         return zeros(Int64, false)
     end
 
+    # Initialize path
     path = [u]
 
     while u != v
         u = next[u, v]
         append!(path, u)
-        
     end
     return path
 end
@@ -201,32 +235,110 @@ point (v). For more information see: https://en.wikipedia.org/wiki/Floyd–Warsh
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
-julia> graph = = Dict( 1 => [(3, -2)], 2 => [(1, 4),(3, 3)], 3 => [(4, 2)], 4 => [(2, -1)]
+julia> graph = Dict( 1 => [(3, -2)], 2 => [(1, 4),(3, 3)], 3 => [(4, 2)], 4 => [(2, -1)]
 julia> ClassicAlgorithmsCollections.shortest_path_tree(graph, 2, 4)
 ([0 -1 -2 0; 4 0 2 4; 5 1 0 2; 3 -1 1 0], [2, 1, 3, 4])
 ```
 """
-function shortest_path_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
-    
+function shortest_path_tree(
+    graph::Dict{Int64,Array{Tuple{Int64,Int64},1}},
+    u = nothing,
+    v = nothing,
+)
+
     dist, next, vertex_size = initialize_matrices(graph)
 
+    # Floyd–Warshall-Algorithm 
     for k in 1:vertex_size
         for i in 1:vertex_size
             for j in 1:vertex_size
+                # Checking for minimum
                 if dist[i, j] > dist[i, k] + dist[k, j]
+                    # Add new distance
                     dist[i, j] = dist[i, k] + dist[k, j]
+                    # Add new path points
                     next[i, j] = next[i, k]
                 end
             end
         end
     end
-    
-    
+
+    # Path-Reconstruction
     if !(isnothing(u) & isnothing(v))
         return dist, path_reconstruction(next, u, v)
     else
         return dist
     end
-
-    
 end
+
+
+"""
+    find_parent(parent::Array{Int64,1}, i::Int64, vertex_size::Int64)
+
+The find parent algorithm is a recursive function to find the subeset of an item i.
+
+# Arguments
+- `parent::Array{Int64,1}`: Array of the subset of the items
+- `i::Int64`: Index of the item
+- `vertex_size::Int64`: Total size of the subeset
+"""
+function find_parent(parent::Array{Int64,1}, i::Int64, vertex_size::Int64)
+    if parent[i] == vertex_size
+        return i
+    end
+    if parent[i] != vertex_size
+        return find_parent(parent, parent[i], vertex_size)
+    end
+end
+
+
+
+"""
+    graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
+
+The disjoint-set data structure principle is used to check if a direct or undirect 
+graph contains a cycle. For this reason, the algorithm keeps the first track of a set 
+of items partitioned into several disjoint (non-overlapping) subsets to find which 
+subset a particular item is kept. This procedure is essential to figure out if two 
+items are in the same subgroup. Next, the two subsets have to be merged into a single 
+subset. For more information see: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+
+# Arguments
+- `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> graph = graph_cycle_true = Dict(1 => [2], 2 => [3], 3 => [1, 4])
+julia> ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_true)
+true
+julia> graph = graph_cycle_false = Dict(1 => [2], 2 => [5], 3 => [1, 4])
+julia> ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_false)
+false
+```
+"""
+function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
+    # Get the maximum length of the vertex
+    vertex_size = find_global_maximum(graph)
+    # Create array-list for finding the parents and intialize all subsets to vertex_size, because 
+    # negative indixing is forbidden in Julia.
+    parent = fill(vertex_size, vertex_size)
+
+    # Iterate through all edges of graph for finding the subset of both vertices of every edge. 
+    # If the two subsets are equal, then graph has a cycle inside. 
+    for (i, values) in graph
+        for j in values
+            x = find_parent(parent, i, vertex_size)
+            y = find_parent(parent, j, vertex_size)
+            if x == y
+                return true
+            end
+            x_set = find_parent(parent, x, vertex_size)
+                y_set = find_parent(parent, y, vertex_size)
+                parent[x_set] = y_set
+        end
+    end
+    return false
+
+end
+
