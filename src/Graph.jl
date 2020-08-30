@@ -359,10 +359,10 @@ subset. For more information see: https://en.wikipedia.org/wiki/Disjoint-set_dat
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
-julia> graph = graph_cycle_true = Dict(1 => [2], 2 => [3], 3 => [1, 4])
+julia> graph_cycle_true = Dict(1 => [2], 2 => [3], 3 => [1, 4])
 julia> ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_true)
 true
-julia> graph = graph_cycle_false = Dict(1 => [2], 2 => [5], 3 => [1, 4])
+julia> graph_cycle_false = Dict(1 => [2], 2 => [5], 3 => [1, 4])
 julia> ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_false)
 false
 ```
@@ -378,8 +378,8 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
     # If the two subsets are equal, then graph has a cycle inside. 
     for (i, values) in graph
         for j in values
-            x = find_parent_in_cycle(parent, i, vertex_sizei)
-            y = find_parent_in_cycle(parent, j, vertex_sizej)
+            x = find_parent_in_cycle(parent, i, vertex_size)
+            y = find_parent_in_cycle(parent, j, vertex_size)
             if x == y
                 return true
             end
@@ -406,28 +406,49 @@ function sortrows(M, by = zeros(0))
         order = (order ./ maximum(order, dims = 1)) * (10) .^ (size(order, 2):-1:1)
     end
     order = sortperm(order[:, 1])
-    return M[order, :], order
+    return M[order, :]
 end
 
+"""
+    minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}))
+
+The minimum spanning tree (MST) algorithm detects a subset of the edges of a connected, 
+edge-weighted undirected graph that connects all the vertices together. The MST algorithms 
+focus is a) to exclude any cycles and b) to find the minimum possible total edge weight, 
+which will create a spanning tree whose sum of edge weights is as small as possible. 
+The Kruskal's algorithm is used to find the minimum spanning forest of an undirected 
+edge-weighted graph. 
+For more information see: https://en.wikipedia.org/wiki/Minimum_spanning_tree and 
+https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+
+# Arguments
+- `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with the weights
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> graph_with_spanning_tree = Dict(1 => [(2, 10), (3, 6), (4, 5)], 2 => [(4, 15)], 3 => [(4, 4)]
+julia> ClassicAlgorithmsCollections.minimum_spanning_tree(graph_with_spanning_tree)
+[3 4 4; 1 4 5; 1 2 10]
+```
+"""
 function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     vertex_size = find_global_maximum_complex(graph)
 
     # Because step on is sorting all the edges in non-decreasing order of their 
     # weight, the dictionary has to be translated into an array to be able to be 
     # sorted.
-    # Total size of values has to define the array
-    #graph_array = zeros(Int64, (vertex_size, 3))
+    # Intialize array list
     graph_array = zeros(Int64, false)
-    # Not key enumerate decided about entire in the array
+    # Append the dictionary to 1D array
     for (key, value) in graph
         for items in value
             append!(graph_array, [key, items[1], items[2]])
-            #graph_array[key, :] = [key, items[1], items[2]]
         end
     end
 
     graph_array = adjoint(reshape(graph_array, (3, :)))
-    graph_array, order = sortrows(graph_array, graph_array[:, [3]])
+    graph_array = sortrows(graph_array, graph_array[:, [3]])
 
     # Create subsets in the size of the vertex with single elements
     parent = collect(Int64, 1:vertex_size)
@@ -458,7 +479,7 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
             elseif rank[xroot] > rank[yroot]
                 parent[yroot] = xroot
 
-            # If ranks are same, then make one as root and increment its rank by one 
+                # If ranks are same, then make one as root and increment its rank by one 
             else
                 parent[yroot] = xroot
                 rank[xroot] += 1
@@ -469,13 +490,4 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     return adjoint(reshape(result, (3, :)))
 end
 
-graph_with_weights_1 =
-    Dict(1 => [(3, -2)], 2 => [(1, 4), (3, 3)], 3 => [(4, 2)], 4 => [(2, -1)])
 
-graph_with_spanning_tree = Dict(
-    1 => [(2,10),(3,6),(4,5)],
-    2 => [(4,15)],
-    3 => [(4,4)]
-)
-println(minimum_spanning_tree(graph_with_spanning_tree))
-#find_global_maximum_complex(graph_with_spanning_tree)

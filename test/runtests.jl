@@ -25,3 +25,8 @@ graph_cycle_true = Dict(1 => [2], 2 => [3], 3 => [1, 4])
 
 graph_cycle_false = Dict(1 => [2], 2 => [5], 3 => [1, 4])
 @test ClassicAlgorithmsCollections.graph_cycle_check(graph_cycle_false) == false
+
+graph_with_spanning_tree =
+    Dict(1 => [(2, 10), (3, 6), (4, 5)], 2 => [(4, 15)], 3 => [(4, 4)])
+@test ClassicAlgorithmsCollections.minimum_spanning_tree(graph_with_spanning_tree) ==
+      [3 4 4; 1 4 5; 1 2 10]
