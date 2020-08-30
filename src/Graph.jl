@@ -307,20 +307,38 @@ end
 
 
 """
-    find_parent(parent::Array{Int64,1}, i::Int64, vertex_size::Int64)
+    find_parent_in_cycle(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
 
-The find parent algorithm is a recursive function to find the subeset of an item i.
+The find parent algorithm is a recursive function to find the subeset of an item i for 
+graph test of being cycling.
 
 # Arguments
 - `parent::Array{Int64,1}`: Array of the subset of the items
-- `i::Int64`: Index of the item
-- `vertex_size::Int64`: Total size of the subeset
+- `i::Int64`: Index of the parents-item
+- `ref_key::Int64`: Reference Key, which can be for example the total size of the subset
 """
-function find_parent(parent::Array{Int64,1}, i::Int64, vertex_size::Int64)
-    if parent[i] == vertex_size
+function find_parent_in_cycle(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
+    if parent[i] == ref_key
         return i
     end
-    return find_parent(parent, parent[i], vertex_size)
+    return find_parent_in_cycle(parent, parent[i], ref_key)
+end
+
+"""
+    find_parent_in_spanning_tree(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
+
+The find parent algorithm is a recursive function to find the subeset of an item i for 
+graph test of having a spanning tree.
+
+# Arguments
+- `parent::Array{Int64,1}`: Array of the subset of the items
+- `i::Int64`: Index of the parents-item
+"""
+function find_parent_in_spanning_tree(parent::Array{Int64,1}, i::Int64)
+    if parent[i] == i
+        return i
+    end
+    return find_parent_in_spanning_tree(parent, parent[i])
 end
 
 
@@ -360,13 +378,13 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
     # If the two subsets are equal, then graph has a cycle inside. 
     for (i, values) in graph
         for j in values
-            x = find_parent(parent, i, vertex_size)
-            y = find_parent(parent, j, vertex_size)
+            x = find_parent_in_cycle(parent, i, vertex_sizei)
+            y = find_parent_in_cycle(parent, j, vertex_sizej)
             if x == y
                 return true
             end
-            x_set = find_parent(parent, x, vertex_size)
-            y_set = find_parent(parent, y, vertex_size)
+            x_set = find_parent_in_cycle(parent, x, vertex_size)
+            y_set = find_parent_in_cycle(parent, y, vertex_size)
             parent[x_set] = y_set
         end
     end
@@ -397,16 +415,19 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     # Because step on is sorting all the edges in non-decreasing order of their 
     # weight, the dictionary has to be translated into an array to be able to be 
     # sorted.
-    graph_array = zeros(Int64, (vertex_size, 3))
-
+    # Total size of values has to define the array
+    #graph_array = zeros(Int64, (vertex_size, 3))
+    graph_array = zeros(Int64, false)
+    # Not key enumerate decided about entire in the array
     for (key, value) in graph
         for items in value
-            graph_array[key, :] = [key, items[1], items[2]]
+            append!(graph_array, [key, items[1], items[2]])
+            #graph_array[key, :] = [key, items[1], items[2]]
         end
     end
 
-
-    graph_array = sortrows(graph_array, graph_array[:, [3]])
+    graph_array = adjoint(reshape(graph_array, (3, :)))
+    graph_array, order = sortrows(graph_array, graph_array[:, [3]])
 
     # Create subsets in the size of the vertex with single elements
     parent = collect(Int64, 1:vertex_size)
@@ -416,12 +437,11 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     i = 1 # An index variable, used for sorted edges 
     e = 1 # An index variable, used for result[] 
     while e < vertex_size
-
         # Step 2: Pick the smallest edge and increment the index for next iteration 
-        u, v, w = graph_array[i]
+        u, v, w = graph_array[i, :]
         i += 1
-        x = find_parent(parent, u, vertex_size)
-        y = find_parent(parent, v, vertex_size)
+        x = find_parent_in_spanning_tree(parent, u)
+        y = find_parent_in_spanning_tree(parent, v)
 
         # If including this edge does't cause cycle, include it in result and 
         # increment the index of result for next edge 
@@ -429,8 +449,8 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
             e += 1
             append!(result, [u, v, w])
             #  union of two sets of x and y by ranking 
-            xroot = find_parent(parent, x, vertex_size)
-            yroot = find_parent(parent, y, vertex_size)
+            xroot = find_parent_in_spanning_tree(parent, x)
+            yroot = find_parent_in_spanning_tree(parent, y)
 
             # Attach smaller rank tree under root of high rank tree (Union by Rank) 
             if rank[xroot] < rank[yroot]
@@ -446,10 +466,16 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
         end
         # Else discard the edge
     end
-    return result
+    return adjoint(reshape(result, (3, :)))
 end
 
 graph_with_weights_1 =
     Dict(1 => [(3, -2)], 2 => [(1, 4), (3, 3)], 3 => [(4, 2)], 4 => [(2, -1)])
-minimum_spanning_tree(graph_with_weights_1)
-#find_global_maximum_complex(graph_with_weights_1)
+
+graph_with_spanning_tree = Dict(
+    1 => [(2,10),(3,6),(4,5)],
+    2 => [(4,15)],
+    3 => [(4,4)]
+)
+println(minimum_spanning_tree(graph_with_spanning_tree))
+#find_global_maximum_complex(graph_with_spanning_tree)
