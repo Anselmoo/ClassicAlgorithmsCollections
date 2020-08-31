@@ -1,5 +1,4 @@
 """
-
     find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
 
 Find the total global maximum based on a comparsion between the intial vertex 
@@ -19,8 +18,10 @@ function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
         if key > global_maximum
             global_maximum = key
         end
+
         # Check the values as new local maximum
         local_maximum = maximum(value)
+        
         # Check if new local maximum becomes global maximum
         if local_maximum > global_maximum
             global_maximum = local_maximum
@@ -30,7 +31,6 @@ function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
 end
 
 """
-
     find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
 
 `find_global_maximum_complex` is similar to `find_global_maximum` instead is desigend 
@@ -45,12 +45,15 @@ function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},
     global_maximum = 0
     # Going through the dictionary
     for (key, value) in graph
+        
         # Check the keys as new global maximum
         if key > global_maximum
             global_maximum = key
         end
+
         # Check the values as new local maximum
         for local_maximum in value
+
             # Check if new local maximum becomes global maximum
             if local_maximum[1] > global_maximum
                 global_maximum = local_maximum[1]
@@ -110,6 +113,7 @@ function breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
         # Get all adjacent vertices of the dequeued vertex s. If a adjacent 
         # has not been visited, then mark it visited and enqueue it 
         for i in graph[start]
+            # Check if vertex has already been visited
             if visited[i] == false
                 append!(queue, i)
                 visited[i] = true
@@ -137,7 +141,6 @@ of the graph.
 - `visited::Array{Bool,1}`: Visited nodes of the graph
 - `solution::Array{Int64,1}`: Solution of the raph-traveling proces
 ...
-
 """
 function dfs_recrusive(
     graph::Dict{Int64,Array{Int64,1}},
@@ -342,7 +345,6 @@ function find_parent_in_spanning_tree(parent::Array{Int64,1}, i::Int64)
 end
 
 
-
 """
     graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
 
@@ -370,6 +372,7 @@ false
 function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
     # Get the maximum length of the vertex
     vertex_size = find_global_maximum(graph)
+
     # Create array-list for finding the parents and intialize all subsets to vertex_size, because 
     # negative indixing is forbidden in Julia.
     parent = fill(vertex_size, vertex_size)
@@ -380,11 +383,15 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
         for j in values
             x = find_parent_in_cycle(parent, i, vertex_size)
             y = find_parent_in_cycle(parent, j, vertex_size)
+
+            # Check if equal, then graph has a cycle
             if x == y
                 return true
             end
+
             x_set = find_parent_in_cycle(parent, x, vertex_size)
             y_set = find_parent_in_cycle(parent, y, vertex_size)
+            # Update the parent-set
             parent[x_set] = y_set
         end
     end
@@ -408,6 +415,7 @@ function sortrows(M, by = zeros(0))
     order = sortperm(order[:, 1])
     return M[order, :]
 end
+
 
 """
     minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}))
@@ -433,13 +441,12 @@ julia> ClassicAlgorithmsCollections.minimum_spanning_tree(graph_with_spanning_tr
 ```
 """
 function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
+    # Get the total number of nodes
     vertex_size = find_global_maximum_complex(graph)
 
-    # Because step on is sorting all the edges in non-decreasing order of their 
-    # weight, the dictionary has to be translated into an array to be able to be 
-    # sorted.
     # Intialize array list
     graph_array = zeros(Int64, false)
+
     # Append the dictionary to 1D array
     for (key, value) in graph
         for items in value
@@ -447,13 +454,24 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
         end
     end
 
+    # Retransform from 1D-array to 2D-array with three columns for node, connected node, 
+    # and weight.
     graph_array = adjoint(reshape(graph_array, (3, :)))
+    # Because step on is sorting all the edges in non-decreasing order of their 
+    # weight, the dictionary has to be translated into an array to be able to be 
+    # sorted.
     graph_array = sortrows(graph_array, graph_array[:, [3]])
 
-    # Create subsets in the size of the vertex with single elements
+    # Create array-list for finding the parents and intialize all subsets to vertex_size 
+    # with an increasing range, because it has to be reordered by the ranking later.
     parent = collect(Int64, 1:vertex_size)
+
+    # Create an array for ranking
     rank = zeros(Int64, vertex_size)
+    
+    # Create a array list for the results
     result = zeros(Int64, false)
+
     # Number of edges to be taken is equal to vertex_size 
     i = 1 # An index variable, used for sorted edges 
     e = 1 # An index variable, used for result[] 
@@ -487,7 +505,105 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
         end
         # Else discard the edge
     end
+    # Reshape the 1D array to 3D array
     return adjoint(reshape(result, (3, :)))
 end
 
 
+
+
+function bridge_check(graph, u, result, visited, parent, low, disc, time)
+
+    # Mark the current node as visited and print it 
+    visited[u] = true 
+
+    # Initialize discovery time
+    disc[u] = time
+    
+    # Initialize low value 
+    low[u] = time
+    
+    # Update time
+    time += 1
+
+    
+    #Recur for all the vertices adjacent to this vertex 
+    for v in graph[u]
+        # If v is not visited yet, then make it a child of u 
+        # in DFS tree and recur for it 
+        if visited[v] == false
+            parent[v] = u
+            time, _  = bridge_check(graph, v, result, visited, parent, low, disc, time)
+
+            # Check if the subtree rooted with v has a connection to 
+            # one of the ancestors of u 
+            low[u] = min(low[u], low[v])
+
+
+            # If the lowest vertex reachable from subtree 
+            #under v is below u in DFS tree, then u-v is 
+            # a bridge'''
+            if low[v] > disc[u];
+                # This returns goes up to the recursive function
+                append!(result, (u,v))
+                #break
+            end
+            #break
+        elseif v != parent[u] # Update low value of u for parent function calls. 
+            low[u] = min(low[u], disc[v])
+        end
+    end
+    return time, result
+end
+# DFS based function to find all bridges. It uses recursive 
+# function bridge_check() 
+function graph_bridge_check(graph::Dict{Int64,Array{Int64,1}})
+
+    # Mark all the vertices as not visited and Initialize parent and visited,  
+    # and ap(articulation point) arrays
+    vertex_size = find_global_maximum(graph)
+
+    #Create an array of visited nodes
+    visited = zeros(Bool, vertex_size)
+
+    disc = fill(99999, vertex_size)
+    
+    low = fill(99999, vertex_size)
+    
+    # 
+    parent = fill(vertex_size, vertex_size)
+
+    # Intialze the time
+    time = 0
+    # Create a array list for the results
+    result = zeros(Int64, false)
+    # Call the recursive helper function to find bridges 
+    # in DFS tree rooted with vertex 'i'     
+    for i in 1:vertex_size
+            time, result = bridge_check(graph, i, result, visited, parent, low, disc, time)
+    end
+
+    return adjoint(reshape(result, (2, :)))
+end
+
+
+dict_graph_bridge = Dict(
+    1 => [2, 3],
+    2 => [2, 3, 4, 5, 7],
+    3 => [2, 1],
+    4 => [2, 6],
+    5 => [2, 6],
+    6 => [4, 5],
+    7 => [2],
+)
+dict_graph_bridge_extended = Dict(
+    1 => [2, 3, 4],
+    2 => [1, 2, 3, 4, 5, 7],
+    3 => [1, 2],
+    4 => [2, 5, 6],
+    5 => [2, 4, 6],
+    6 => [4, 5],
+    7 => [2],
+)
+graph = Dict(1 => [2,3,4], 2 => [1,3], 3 => [1, 2], 4=> [1,5], 5 => [4])
+print(graph_bridge_check(dict_graph_bridge_extended))
