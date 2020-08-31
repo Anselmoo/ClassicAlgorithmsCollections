@@ -30,3 +30,7 @@ graph_with_spanning_tree =
     Dict(1 => [(2, 10), (3, 6), (4, 5)], 2 => [(4, 15)], 3 => [(4, 4)])
 @test ClassicAlgorithmsCollections.minimum_spanning_tree(graph_with_spanning_tree) ==
       [3 4 4; 1 4 5; 1 2 10]
+
+graph_bridge = Dict(1 => [2, 3, 4], 2 => [1, 3], 3 => [1, 2], 4 => [1, 5], 5 => [4])
+@test ClassicAlgorithmsCollections.graph_bridge_check(graph_bridge) == [4 5; 1 4]
+      
