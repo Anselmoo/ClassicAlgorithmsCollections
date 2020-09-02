@@ -8,5 +8,7 @@ export breadth_first_search,
     shortest_path_tree,
     graph_cycle_check,
     minimum_spanning_tree,
-    graph_bridge_check
+    graph_bridge_check,
+    boogle_word_check
+
 end # module

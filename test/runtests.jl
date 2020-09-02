@@ -33,4 +33,15 @@ graph_with_spanning_tree =
 
 graph_bridge = Dict(1 => [2, 3, 4], 2 => [1, 3], 3 => [1, 2], 4 => [1, 5], 5 => [4])
 @test ClassicAlgorithmsCollections.graph_bridge_check(graph_bridge) == [4 5; 1 4]
-      
+
+word_list = ["GEEKS", "FOR", "QUIZ", "GO"]
+graph_boogle = Dict(
+    1 => ["G", "I", "Z"],
+    2 => ["U", "E", "K"],
+    3 => ["Q", "S", "E"],
+    4 => ["D", "O", "P"],
+    5 => ["F", "O", "R"],
+)
+
+@test ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list) ==
+      ["GEEKS", "QUIZ", "FOR"]
