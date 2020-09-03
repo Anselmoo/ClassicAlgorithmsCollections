@@ -3,7 +3,7 @@ using ClassicAlgorithmsCollections
 
 @testset "Number Theory" begin
     # Tests for Number Theory
-    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) === 8
+    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
 end
 #@testset "Graph Theory" begin
 #    # Tests for Graph Theory
@@ -52,10 +52,10 @@ end
     # Test for sorting and searching
     arr = [2, 3, 4, 10, 40]
     target = 10
-    @test ClassicAlgorithmsCollections.binary_search(arr, target) === 4
+    @test ClassicAlgorithmsCollections.binary_search(arr, target) == 4
 
     arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
     target = 3
-    @test ClassicAlgorithmsCollections.binary_pivot_search(arr, target) === 3
+    @test ClassicAlgorithmsCollections.binary_pivot_search(arr, target) == 8
  
 end
