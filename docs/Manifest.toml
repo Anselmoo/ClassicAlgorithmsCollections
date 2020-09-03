@@ -27,6 +27,12 @@ git-tree-sha1 = "d296f5e975306844de3e57118c3cf4a7cf2a8762"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.16.0+4"
 
+[[ClassicAlgorithmsCollections]]
+deps = ["DocStringExtensions", "Documenter", "JSON", "JuliaFormatter", "LightGraphs", "Random", "Test", "TikzGraphs", "TikzPictures"]
+path = "/Users/anselmhahn/LocalDocuments/GitHub_Projects/ClassicAlgorithmsCollections"
+uuid = "200e722e-036e-465c-9f8f-9a25f0f9a217"
+version = "0.1.0"
+
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections"]
 git-tree-sha1 = "88d48e133e6d3dd68183309877eac74393daa7eb"
