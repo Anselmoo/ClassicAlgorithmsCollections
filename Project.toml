@@ -2,6 +2,10 @@ name = "ClassicAlgorithmsCollections"
 uuid = "200e722e-036e-465c-9f8f-9a25f0f9a217"
 authors = ["Anselm Hahn <Anselm.Hahn@gmail.com>"]
 version = "0.1.0"
+license = "MIT"
+repository = "https://github.com/Anselmoo/ClassicAlgorithmsCollections"
+description = "Coming soon"
+keywords = "alogrithms, graph-algorithms, linked-list, dynamic-programming, tree-structure, binary-search-tree, number-theory,  bit, bit-manipulation, string-manipulation, sorting-algorithms"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
