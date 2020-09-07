@@ -57,5 +57,11 @@ end
     arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
     target = 3
     @test ClassicAlgorithmsCollections.binary_pivot_search(arr, target) == 8
- 
+
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    ref = [11, 12, 22, 25, 34, 64, 90]
+    @test ClassicAlgorithmsCollections.bubble_sorting(arr) == ref
+    @test ClassicAlgorithmsCollections.insertion_sorting(arr) == ref
+          
+
 end

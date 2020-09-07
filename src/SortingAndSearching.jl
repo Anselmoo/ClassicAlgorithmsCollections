@@ -54,7 +54,7 @@ the subarrays.
 
 ...
 # Arguments
-- `array::Array{Int64,1}`: Sorted array of integers
+- `array::Array{Int64,1}`: Unsorted array of integers
 - `target::Int64`: Target-value to find the position 
 ...
 
@@ -97,3 +97,132 @@ function binary_pivot_search(array::Array{Int64,1}, target::Int64)
     end
     return nothing
 end
+
+"""
+    bubble_sorting(array::Array{Int64,1})
+
+The Bubble sorting algorithm (BSA) is a primitive sorting algorithm that repeatedly steps 
+through the list by using a double for-loop with n and n-1 size. During the walkthrough, 
+the BSA compares adjacent elements and swaps wrong ordered elements until the list is 
+sorted. For more information see: https://en.wikipedia.org/wiki/Bubble_sort
+
+...
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array of integers
+...
+
+# Examples
+```julia-repl
+julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> ClassicAlgorithmsCollections.binary_pivot_search(arr, target)
+[11, 12, 22, 25, 34, 64, 90]
+"""
+function bubble_sorting(array::Array{Int64,1})
+    n = length(array)
+
+    # Traverse through all array elements 
+    for i in 1:n
+        # Last i elements are already in place 
+        for j in 1:n-i-1
+            # traverse the array from 1 to n-i-1
+            if array[j] > array[j+1]
+                # Swap if the element found is greater than the next element 
+                booble_swap_1 = array[j+1]
+                booble_swap_2 = array[j]
+                array[j], = booble_swap_1
+                array[j+1] = booble_swap_2
+            end
+        end
+    end
+    return array
+end
+
+"""
+    insertion_sorting(array::Array{Int64,1})
+
+The insertion sorting algorithm builds the final sorted list by inserting elements that are 
+greater than the key, to one position ahead of their current position step one item at a 
+time. For more information see: https://en.wikipedia.org/wiki/Insertion_sort
+
+...
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array of integers
+...
+
+# Examples
+```julia-repl
+julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> ClassicAlgorithmsCollections.binary_pivot_search(arr, target)
+[11, 12, 22, 25, 34, 64, 90]
+"""
+function insertion_sorting(array::Array{Int64,1})
+
+    # Traverse through 1 to len(array) 
+    for i in 2:length(array)
+        # 
+        key = array[i]
+        j = i - 1
+        while j >= 1 && key < array[j]
+            array[j+1] = array[j]
+            j -= 1
+            array[j+1] = key
+        end
+    end
+    return array
+end
+
+function merge(left, right)
+    result = zeros(Int64, false)
+
+    while left != [] && right != []
+        if left[1] <= right[1]
+            append!(result, left[1])
+            left = left[2:length(left)]
+        else
+            append!(result, right[1])
+            right = right[2:length(right)]
+        end
+    end
+
+
+    # Either left or right may have elements left; consume them.
+    # (Only one of the following loops will actually be entered.)
+    while left != []
+        append!(result, left[1])
+        left = left[2:length(left)]
+    end
+    while right != []
+        append!(result, right[1])
+        right = right[2:length(right)]
+    end
+    return result
+end
+
+
+function merge_sorting(array::Array{Int64,1})
+    # Base case. A list of zero or one elements is sorted, by definition.
+    n = length(array)
+    if n <= 1
+        return array
+    end
+
+    # First, divide the list into equal-sized sublists
+    mid = fld(n, 2)
+    left = array[1:mid]
+    right = array[mid+1:n]
+    left = merge_sorting(left)
+    right = merge_sorting(right)
+    # Recursively sorting the left and right half 
+    array = merge(left, right)
+    n = length(array) - 1
+    println(n)
+    # Then merge the now-sorted left and right sublists.
+    return array
+end
+
+
+#arr = [64, 34, 25, 12, 22, 11, 90]
+
+arr = [12, 11, 13, 5, 6, 7]
+# sol = [ 5, 6, 7, 11, 12, 13]
+println(merge_sorting(arr))

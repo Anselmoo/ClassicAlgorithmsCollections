@@ -13,5 +13,5 @@ export breadth_first_search,
     boogle_word_check
 
 include("SortingAndSearching.jl")
-export binary_search, binary_pivot_search
+export binary_search, binary_pivot_search, bubble_sorting, insertion_sorting
 end # module
