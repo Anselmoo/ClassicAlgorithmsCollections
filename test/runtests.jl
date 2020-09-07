@@ -62,6 +62,6 @@ end
     ref = [11, 12, 22, 25, 34, 64, 90]
     @test ClassicAlgorithmsCollections.bubble_sorting(arr) == ref
     @test ClassicAlgorithmsCollections.insertion_sorting(arr) == ref
-          
+    @test ClassicAlgorithmsCollections.merge_sorting(arr) == ref
 
 end

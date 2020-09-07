@@ -546,8 +546,6 @@ endpoints is found.
 - `low::Array{Int64,1}`: Lowest vertex reachable from subtree 
 - `disc::Array{Int64,1}`: Discovery time of the visited vertex 
 - `time::Int64`: Current time
-
-```
 """
 function bridge_check(
     graph::Dict{Int64,Array{Int64,1}},
@@ -668,16 +666,16 @@ going through the graph up and down and keep track of the visited nodes. Importa
 the travelling happens in both direction up and down and left and right. Everythign will be 
 stacked in the visited list. If no word will be found the `current_word` has to be deleted. 
 
-    # Arguments
-    - `graph::Dict{Int64,Array{String,1}}`: Graph of the connected nodes of chars, which can build the words
-    - `visited::Array{Bool,2}`: List of the visited chars in the graph
-    - `i::Int64`: current row
-    - `j::Int64`: current col
-    - `size_v::Int64`: total size of rows
-    - `size_h::Int64`: total size of cols
-    - `current_word::String`: current joint word of chars
-    - `reference_words::Array{String,1}`: Reference words to search for
-    - `result::Array{String,1}`: List of the found words in the graph
+# Arguments
+- `graph::Dict{Int64,Array{String,1}}`: Graph of the connected nodes of chars, which can build the words
+- `visited::Array{Bool,2}`: List of the visited chars in the graph
+- `i::Int64`: current row
+- `j::Int64`: current col
+- `size_v::Int64`: total size of rows
+- `size_h::Int64`: total size of cols
+- `current_word::String`: current joint word of chars
+- `reference_words::Array{String,1}`: Reference words to search for
+- `result::Array{String,1}`: List of the found words in the graph
 """
 function find_word(
     graph::Dict{Int64,Array{String,1}},
