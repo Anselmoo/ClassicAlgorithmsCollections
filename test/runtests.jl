@@ -63,5 +63,6 @@ end
     @test ClassicAlgorithmsCollections.bubble_sorting(arr) == ref
     @test ClassicAlgorithmsCollections.insertion_sorting(arr) == ref
     @test ClassicAlgorithmsCollections.merge_sorting(arr) == ref
+    @test ClassicAlgorithmsCollections.heap_sorting(arr) == ref
 
 end
