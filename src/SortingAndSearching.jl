@@ -266,7 +266,7 @@ end
 
 The heapify function merges the two subroutines for:
     1) Put elements of the array in heap order
-    2) Repair the heap elements `i` whose root element is not at the index `largest`
+    2) Repair the heap elements `i` whose root element, if is not at the index `largest`
 For more information see: https://en.wikipedia.org/wiki/Heapsort
 
 ...
@@ -278,25 +278,22 @@ For more information see: https://en.wikipedia.org/wiki/Heapsort
 """
 function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
     # Initialize largest as root and left and right sublists
-    largest = i 
+    largest = i
     # Julia notations, which starts with 1
     left = 2 * i
     right = 2 * i + 1
 
     # See if left child of root exists and is greater than root 
-    if left < n && array[i] < array[left]
+    if left <= n && array[i] < array[left]
         largest = left
     end
     # See if right child of root exists and is greater than root 
-    if right < n && array[largest] < array[right]
+    if right <= n && array[largest] < array[right]
         largest = right
     end
     # Change root, if needed 
     if largest != i
-        swap_1 = array[largest]
-        swap_2 = array[i]
-        array[i] = swap_1
-        array[largest] = swap_2
+        array[i], array[largest] = array[largest], array[i]
         # Heapify the root again 
         array = heapify(array, n, largest)
     end
@@ -311,7 +308,11 @@ As a comparison-based sorting algorithm, the heapsort algorithm (HSA) divides it
 into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by 
 extracting the largest element from it and inserting it into the sorted region. A specialty 
 is that the HSA keeps the unsorted region in a heap data structure to find the largest 
-element in each step more quickly. For more information see: https://en.wikipedia.org/wiki/Heapsort
+element in each step more quickly. In more detail, in the first part of the HSA 
+(while-loop), the largest value has to be found and set to position one. In the second part 
+of the HSA (while-loop), the list's first and largest value has to be swap to the last 
+index of the array, and the swapping-procedure starts again for a new interval n-1. For 
+more information see: https://en.wikipedia.org/wiki/Heapsort
 
 ...
 # Arguments
@@ -329,27 +330,21 @@ function heap_sorting(array::Array{Int64,1})
     # Base case. A list of zero or one elements is sorted, by definition.
     n = length(array)
     # Build a maxheap. 
-    i = fld1(n, 2) + 1
+    i = fld(n, 2)
     while i > 0
-
         array = heapify(array, n, i)
         i -= 1
 
     end
-    println(array)
+    # [90, 34, 64, 12, 22, 11, 25
     # One by one extract elements 
     i = n
-    while i > 0
-        #for i in n:-1:1
-        swap_1 = array[1]
-        swap_2 = array[i]
-        array[i] = swap_1
-        array[1] = swap_2
-        #array[i], array[1] = array[1], array[i]
-        array = heapify(array, i, 1)
+    while i > 1
+        array[i], array[1] = array[1], array[i]
+        # Julia specific reducing effectiv index
+        array = heapify(array, i - 1, 1)
         i -= 1
     end
 
     return array
 end
-
