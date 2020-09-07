@@ -418,4 +418,46 @@ function quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
     end
 end
 
+# Python program to implement interpolation search 
+  
+# If x is present in arr[0..n-1], then returns 
+# index of it, else returns -1 
+function interpolationSearch(array::Array{Int64,1}, target::Int64)
+    # Find indexs of two corners 
+    low = 1
+    high = length(array)-1
+   
+    # Since array is sorted, an element present 
+    # in array must be in range defined by corner 
+    while low <= high && target >= array[low] && target <= array[high]
+        if low == high
+            if array[low] == target
+                return low
+            end
+            return nothing
+            end
+        end  
+          
+        # Probing the position with keeping 
+        # uniform distribution in mind. 
+        pos  = low + floor(Int64,((float(high - low) / ( array[high] - array[low])) * ( target - array[low]))) 
+  
+        # Condition of target found 
+        if array[pos] == target
+            return pos 
+        end
+        # If x is larger, x is in upper part 
+        if array[pos] < target 
+            low = pos + 1
+   
+        # If x is smaller, x is in lower part 
+        else 
+            high = pos - 1 
+        end
+    return nothing 
+        
+    end
 
+    array_searching = [10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47] 
+    target_searching = 12
+interpolationSearch(array_searching, target_searching)

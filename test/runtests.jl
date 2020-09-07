@@ -50,20 +50,25 @@ end
 end
 @testset "Sorting & Searching" begin
     # Test for sorting and searching
-    arr = [2, 3, 4, 10, 40]
-    target = 10
-    @test ClassicAlgorithmsCollections.binary_search(arr, target) == 4
+    array_sorting = [64, 34, 25, 12, 22, 11, 90]
+    ref_sorting = [11, 12, 22, 25, 34, 64, 90]
+    @test ClassicAlgorithmsCollections.bubble_sorting(array_sorting) == ref_sorting
+    @test ClassicAlgorithmsCollections.insertion_sorting(array_sorting) == ref_sorting
+    @test ClassicAlgorithmsCollections.merge_sorting(array_sorting) == ref_sorting
+    @test ClassicAlgorithmsCollections.heap_sorting(array_sorting) == ref_sorting
+    @test ClassicAlgorithmsCollections.quick_sorting(array_sorting) == ref_sorting
 
-    arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
-    target = 3
-    @test ClassicAlgorithmsCollections.binary_pivot_search(arr, target) == 8
 
-    arr = [64, 34, 25, 12, 22, 11, 90]
-    ref = [11, 12, 22, 25, 34, 64, 90]
-    @test ClassicAlgorithmsCollections.bubble_sorting(arr) == ref
-    @test ClassicAlgorithmsCollections.insertion_sorting(arr) == ref
-    @test ClassicAlgorithmsCollections.merge_sorting(arr) == ref
-    @test ClassicAlgorithmsCollections.heap_sorting(arr) == ref
-    @test ClassicAlgorithmsCollections.quick_sorting(arr) == ref
-    
+    array_searching = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
+    target_searching = 3
+    ref_searching = 8
+    @test ClassicAlgorithmsCollections.binary_search(array_searching, target_searching) ==
+          ref_searching
+    @test ClassicAlgorithmsCollections.binary_pivot_search(
+        array_searching,
+        target_searching,
+    ) == ref_searching
+
+
+
 end
