@@ -308,7 +308,7 @@ function shortest_path_tree(
     end
 
     # Path-Reconstruction
-    if !(isnothing(u) & isnothing(v))
+    if !(isnothing(u) && isnothing(v))
         return dist, path_reconstruction(next, u, v)
     else
         return dist

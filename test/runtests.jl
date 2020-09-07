@@ -64,5 +64,6 @@ end
     @test ClassicAlgorithmsCollections.insertion_sorting(arr) == ref
     @test ClassicAlgorithmsCollections.merge_sorting(arr) == ref
     @test ClassicAlgorithmsCollections.heap_sorting(arr) == ref
-
+    @test ClassicAlgorithmsCollections.quick_sorting(arr) == ref
+    
 end

@@ -104,8 +104,8 @@ end
     bubble_sorting(array::Array{Int64,1})
 
 The Bubble sorting algorithm (BSA) is a primitive sorting algorithm that repeatedly steps 
-through the list by using a double for-loop with n and n-1 size. During the walkthrough, 
-the BSA compares adjacent elements and swaps wrong ordered elements until the list is 
+through the array by using a double for-loop with n and n-1 size. During the walkthrough, 
+the BSA compares adjacent elements and swaps wrong ordered elements until the array is 
 sorted. For more information see: https://en.wikipedia.org/wiki/Bubble_sort
 
 ...
@@ -143,7 +143,7 @@ end
 """
     insertion_sorting(array::Array{Int64,1})
 
-The insertion sorting algorithm builds the final sorted list by inserting elements that are 
+The insertion sorting algorithm builds the final sorted array by inserting elements that are 
 greater than the key, to one position ahead of their current position step one item at a 
 time. For more information see: https://en.wikipedia.org/wiki/Insertion_sort
 
@@ -177,9 +177,9 @@ end
 """
     merge(left::Array{Int64,1}, right::Array{Int64,1}))
 
-The merge algorithms (MA) merge the sublists `left` and `right` to produce new sorted 
-sublists until there is only one sublist remaining, which will be the sorted list. For more 
-information see: https://en.wikipedia.org/wiki/Merge_sort
+The merge algorithms (MA) merge the subarrays `left` and `right` to produce new sorted 
+subarrays until there is only one subarray remaining, which will be the sorted array. For
+more information see: https://en.wikipedia.org/wiki/Merge_sort
 
 ...
 # Arguments
@@ -224,8 +224,8 @@ to as the divide and conquer algorithms.  The stable sort implementation is a wi
 method for the MSA, which means that the order of equal elements is the same in the input 
 and output. In the current implementation, a top-down implementation is used; however, a 
 Bottom-up implementation can be used, too. In the top-down implementation, the MSA 
-recursively splits the list into sublists until the sublist size is < 2, merging those 
-sublists to produce a sorted list by using a new function `merge`. The back copying is 
+recursively splits the array into subarrays until the subarray size is < 2, merging those 
+subarrays to produce a sorted array by using a new function `merge`. The back copying is 
 blocked by alternating the direction of the merge with each recursion. For more information 
 see: https://en.wikipedia.org/wiki/Merge_sort
 
@@ -242,20 +242,20 @@ julia> ClassicAlgorithmsCollections.merge_sorting(arr)
 ```
 """
 function merge_sorting(array::Array{Int64,1})
-    # Base case. A list of zero or one elements is sorted, by definition.
+    # Base case. A array of zero or one elements is sorted, by definition.
     n = length(array)
     if n < 2
         return array
     end
 
-    # First, divide the list into equal-sized sublists
+    # First, divide the array into equal-sized subarrays
     mid = fld(n, 2)
     left = array[1:mid]
     right = array[mid+1:n]
     # Recursively sorting the left and right half
     left = merge_sorting(left)
     right = merge_sorting(right)
-    # Then merge the now-sorted left and right sublists.
+    # Then merge the now-sorted left and right subarrays.
     array = merge(left, right)
     # Finally return the sorted array
     return array
@@ -277,7 +277,7 @@ For more information see: https://en.wikipedia.org/wiki/Heapsort
 ...
 """
 function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
-    # Initialize largest as root and left and right sublists
+    # Initialize largest as root and left and right subarrays
     largest = i
     # Julia notations, which starts with 1
     left = 2 * i
@@ -310,7 +310,7 @@ extracting the largest element from it and inserting it into the sorted region. 
 is that the HSA keeps the unsorted region in a heap data structure to find the largest 
 element in each step more quickly. In more detail, in the first part of the HSA 
 (while-loop), the largest value has to be found and set to position one. In the second part 
-of the HSA (while-loop), the list's first and largest value has to be swap to the last 
+of the HSA (while-loop), the array's first and largest value has to be swap to the last 
 index of the array, and the swapping-procedure starts again for a new interval n-1. For 
 more information see: https://en.wikipedia.org/wiki/Heapsort
 
@@ -327,16 +327,18 @@ julia> ClassicAlgorithmsCollections.heap_sorting(arr)
 ```
 """
 function heap_sorting(array::Array{Int64,1})
-    # Base case. A list of zero or one elements is sorted, by definition.
+    # Base case. A array of zero or one elements is sorted, by definition.
     n = length(array)
-    # Build a maxheap. 
+
+    # Shrink the active space
     i = fld(n, 2)
+    # Build a maxheap
     while i > 0
         array = heapify(array, n, i)
         i -= 1
 
     end
-    # [90, 34, 64, 12, 22, 11, 25
+
     # One by one extract elements 
     i = n
     while i > 1
@@ -348,3 +350,72 @@ function heap_sorting(array::Array{Int64,1})
 
     return array
 end
+
+
+
+
+
+function partition(array::Array{Int64,1}, low::Int64, high::Int64)
+    # index of smaller element
+    i = low - 1
+    # pivot         
+    pivot = array[high]      
+
+    for j in low:high
+
+        # If current element is smaller than the pivot 
+        if array[j] < pivot
+
+            # increment index of smaller element 
+            i = i + 1
+            array[i], array[j] = array[j], array[i]
+        end
+    end
+    array[i+1], array[high] = array[high], array[i+1]
+    return (i + 1)
+end
+
+"""
+    quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
+
+The quick sort algorithm (QSA) works by selecting a pivot element from the array and 
+partitioning the other elements into two subarrays, according to whether they are less than 
+or greater than the pivot-window. Then the sorting of subarrays is recursively organized. 
+This procedure repeatedly happens until each subarray is organized; consequently, the 
+subarrays' merging is an organized array. For more information see: 
+https://en.wikipedia.org/wiki/Quicksort#Parallelization
+
+...
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array of integers
+- `low::Int64`: Lowest index of the unsorted array or subarray
+- `high::Int64`: Highes index of the unsorted array or subarray
+...
+
+# Examples
+```julia-repl
+julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> ClassicAlgorithmsCollections.quick_sorting(arr)
+[11, 12, 22, 25, 34, 64, 90]
+```
+"""
+function quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
+    # If nothing, then the intial run, so low and high are set to array size
+    if isnothing(low) && isnothing(high)
+        low = 1
+        high = length(array)
+    end
+    if low < high
+
+        # p_i is partitioning index, array[p_i] is now at right place 
+        p_i = partition(array, low, high)
+
+        # Separately sort elements before partition and after partition 
+        array = quick_sorting(array, low, p_i - 1)
+        array = quick_sorting(array, p_i + 1, high)
+    else
+        return array
+    end
+end
+
+

@@ -18,5 +18,6 @@ export binary_search,
     bubble_sorting,
     insertion_sorting,
     merge_sorting,
-    heap_sorting
+    heap_sorting,
+    quick_sorting
 end # module
