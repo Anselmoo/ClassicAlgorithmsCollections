@@ -170,10 +170,10 @@ end
 """
     closest_pair_searching(array::Array{Int64,1}, target::Int64)
 
-
 Finding the closet pair of values for a given target in a sorted array. For this reason, 
 the distance between a pair of of values has to be minimazied with respect to the target.
 For more information see: https://en.wikipedia.org/wiki/Closest_pair_of_points_problem
+
 ...
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
