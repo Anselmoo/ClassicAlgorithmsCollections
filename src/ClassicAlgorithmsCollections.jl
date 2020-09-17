@@ -2,6 +2,7 @@ module ClassicAlgorithmsCollections
 
 include("NumberTheory.jl")
 export modular_exponentiation
+
 include("Graph.jl")
 export breadth_first_search,
     depth_first_search,
@@ -11,4 +12,14 @@ export breadth_first_search,
     graph_bridge_check,
     boogle_word_check
 
+include("SortingAndSearching.jl")
+export binary_search,
+    binary_pivot_search,
+    bubble_sorting,
+    insertion_sorting,
+    merge_sorting,
+    heap_sorting,
+    quick_sorting,
+    interpolation_searching,
+    closest_pair_searching
 end # module

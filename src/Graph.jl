@@ -30,6 +30,7 @@ function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
     return global_maximum
 end
 
+
 """
     find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
 
@@ -64,6 +65,7 @@ function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},
     end
     return global_maximum
 end
+
 
 """
     breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
@@ -123,6 +125,7 @@ function breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
     return solution
 end
 
+
 """
     dfs_recrusive(
         graph::Dict{Int64,Array{Int64,1}},
@@ -162,6 +165,7 @@ function dfs_recrusive(
 
 end
 
+
 """
     depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
@@ -198,6 +202,7 @@ function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
     return result
 end
 
+
 """
     initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
 
@@ -229,6 +234,7 @@ function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     return dist, next, vertex_size
 end
 
+
 """
     path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
 
@@ -255,6 +261,7 @@ function path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
     end
     return path
 end
+
 
 """
     shortest_path_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
@@ -301,7 +308,7 @@ function shortest_path_tree(
     end
 
     # Path-Reconstruction
-    if !(isnothing(u) & isnothing(v))
+    if !(isnothing(u) && isnothing(v))
         return dist, path_reconstruction(next, u, v)
     else
         return dist
@@ -326,6 +333,7 @@ function find_parent_in_cycle(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
     end
     return find_parent_in_cycle(parent, parent[i], ref_key)
 end
+
 
 """
     find_parent_in_spanning_tree(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
@@ -398,6 +406,7 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
     return false
 
 end
+
 
 """
 Provided by: https://discourse.julialang.org/t/sort-matrix-based-on-the-elements-of-a-specific-column/23475/5
@@ -537,8 +546,6 @@ endpoints is found.
 - `low::Array{Int64,1}`: Lowest vertex reachable from subtree 
 - `disc::Array{Int64,1}`: Discovery time of the visited vertex 
 - `time::Int64`: Current time
-
-```
 """
 function bridge_check(
     graph::Dict{Int64,Array{Int64,1}},
@@ -590,6 +597,7 @@ function bridge_check(
     return time, result
 end
 
+
 """
     graph_bridge_check(graph::Dict{Int64,Array{Int64,1}}))
 
@@ -639,6 +647,7 @@ function graph_bridge_check(graph::Dict{Int64,Array{Int64,1}})
     return adjoint(reshape(result, (2, :)))
 end
 
+
 """
     find_word(
         graph::Dict{Int64,Array{String,1}},
@@ -657,16 +666,16 @@ going through the graph up and down and keep track of the visited nodes. Importa
 the travelling happens in both direction up and down and left and right. Everythign will be 
 stacked in the visited list. If no word will be found the `current_word` has to be deleted. 
 
-    # Arguments
-    - `graph::Dict{Int64,Array{String,1}}`: Graph of the connected nodes of chars, which can build the words
-    - `visited::Array{Bool,2}`: List of the visited chars in the graph
-    - `i::Int64`: current row
-    - `j::Int64`: current col
-    - `size_v::Int64`: total size of rows
-    - `size_h::Int64`: total size of cols
-    - `current_word::String`: current joint word of chars
-    - `reference_words::Array{String,1}`: Reference words to search for
-    - `result::Array{String,1}`: List of the found words in the graph
+# Arguments
+- `graph::Dict{Int64,Array{String,1}}`: Graph of the connected nodes of chars, which can build the words
+- `visited::Array{Bool,2}`: List of the visited chars in the graph
+- `i::Int64`: current row
+- `j::Int64`: current col
+- `size_v::Int64`: total size of rows
+- `size_h::Int64`: total size of cols
+- `current_word::String`: current joint word of chars
+- `reference_words::Array{String,1}`: Reference words to search for
+- `result::Array{String,1}`: List of the found words in the graph
 """
 function find_word(
     graph::Dict{Int64,Array{String,1}},
@@ -723,6 +732,7 @@ function find_word(
 
 
 end
+
 
 """
     boogle_word_check(
@@ -787,4 +797,3 @@ function boogle_word_check(
     end
     return result
 end
-# graph_topology_search = Dict(5=> [2, 0], 4=> [0, 1], 2=> [3], 3 => [1])
