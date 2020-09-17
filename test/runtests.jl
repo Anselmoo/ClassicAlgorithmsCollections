@@ -73,8 +73,8 @@ end
     ) == ref_searching
 
     array_searching_pair = [10, 22, 28, 29, 30, 40]
-    target_searching_pair = 72
-    ref_searching_pair = (30, 40)
+    target_searching_pair = 56
+    ref_searching_pair = (28, 29)
     @test ClassicAlgorithmsCollections.closest_pair_searching(
         array_searching_pair,
         target_searching_pair,

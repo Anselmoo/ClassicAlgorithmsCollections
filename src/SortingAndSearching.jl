@@ -183,9 +183,9 @@ For more information see: https://en.wikipedia.org/wiki/Closest_pair_of_points_p
 # Examples
 ```julia-repl
 julia> arr = [10, 22, 28, 29, 30, 40]
-julia> target = 52
+julia> target = 56
 julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
-(22, 29)
+(28, 29)
 ```
 """
 function closest_pair_searching(array::Array{Int64,1}, target::Int64)
