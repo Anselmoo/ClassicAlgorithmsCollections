@@ -5,6 +5,8 @@ using ClassicAlgorithmsCollections
     # Tests for Number Theory
     @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
 end
+
+
 @testset "Graph Theory" begin
     # Tests for Graph Theory
     graph = Dict(1 => [2, 3], 2 => [3], 3 => [1, 4], 4 => [4])
@@ -48,6 +50,8 @@ end
     @test ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list) ==
           ["GEEKS", "QUIZ", "FOR"]
 end
+
+
 @testset "Sorting & Searching" begin
     # Test for sorting and searching
     array_sorting = [64, 34, 25, 12, 22, 11, 90]
@@ -57,7 +61,6 @@ end
     @test ClassicAlgorithmsCollections.merge_sorting(array_sorting) == ref_sorting
     @test ClassicAlgorithmsCollections.heap_sorting(array_sorting) == ref_sorting
     @test ClassicAlgorithmsCollections.quick_sorting(array_sorting) == ref_sorting
-
 
     array_searching = [10, 11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
     target_searching = 12
@@ -84,7 +87,4 @@ end
         array_unsorted_searching,
         target_unsorted_searching,
     ) == ref_unsorted_searching
-
-
-
 end
