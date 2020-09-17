@@ -22,11 +22,11 @@ after_success:
 jobs:
   # Uncomment the following lines to allow failures on nightly julia
   # (tests will run but not make your overall status red)
-  #  allow_failures:
-  #   - julia: nightly
+  allow_failures:
+    - julia: nightly
   include:
     - stage: "Documentation"
-      julia: 1.0
+      julia: 1.5
       os: linux
       script:
         - julia --project=docs/ -e 'using Pkg; Pkg.instantiate(); Pkg.develop(PackageSpec(path=pwd())); Pkg.add("Documenter")'
