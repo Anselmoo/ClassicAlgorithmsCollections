@@ -18,10 +18,10 @@ array. For more information see: https://en.wikipedia.org/wiki/Binary_search_alg
 
 # Examples
 ```julia-repl
-julia> arr = [2, 3, 4, 10, 40]
-julia> target = 10
+julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
+julia> target = 12
 julia> ClassicAlgorithmsCollections.binary_search(arr, target)
-8
+3
 ```
 """
 function binary_search(array::Array{Int64,1}, target::Int64)
@@ -100,6 +100,73 @@ function binary_pivot_search(array::Array{Int64,1}, target::Int64)
     return nothing
 end
 
+
+"""
+    interpolation_searching(array::Array{Int64,1}, target::Int64)
+
+The Interpolation search algorithm (ISA) finds a target-position in a sorted array by using 
+a numerical procedure. The sorting procedure uses a linear fitting for finding the target 
+position of the remaining search space in the array in more detail. The array's target 
+position is calculated by the straight slope between the lowest and largest boundary of the 
+remaining array and the lowest array position itself during each optimization cycle. If the 
+target-position cannot be found, the array-space will be shrink for the lower or higher 
+boundary region based on a comparison. For more information see: https://en.wikipedia.org/wiki/Interpolation_search 
+
+...
+# Arguments
+- `array::Array{Int64,1}`: Sorted array of integers
+- `target::Int64`: Target-value to find the position 
+...
+
+# Examples
+```julia-repl
+julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
+julia> target = 12
+julia> ClassicAlgorithmsCollections.interpolation_searching(arr, target)
+3
+```
+"""
+function interpolation_searching(array::Array{Int64,1}, target::Int64)
+    # Find indexs of two low and high array-boundary 
+    low = 1
+    high = length(array)
+
+    # Since array is sorted, an element present in array must be in range defined by boundary 
+    while low <= high && target >= array[low] && target <= array[high]
+
+        # Check if array contains only one element
+        if low == high
+            if array[low] == target
+                return low
+            end
+            return nothing
+        end
+
+        # Linear fitting of the new position pos and transforming to an integer value. 
+        pos =
+            low + floor(
+                Int64,
+                ((float(high - low) / (array[high] - array[low])) * (target - array[low])),
+            )
+
+        #  Check if target is now found
+        if array[pos] == target
+            return pos
+        end
+
+        # If x is larger, x is in upper part 
+        if array[pos] < target
+            low = pos + 1
+            # Else x has to be smaller, x is in lower part 
+        else
+            high = pos - 1
+        end
+    end
+    # If target is not in the list
+    return nothing
+end
+
+
 """
     bubble_sorting(array::Array{Int64,1})
 
@@ -130,15 +197,17 @@ function bubble_sorting(array::Array{Int64,1})
             # traverse the array from 1 to n-i-1
             if array[j] > array[j+1]
                 # Swap if the element found is greater than the next element 
-                booble_swap_1 = array[j+1]
-                booble_swap_2 = array[j]
-                array[j], = booble_swap_1
-                array[j+1] = booble_swap_2
+                #booble_swap_1 = array[j+1]
+                #booble_swap_2 = array[j]
+                #array[j], = booble_swap_1
+                #array[j+1] = booble_swap_2
+                array[j], array[j+1] = array[j+1], array[j]
             end
         end
     end
     return array
 end
+
 
 """
     insertion_sorting(array::Array{Int64,1})
@@ -174,6 +243,8 @@ function insertion_sorting(array::Array{Int64,1})
     end
     return array
 end
+
+
 """
     merge(left::Array{Int64,1}, right::Array{Int64,1}))
 
@@ -215,6 +286,7 @@ function merge(left::Array{Int64,1}, right::Array{Int64,1})
     end
     return result
 end
+
 
 """
     merge_sorting(array::Array{Int64,1})
@@ -260,6 +332,7 @@ function merge_sorting(array::Array{Int64,1})
     # Finally return the sorted array
     return array
 end
+
 
 """
     heapify(array::Array{Int64,1})
@@ -354,12 +427,24 @@ end
 
 
 
+"""
+    partition(array::Array{Int64,1}, low::Int64, high::Int64)
 
+The partion algorithm is shuffeling the array for a given interval of low and high 
+boundaries.
+
+...
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array of integers
+- `low::Int64`: Lowest index of the unsorted array or subarray
+- `high::Int64`: Highes index of the unsorted array or subarray
+...
+"""
 function partition(array::Array{Int64,1}, low::Int64, high::Int64)
     # index of smaller element
     i = low - 1
     # pivot         
-    pivot = array[high]      
+    pivot = array[high]
 
     for j in low:high
 
@@ -368,6 +453,7 @@ function partition(array::Array{Int64,1}, low::Int64, high::Int64)
 
             # increment index of smaller element 
             i = i + 1
+            # Swap if the element found is greater than the next element
             array[i], array[j] = array[j], array[i]
         end
     end
@@ -418,46 +504,7 @@ function quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
     end
 end
 
-# Python program to implement interpolation search 
-  
-# If x is present in arr[0..n-1], then returns 
-# index of it, else returns -1 
-function interpolationSearch(array::Array{Int64,1}, target::Int64)
-    # Find indexs of two corners 
-    low = 1
-    high = length(array)-1
-   
-    # Since array is sorted, an element present 
-    # in array must be in range defined by corner 
-    while low <= high && target >= array[low] && target <= array[high]
-        if low == high
-            if array[low] == target
-                return low
-            end
-            return nothing
-            end
-        end  
-          
-        # Probing the position with keeping 
-        # uniform distribution in mind. 
-        pos  = low + floor(Int64,((float(high - low) / ( array[high] - array[low])) * ( target - array[low]))) 
-  
-        # Condition of target found 
-        if array[pos] == target
-            return pos 
-        end
-        # If x is larger, x is in upper part 
-        if array[pos] < target 
-            low = pos + 1
-   
-        # If x is smaller, x is in lower part 
-        else 
-            high = pos - 1 
-        end
-    return nothing 
-        
-    end
 
-    array_searching = [10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47] 
-    target_searching = 12
-interpolationSearch(array_searching, target_searching)
+
+
+

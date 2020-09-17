@@ -59,15 +59,23 @@ end
     @test ClassicAlgorithmsCollections.quick_sorting(array_sorting) == ref_sorting
 
 
-    array_searching = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
-    target_searching = 3
-    ref_searching = 8
+    array_searching = [10, 11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
+    target_searching = 12
+    ref_searching = 3
     @test ClassicAlgorithmsCollections.binary_search(array_searching, target_searching) ==
           ref_searching
-    @test ClassicAlgorithmsCollections.binary_pivot_search(
+    @test ClassicAlgorithmsCollections.interpolation_searching(
         array_searching,
         target_searching,
     ) == ref_searching
+    
+    array_unsorted_searching = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
+    target_unsorted_searching = 3
+    ref_unsorted_searching = 8
+    @test ClassicAlgorithmsCollections.binary_pivot_search(
+        array_unsorted_searching,
+        target_unsorted_searching,
+    ) == ref_unsorted_searching
 
 
 

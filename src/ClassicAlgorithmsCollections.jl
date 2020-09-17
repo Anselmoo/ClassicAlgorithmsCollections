@@ -19,5 +19,6 @@ export binary_search,
     insertion_sorting,
     merge_sorting,
     heap_sorting,
-    quick_sorting
+    quick_sorting,
+    interpolation_searching
 end # module
