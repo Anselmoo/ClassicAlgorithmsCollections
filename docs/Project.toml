@@ -1,3 +1,3 @@
 [deps]
-ClassicAlgorithmsCollections = "200e722e-036e-465c-9f8f-9a25f0f9a217"
+#ClassicAlgorithmsCollections = "200e722e-036e-465c-9f8f-9a25f0f9a217"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
