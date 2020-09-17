@@ -183,7 +183,7 @@ For more information see: https://en.wikipedia.org/wiki/Closest_pair_of_points_p
 # Examples
 ```julia-repl
 julia> arr = [10, 22, 28, 29, 30, 40]
-julia> target = 72
+julia> target = 52
 julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
 (22, 29)
 ```
