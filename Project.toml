@@ -1,10 +1,10 @@
-name = "ClassicAlgorithmsCollections"
-uuid = "200e722e-036e-465c-9f8f-9a25f0f9a217"
-keywords = "alogrithms, graph-algorithms, linked-list, dynamic-programming, tree-structure, binary-search-tree, number-theory,  bit, bit-manipulation, string-manipulation, sorting-algorithms"
-license = "MIT"
 authors = ["Anselm Hahn <Anselm.Hahn@gmail.com>"]
 description = "Coming soon"
+keywords = "alogrithms, graph-algorithms, linked-list, dynamic-programming, tree-structure, binary-search-tree, number-theory,  bit, bit-manipulation, string-manipulation, sorting-algorithms"
+license = "MIT"
+name = "ClassicAlgorithmsCollections"
 repository = "https://github.com/Anselmoo/ClassicAlgorithmsCollections"
+uuid = "200e722e-036e-465c-9f8f-9a25f0f9a217"
 version = "0.1.0"
 
 [deps]
@@ -14,6 +14,16 @@ JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TikzGraphs = "b4f28e30-c73f-5eaf-a395-8a9db949a742"
 TikzPictures = "37f6aa50-8035-52d0-81c2-5a1d08754b2d"
+
+[compat]
+julia = ">= 1.5"
+
+[extras]
+
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+["targets"]
+
+test = ["Test"]
