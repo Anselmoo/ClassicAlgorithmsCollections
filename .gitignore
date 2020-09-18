@@ -4,3 +4,8 @@ cross_check
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+docs/build/
+docs/build/index.html
+docs/build/search/index.html
+docs/build/index.html
+docs/build/search_index.js
