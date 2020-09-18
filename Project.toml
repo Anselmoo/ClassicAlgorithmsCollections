@@ -8,7 +8,6 @@ repository = "https://github.com/Anselmoo/ClassicAlgorithmsCollections"
 version = "0.1.0"
 
 [deps]
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
 TikzGraphs = "b4f28e30-c73f-5eaf-a395-8a9db949a742"
 TikzPictures = "37f6aa50-8035-52d0-81c2-5a1d08754b2d"
