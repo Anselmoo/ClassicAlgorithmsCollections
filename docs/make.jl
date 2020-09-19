@@ -7,7 +7,12 @@ makedocs(
     authors = "Anselm Hahn <Anselm.Hahn@gmail.com>",
     doctest = true,
     linkcheck = true,
-    format = Documenter.HTML(prettyurls = !("local" in ARGS)),
+    format = Documenter.HTML(
+        # Use clean URLs, unless built as a "local" build
+        prettyurls = !("local" in ARGS),
+        canonical = "https://anselmoo.github.io/ClassicAlgorithmsCollections/",
+        highlights = ["yaml"],
+    ),
     pages = [
         "Home" => "index.md",
         "Guide" => "man/guide.md",
