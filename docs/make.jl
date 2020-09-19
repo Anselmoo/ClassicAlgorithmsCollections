@@ -1,5 +1,24 @@
-using Documenter, ClassicAlgorithmsCollections
+using ClassicAlgorithmsCollections
+using Documenter
 
-makedocs(modules = [ClassicAlgorithmsCollections], sitename = "ClassicAlgorithmsCollections.jl")
 
-#deploydocs(repo = "github.com/JuliaLang/Example.jl.git")
+makedocs(
+    modules=[ClassicAlgorithmsCollections],
+    authors="Anselm Hahn <Anselm.Hahn@gmail.com>",
+    repo="https://github.com/Anselmoo/ClassicAlgorithmsCollections.jl/blob/{commit}{path}#L{line}",
+    sitename="ClassicAlgorithmsCollections.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://Anselmoo.github.io/ClassicAlgorithmsCollections.jl",
+        assets=String[],
+    ),
+    pages = [
+        "Home" => "index.md",
+        "Guide" => "man/guide.md",
+        "Algorithms" => Any["Sorting and Searching"=>"man/SortingAndSearching.md"],
+    ],
+)
+
+deploydocs(;
+    repo="github.com/Anselmoo/ClassicAlgorithmsCollections.jl",
+)

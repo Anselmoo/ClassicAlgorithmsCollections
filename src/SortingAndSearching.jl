@@ -8,13 +8,13 @@ which the target cannot be will be erased. Next, the search continues on the rem
 half array-piece and starts taking the middle element to compare it to the target value.
 This procedure has to be continued until the target value is found. The search may have to 
 be stopped with a remaining empty half array-piece; consequently, the target is not in the 
-array. For more information see: https://en.wikipedia.org/wiki/Binary_search_algorithm
+array. For more information see: [https://en.wikipedia.org/wiki/Binary_search_algorithm](https://en.wikipedia.org/wiki/Binary_search_algorithm)
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
 - `target::Int64`: Target-value to find the position 
-...
+
 
 # Examples
 ```julia-repl
@@ -53,11 +53,11 @@ The idea is to find the pivot point for finding the target in an unsorted array.
 reason, the array has to be divided into two subarrays; a binary search is performed on 
 the subarrays.
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `target::Int64`: Target-value to find the position 
-...
+
 
 # Examples
 ```julia-repl
@@ -112,11 +112,11 @@ remaining array and the lowest array position itself during each optimization cy
 target-position cannot be found, the array-space will be shrink for the lower or higher 
 boundary region based on a comparison. For more information see: https://en.wikipedia.org/wiki/Interpolation_search 
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
 - `target::Int64`: Target-value to find the position 
-...
+
 
 # Examples
 ```julia-repl
@@ -174,18 +174,18 @@ Finding the closet pair of values for a given target in a sorted array. For this
 the distance between a pair of of values has to be minimazied with respect to the target.
 For more information see: https://en.wikipedia.org/wiki/Closest_pair_of_points_problem
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
 - `target::Int64`: Target-value to find the position 
-...
+
 
 # Examples
 ```julia-repl
 julia> arr = [10, 22, 28, 29, 30, 40]
-julia> target = 52
+julia> target = 56
 julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
-(22, 29)
+(28, 29)
 ```
 """
 function closest_pair_searching(array::Array{Int64,1}, target::Int64)
@@ -228,10 +228,10 @@ through the array by using a double for-loop with n and n-1 size. During the wal
 the BSA compares adjacent elements and swaps wrong ordered elements until the array is 
 sorted. For more information see: https://en.wikipedia.org/wiki/Bubble_sort
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
-...
+
 
 # Examples
 ```julia-repl
@@ -265,10 +265,10 @@ The insertion sorting algorithm builds the final sorted array by inserting eleme
 greater than the key, to one position ahead of their current position step one item at a 
 time. For more information see: https://en.wikipedia.org/wiki/Insertion_sort
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
-...
+
 
 # Examples
 ```julia-repl
@@ -301,11 +301,11 @@ The merge algorithms (MA) merge the subarrays `left` and `right` to produce new 
 subarrays until there is only one subarray remaining, which will be the sorted array. For
 more information see: https://en.wikipedia.org/wiki/Merge_sort
 
-...
+
 # Arguments
 - `left::Array{Int64,1}`: Unsorted left part of the array
 - `right::Array{Int64,1}`: Unsorted right part of the array
-...
+
 """
 function merge(left::Array{Int64,1}, right::Array{Int64,1})
     result = zeros(Int64, false)
@@ -350,10 +350,10 @@ subarrays to produce a sorted array by using a new function `merge`. The back co
 blocked by alternating the direction of the merge with each recursion. For more information 
 see: https://en.wikipedia.org/wiki/Merge_sort
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
-...
+
 
 # Examples
 ```julia-repl
@@ -391,12 +391,12 @@ The heapify function merges the two subroutines for:
     2) Repair the heap elements `i` whose root element, if is not at the index `largest`
 For more information see: https://en.wikipedia.org/wiki/Heapsort
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `n::Int64`: Length of the array
 - `::Int64`: Current index of the array
-...
+
 """
 function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
     # Initialize largest as root and left and right subarrays
@@ -436,10 +436,10 @@ of the HSA (while-loop), the array's first and largest value has to be swap to t
 index of the array, and the swapping-procedure starts again for a new interval n-1. For 
 more information see: https://en.wikipedia.org/wiki/Heapsort
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
-...
+
 
 # Examples
 ```julia-repl
@@ -482,12 +482,12 @@ end
 The partion algorithm is shuffeling the array for a given interval of low and high 
 boundaries.
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `low::Int64`: Lowest index of the unsorted array or subarray
 - `high::Int64`: Highes index of the unsorted array or subarray
-...
+
 """
 function partition(array::Array{Int64,1}, low::Int64, high::Int64)
     # index of smaller element
@@ -520,12 +520,12 @@ This procedure repeatedly happens until each subarray is organized; consequently
 subarrays' merging is an organized array. For more information see: 
 https://en.wikipedia.org/wiki/Quicksort#Parallelization
 
-...
+
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `low::Int64`: Lowest index of the unsorted array or subarray
 - `high::Int64`: Highes index of the unsorted array or subarray
-...
+
 
 # Examples
 ```julia-repl

@@ -5,10 +5,10 @@ Find the total global maximum based on a comparsion between the intial vertex
 (`global_maximum = 0`), the current dictionary key, and the accesible vertexes from 
 the array-list (value).
 
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-...
+
 """
 function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
     global_maximum = 0
@@ -37,10 +37,10 @@ end
 `find_global_maximum_complex` is similar to `find_global_maximum` instead is desigend 
 for handling graphs with weights.    
     
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
-...
+
 """
 function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     global_maximum = 0
@@ -76,11 +76,11 @@ all connected neighbor nodes. The important feature is that the BFS automaticall
 the present depth and passes on to the next nodes at a deeper level. BFS is queue-based.
 For more information see: https://en.wikipedia.org/wiki/Breadth-first_search
 
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
 - `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
-...
+
 
 # Examples
 ```julia-repl
@@ -137,13 +137,13 @@ end
 The recursively call of the dfs_recrusive is essential for exploring each single branch 
 of the graph.
 
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
 - `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
 - `visited::Array{Bool,1}`: Visited nodes of the graph
 - `solution::Array{Int64,1}`: Solution of the raph-traveling proces
-...
+
 """
 function dfs_recrusive(
     graph::Dict{Int64,Array{Int64,1}},
@@ -175,11 +175,11 @@ as far as possible at each branch. Afterthat the BFS starts automatically backtr
 DFS is stack-based. 
 For more information see: https://en.wikipedia.org/wiki/Depth-first_search
 
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
 - `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
-...
+
 
 # Examples
 ```julia-repl
@@ -208,10 +208,10 @@ end
 
 Initialize the matrices for distances and pathes.
 
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
-...
+
 """
 function initialize_matrices(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     # Define intial infinity weight & next matrix for given data type
@@ -239,12 +239,12 @@ end
     path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
 
 Reconstruction of the actual path between any two endpoint vertices (u & v).
-...
+
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
 - `u::Int64`: Startpoint of the to investigated path
 - `v::Int64`: Endpoint of the to investigated path
-...
+
 """
 function path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
     # Check if path exists

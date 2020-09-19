@@ -1,7 +1,28 @@
-# Example
+```@meta
+CurrentModule = ClassicAlgorithmsCollections
+```
 
-Example Julia package repo.
+# ClassicAlgorithmsCollections.jl
 
-```@autodocs
-Modules = [ClassicAlgorithmsCollections]
+A package with a collection of classical algorithms re-implemented in JULIA.
+
+!!! note
+    The `ClassicAlgorithmsCollections.jl` is initially inspired by [Geeksforgeeks' Top-10-Algorithms-in-Interview-Questions](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/) and should be continuously expanded by new algorithms or more elegant implementations.
+
+## Content
+
+```@contents
+Pages = [
+    "man/guide.md",
+    "man/SortingAndSearching.md"
+]
+Depth = 3
+```
+
+## Functions
+
+
+## Index
+
+```@index
 ```

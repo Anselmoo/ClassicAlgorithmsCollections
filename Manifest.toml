@@ -15,28 +15,11 @@ git-tree-sha1 = "03a44490020826950c68005cafb336e5ba08b7e8"
 uuid = "6e34b625-4abd-537c-b88f-471c36dfa7a0"
 version = "1.0.6+4"
 
-[[CSTParser]]
-deps = ["Tokenize"]
-git-tree-sha1 = "60e9121d9ea044c30a04397e59b00c5d9eb826ee"
-uuid = "00ebfdb7-1f24-5e51-bd34-a7502290713f"
-version = "2.5.0"
-
 [[Cairo_jll]]
 deps = ["Bzip2_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
 git-tree-sha1 = "c6c9c288df5ad1e6534c9dacd9972482c1eb838c"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.16.0+5"
-
-[[CommonMark]]
-deps = ["Crayons", "JSON", "URIParser"]
-git-tree-sha1 = "c1f1514d7cc1ad243a103b403d896ee184c91b62"
-uuid = "a80b9123-70ca-4bc0-993e-6e3bcb318db6"
-version = "0.6.4"
-
-[[Crayons]]
-git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
-uuid = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
-version = "4.0.4"
 
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections"]
@@ -109,21 +92,15 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[JSON]]
 deps = ["Dates", "Mmap", "Parsers", "Unicode"]
-git-tree-sha1 = "b34d7cef7b337321e97d22242c3c2b91f476748e"
+git-tree-sha1 = "81690084b6198a2e1da36fcfda16eeca9f9f24e4"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-version = "0.21.0"
+version = "0.21.1"
 
 [[JpegTurbo_jll]]
 deps = ["Libdl", "Pkg"]
 git-tree-sha1 = "76e28bf35d0c179531b11e254f66bbcc1fd268ca"
 uuid = "aacddb02-875f-59d6-b918-886e6ef4fbf8"
 version = "2.0.1+2"
-
-[[JuliaFormatter]]
-deps = ["CSTParser", "CommonMark", "DataStructures", "Documenter", "Pkg", "Test", "Tokenize"]
-git-tree-sha1 = "cd2577ce1e9fcac2e1654c71c4c7e10e8385f461"
-uuid = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
-version = "0.7.5"
 
 [[LZO_jll]]
 deps = ["Libdl", "Pkg"]
@@ -322,17 +299,6 @@ deps = ["LaTeXStrings", "Poppler_jll", "Requires"]
 git-tree-sha1 = "2bfed61451c9ce3ce1d59b3947ee8583ca0f31bb"
 uuid = "37f6aa50-8035-52d0-81c2-5a1d08754b2d"
 version = "3.3.0"
-
-[[Tokenize]]
-git-tree-sha1 = "73c00ad506d88a7e8e4f90f48a70943101728227"
-uuid = "0796e94c-ce3b-5d07-9a54-7f471281c624"
-version = "0.5.8"
-
-[[URIParser]]
-deps = ["Unicode"]
-git-tree-sha1 = "53a9f49546b8d2dd2e688d216421d050c9a31d0d"
-uuid = "30578b45-9adc-5946-b283-645ec420af67"
-version = "0.4.1"
 
 [[UUIDs]]
 deps = ["Random", "SHA"]
