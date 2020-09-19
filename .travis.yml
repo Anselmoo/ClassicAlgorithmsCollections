@@ -31,8 +31,8 @@ jobs:
           using ClassicAlgorithmsCollections
           doctest(ClassicAlgorithmsCollections)
           include("docs/make.jl")'
-      DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
-      #after_success: |
+      
+      after_success: julia --project=docs/ docs/make.jl
 after_success:
   - |
     julia -e '
