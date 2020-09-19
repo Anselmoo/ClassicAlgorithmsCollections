@@ -1,3 +1,7 @@
+```@meta
+CurrentModule = ClassicAlgorithmsCollections
+```
+
 # ClassicAlgorithmsCollections.jl
 
 A package with a collection of classical algorithms re-implemented in JULIA.

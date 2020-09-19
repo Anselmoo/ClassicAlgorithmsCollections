@@ -1,17 +1,16 @@
-using Documenter, ClassicAlgorithmsCollections
+using ClassicAlgorithmsCollections
+using Documenter
 
 
 makedocs(
-    modules = [ClassicAlgorithmsCollections],
-    sitename = "ClassicAlgorithmsCollections.jl",
-    authors = "Anselm Hahn <Anselm.Hahn@gmail.com>",
-    doctest = true,
-    linkcheck = true,
-    format = Documenter.HTML(
-        # Use clean URLs, unless built as a "local" build
-        prettyurls = !("local" in ARGS),
-        canonical = "https://anselmoo.github.io/ClassicAlgorithmsCollections/",
-        highlights = ["yaml"],
+    modules=[ClassicAlgorithmsCollections],
+    authors="Anselm Hahn <Anselm.Hahn@gmail.com>",
+    repo="https://github.com/Anselmoo/ClassicAlgorithmsCollections.jl/blob/{commit}{path}#L{line}",
+    sitename="ClassicAlgorithmsCollections.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://Anselmoo.github.io/ClassicAlgorithmsCollections.jl",
+        assets=String[],
     ),
     pages = [
         "Home" => "index.md",
@@ -20,9 +19,6 @@ makedocs(
     ],
 )
 
-
-deploydocs(
-    repo = "https://github.com/Anselmoo/ClassicAlgorithmsCollections.git",
-    target = "build",
-    push_preview = true,
+deploydocs(;
+    repo="github.com/Anselmoo/ClassicAlgorithmsCollections.jl",
 )
