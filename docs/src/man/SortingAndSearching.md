@@ -1,11 +1,9 @@
 # Algorithms
 
-## Searching- and Sorting-Algorithms
-
-### Search-Algorithms
+## Search-Algorithms
 
 ```@docs
 binary_search
 ```
 
-### Sorting-Algorithms
+## Sorting-Algorithms

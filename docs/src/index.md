@@ -12,6 +12,7 @@ Pages = [
     "man/guide.md",
     "man/SortingAndSearching.md"
 ]
+Depth = 3
 ```
 
 ## Functions
