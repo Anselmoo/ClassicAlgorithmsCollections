@@ -19,9 +19,5 @@ makedocs(
 deploydocs(
     repo = "https://github.com/Anselmoo/ClassicAlgorithmsCollections.git",
     target = "build",
-    julia = "1.5",
-    osname = "linux",
     push_preview = true,
-#    deps = nothing,
-#    make = nothing,
 )
