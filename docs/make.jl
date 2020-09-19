@@ -5,11 +5,11 @@ using Documenter
 makedocs(
     modules=[ClassicAlgorithmsCollections],
     authors="Anselm Hahn <Anselm.Hahn@gmail.com>",
-    repo="https://github.com/Anselmoo/ClassicAlgorithmsCollections.jl/blob/{commit}{path}#L{line}",
+    repo="https://github.com/Anselmoo/ClassicAlgorithmsCollections/blob/{commit}{path}#L{line}",
     sitename="ClassicAlgorithmsCollections.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://Anselmoo.github.io/ClassicAlgorithmsCollections.jl",
+        canonical="https://Anselmoo.github.io/ClassicAlgorithmsCollections",
         assets=String[],
     ),
     pages = [
@@ -20,5 +20,5 @@ makedocs(
 )
 
 deploydocs(;
-    repo="github.com/Anselmoo/ClassicAlgorithmsCollections.jl",
+    repo="github.com/Anselmoo/ClassicAlgorithmsCollections",
 )
