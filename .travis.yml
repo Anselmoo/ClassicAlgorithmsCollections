@@ -21,6 +21,7 @@ jobs:
   include:
     - stage: Documentation
       julia: 1.5
+      os: linux
       script: |
         julia --project=docs -e '
           using Pkg
@@ -30,7 +31,8 @@ jobs:
           using ClassicAlgorithmsCollections
           doctest(ClassicAlgorithmsCollections)
           include("docs/make.jl")'
-      after_success: skip
+      DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+      #after_success: |
 after_success:
   - |
     julia -e '
