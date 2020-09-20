@@ -110,7 +110,7 @@ position of the remaining search space in the array in more detail. The array's 
 position is calculated by the straight slope between the lowest and largest boundary of the 
 remaining array and the lowest array position itself during each optimization cycle. If the 
 target-position cannot be found, the array-space will be shrink for the lower or higher 
-boundary region based on a comparison. For more information see: https://en.wikipedia.org/wiki/Interpolation_search 
+boundary region based on a comparison. For more information see: [https://en.wikipedia.org/wiki/Interpolation_search](https://en.wikipedia.org/wiki/Interpolation_search)
 
 
 # Arguments
@@ -172,7 +172,7 @@ end
 
 Finding the closet pair of values for a given target in a sorted array. For this reason, 
 the distance between a pair of of values has to be minimazied with respect to the target.
-For more information see: https://en.wikipedia.org/wiki/Closest_pair_of_points_problem
+For more information see: [https://en.wikipedia.org/wiki/Closest_pair_of_points_problem](https://en.wikipedia.org/wiki/Closest_pair_of_points_problem)
 
 
 # Arguments
@@ -226,7 +226,7 @@ end
 The Bubble sorting algorithm (BSA) is a primitive sorting algorithm that repeatedly steps 
 through the array by using a double for-loop with n and n-1 size. During the walkthrough, 
 the BSA compares adjacent elements and swaps wrong ordered elements until the array is 
-sorted. For more information see: https://en.wikipedia.org/wiki/Bubble_sort
+sorted. For more information see: [https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
 
 
 # Arguments
@@ -263,7 +263,7 @@ end
 
 The insertion sorting algorithm builds the final sorted array by inserting elements that are 
 greater than the key, to one position ahead of their current position step one item at a 
-time. For more information see: https://en.wikipedia.org/wiki/Insertion_sort
+time. For more information see: [https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
 
 
 # Arguments
@@ -299,7 +299,7 @@ end
 
 The merge algorithms (MA) merge the subarrays `left` and `right` to produce new sorted 
 subarrays until there is only one subarray remaining, which will be the sorted array. For
-more information see: https://en.wikipedia.org/wiki/Merge_sort
+more information see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
 
 
 # Arguments
@@ -348,7 +348,7 @@ Bottom-up implementation can be used, too. In the top-down implementation, the M
 recursively splits the array into subarrays until the subarray size is < 2, merging those 
 subarrays to produce a sorted array by using a new function `merge`. The back copying is 
 blocked by alternating the direction of the merge with each recursion. For more information 
-see: https://en.wikipedia.org/wiki/Merge_sort
+see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
 
 
 # Arguments
@@ -434,7 +434,7 @@ element in each step more quickly. In more detail, in the first part of the HSA
 (while-loop), the largest value has to be found and set to position one. In the second part 
 of the HSA (while-loop), the array's first and largest value has to be swap to the last 
 index of the array, and the swapping-procedure starts again for a new interval n-1. For 
-more information see: https://en.wikipedia.org/wiki/Heapsort
+more information see: [https://en.wikipedia.org/wiki/Heapsort](https://en.wikipedia.org/wiki/Heapsort)
 
 
 # Arguments
@@ -518,7 +518,7 @@ partitioning the other elements into two subarrays, according to whether they ar
 or greater than the pivot-window. Then the sorting of subarrays is recursively organized. 
 This procedure repeatedly happens until each subarray is organized; consequently, the 
 subarrays' merging is an organized array. For more information see: 
-https://en.wikipedia.org/wiki/Quicksort#Parallelization
+[https://en.wikipedia.org/wiki/Quicksort#Parallelization](https://en.wikipedia.org/wiki/Quicksort#Parallelization)
 
 
 # Arguments
