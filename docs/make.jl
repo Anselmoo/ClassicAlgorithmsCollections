@@ -24,8 +24,9 @@ makedocs(
 
 deploydocs(;
     repo = "github.com/Anselmoo/ClassicAlgorithmsCollections",
-    versions = ["stable" => "v^", "v#.#"],
-    push_preview    = true,
-    repo_previews   = repo,
+    devurl = "dev",
+    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    push_preview = true,
+    repo_previews = "github.com/Anselmoo/ClassicAlgorithmsCollections",
     branch_previews = "gh-pages",
 )
