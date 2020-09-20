@@ -1,6 +1,4 @@
-# Algorithms
-
-## Search-Algorithms
+## Array-Search
 
 ```@docs
 binary_search
@@ -9,7 +7,7 @@ interpolation_searching
 closest_pair_searching
 ```
 
-## Sorting-Algorithms
+## Array-Sorting
 
 ```@docs
 bubble_sorting
