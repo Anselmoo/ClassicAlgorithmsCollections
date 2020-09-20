@@ -24,7 +24,8 @@ makedocs(
 
 deploydocs(;
     repo = "github.com/Anselmoo/ClassicAlgorithmsCollections",
-    versions = ["stable" => "v^", "v#.#", devurl => "dev"],
+    devurl = "dev",
+    versions = ["stable" => "v^", "v#.#", devurl => devurl],
     push_preview = true,
     repo_previews = repo,
     branch_previews = branch,
