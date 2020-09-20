@@ -15,6 +15,7 @@ A package with a collection of classical algorithms re-implemented in JULIA.
 Pages = [
     "man/guide.md",
     "man/SortingAndSearching.md"
+    "man/Graph.md"
 ]
 Depth = 2
 ```
