@@ -8,7 +8,6 @@ the array-list (value).
 
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
-
 """
 function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
     global_maximum = 0
@@ -40,7 +39,6 @@ for handling graphs with weights.
 
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
-
 """
 function find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     global_maximum = 0
@@ -74,7 +72,7 @@ The breadth-first search (BFS) is an algorithm dedicated to traversing or search
 tree or graph data structures. It starts at a specified tree root (start) for exploring 
 all connected neighbor nodes. The important feature is that the BFS automatically leaves 
 the present depth and passes on to the next nodes at a deeper level. BFS is queue-based.
-For more information see: https://en.wikipedia.org/wiki/Breadth-first_search
+For more information see: [https://en.wikipedia.org/wiki/Breadth-first_search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
 
 # Arguments
@@ -143,7 +141,6 @@ of the graph.
 - `start::Int64`: Startpoint (first selected vertex) of the graph-traveling process
 - `visited::Array{Bool,1}`: Visited nodes of the graph
 - `solution::Array{Int64,1}`: Solution of the raph-traveling proces
-
 """
 function dfs_recrusive(
     graph::Dict{Int64,Array{Int64,1}},
@@ -173,7 +170,7 @@ The depth-first search (DFS) is an algorithm dedicated to traversing or searchin
 tree or graph data structures. It starts at a specified tree root (start) for exploring 
 as far as possible at each branch. Afterthat the BFS starts automatically backtracking. 
 DFS is stack-based. 
-For more information see: https://en.wikipedia.org/wiki/Depth-first_search
+For more information see: [https://en.wikipedia.org/wiki/Depth-first_search](https://en.wikipedia.org/wiki/Depth-first_search)
 
 
 # Arguments
@@ -240,11 +237,11 @@ end
 
 Reconstruction of the actual path between any two endpoint vertices (u & v).
 
+
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
 - `u::Int64`: Startpoint of the to investigated path
 - `v::Int64`: Endpoint of the to investigated path
-
 """
 function path_reconstruction(next::Array{Int64,2}, u::Int64, v::Int64)
     # Check if path exists
@@ -269,12 +266,14 @@ end
 The Shortest Path Tree (SPT) algorithm solves the shortest path problem between every 
 pair of vertices in a given edge-weighted directed Graph based on the Floyd–Warshall 
 algorithm. Optional, the SPT also provides the total parts between a start- (u) and end-
-point (v). For more information see: https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm
+point (v). For more information see: [https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm](https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm)
+
 
 # Arguments
 - `next::Array{Int64,2}`: Vertex matrix of the connected nodes
 - `u::Int64`: Startpoint of the to investigated path; optional
 - `v::Int64`: Endpoint of the to investigated path; optional
+
 
 # Examples
 ```julia-repl
@@ -361,10 +360,12 @@ graph contains a cycle. For this reason, the algorithm keeps the first track of 
 of items partitioned into several disjoint (non-overlapping) subsets to find which 
 subset a particular item is kept. This procedure is essential to figure out if two 
 items are in the same subgroup. Next, the two subsets have to be merged into a single 
-subset. For more information see: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+subset. For more information see: [https://en.wikipedia.org/wiki/Disjoint-set_data_structure](https://en.wikipedia.org/wiki/Disjoint-set_data_structure)
+
 
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
+
 
 # Examples
 ```julia-repl
@@ -409,7 +410,7 @@ end
 
 
 """
-Provided by: https://discourse.julialang.org/t/sort-matrix-based-on-the-elements-of-a-specific-column/23475/5
+Provided by: [https://discourse.julialang.org/t/sort-matrix-based-on-the-elements-of-a-specific-column/23475/5](https://discourse.julialang.org/t/sort-matrix-based-on-the-elements-of-a-specific-column/23475/5)
 """
 function sortrows(M, by = zeros(0))
     if by == zeros(0)
@@ -435,11 +436,13 @@ focus is a) to exclude any cycles and b) to find the minimum possible total edge
 which will create a spanning tree whose sum of edge weights is as small as possible. 
 The Kruskal's algorithm is used to find the minimum spanning forest of an undirected 
 edge-weighted graph. 
-For more information see: https://en.wikipedia.org/wiki/Minimum_spanning_tree and 
-https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+For more information see: [https://en.wikipedia.org/wiki/Minimum_spanning_tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree) 
+and [https://en.wikipedia.org/wiki/Kruskal%27s_algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
+
 
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with the weights
+
 
 # Examples
 ```julia-repl
@@ -610,6 +613,7 @@ components by removing it.
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes
 
+
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
@@ -665,6 +669,7 @@ Based on the Depth First Traversal algorithm, words will be find for a current c
 going through the graph up and down and keep track of the visited nodes. Important is that 
 the travelling happens in both direction up and down and left and right. Everythign will be 
 stacked in the visited list. If no word will be found the `current_word` has to be deleted. 
+
 
 # Arguments
 - `graph::Dict{Int64,Array{String,1}}`: Graph of the connected nodes of chars, which can build the words
