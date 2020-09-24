@@ -89,10 +89,8 @@ end
     ) == ref_unsorted_searching
 end
 
-#@testset "String & Array" begin
-#
-#    old_string = "a!!!b.c79.d,e'f,ghi3###"
-#    reversed_string = "i!!!h.g79.f,e'd,cba3###"
-#    @test ClassicAlgorithmsCollections.reverse_pure_string(old_string) == reversed_string
-#
-#end
+@testset "String & Array" begin
+    old_string = "a!!!b.c79.d,e'f,ghi3###"
+    reversed_string = "i!!!h.g79.f,e'd,cba3###"
+    @test ClassicAlgorithmsCollections.reverse_pure_string(old_string) == reversed_string
+end
