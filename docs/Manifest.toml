@@ -5,7 +5,7 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[ClassicAlgorithmsCollections]]
 deps = ["Documenter"]
-path = "/Users/anselmhahn/LocalDocuments/GitHub_Projects/ClassicAlgorithmsCollections"
+path = ".."
 uuid = "200e722e-036e-465c-9f8f-9a25f0f9a217"
 version = "0.1.5"
 
