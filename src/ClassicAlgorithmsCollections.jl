@@ -23,4 +23,7 @@ export binary_search,
     quick_sorting,
     interpolation_searching,
     closest_pair_searching
+
+include("StringAndArray.jl")
+export reverse_pure_string
 end # module
