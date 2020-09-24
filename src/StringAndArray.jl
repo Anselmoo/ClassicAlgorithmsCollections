@@ -39,8 +39,6 @@ function reverse_pure_string(text::String)
     end
     return join(text_array)
 end
-# Driver code 
-string = "a!!!b.c79.d,e'f,ghi3###"
-string = reverse_pure_string(string)
+
 
 
