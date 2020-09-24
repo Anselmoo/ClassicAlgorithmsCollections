@@ -22,4 +22,8 @@ makedocs(
     ],
 )
 
-deploydocs(; repo = "github.com/Anselmoo/ClassicAlgorithmsCollections")
+deploydocs(;
+    repo = "github.com/Anselmoo/ClassicAlgorithmsCollections",
+    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    push_preview    = true,
+)

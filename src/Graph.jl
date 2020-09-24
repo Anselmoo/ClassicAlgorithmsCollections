@@ -766,8 +766,8 @@ julia> graph_boogle = Dict(
         4 => ["D", "O", "P"],
         5 => ["F", "O", "R"],
         )
-julia> ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list) ==
-["GEEKS", "QUIZ", "FOR"]]
+julia> ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list)
+["GEEKS", "QUIZ", "FOR"]
 ```
 """
 function boogle_word_check(
