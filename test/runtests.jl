@@ -102,5 +102,8 @@ end
 
     arr = [5, 1, 3, 4, 7]
     sum = 12
-    @test ClassicAlgorithmsCollections.count_triplet_elments(arr, sum) == 2
+    @test ClassicAlgorithmsCollections.count_triplet_elements(arr, sum) == 2
+
+    array_pythagorean = [5, 1, 3, 4, 17, 8, 15, 2, 2, 13, 12]
+    @test ClassicAlgorithmsCollections.count_pythagorean_elements(array_pythagorean) == 3
 end
