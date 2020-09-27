@@ -98,4 +98,9 @@ end
     array_after_zigzag = [3, 7, 4, 8, 2, 6, 1, 13, 3, 10]
     @test ClassicAlgorithmsCollections.zigzag_ordering(array_before_zigzag) ==
           array_after_zigzag
+
+
+    arr = [5, 1, 3, 4, 7]
+    sum = 12
+    @test ClassicAlgorithmsCollections.count_triplet_elments(arr, sum) == 2
 end
