@@ -18,6 +18,7 @@ array. For more information see: [https://en.wikipedia.org/wiki/Binary_search_al
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
 julia> target = 12
 julia> ClassicAlgorithmsCollections.binary_search(arr, target)
@@ -61,6 +62,7 @@ the subarrays.
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
 julia> target = 3
 julia> ClassicAlgorithmsCollections.binary_pivot_search(arr, target)
@@ -120,6 +122,7 @@ boundary region based on a comparison. For more information see: [https://en.wik
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
 julia> target = 12
 julia> ClassicAlgorithmsCollections.interpolation_searching(arr, target)
@@ -182,6 +185,7 @@ For more information see: [https://en.wikipedia.org/wiki/Closest_pair_of_points_
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10, 22, 28, 29, 30, 40]
 julia> target = 56
 julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
@@ -235,6 +239,7 @@ sorted. For more information see: [https://en.wikipedia.org/wiki/Bubble_sort](ht
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [64, 34, 25, 12, 22, 11, 90] 
 julia> ClassicAlgorithmsCollections.bubble_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
@@ -272,6 +277,7 @@ time. For more information see: [https://en.wikipedia.org/wiki/Insertion_sort](h
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [64, 34, 25, 12, 22, 11, 90] 
 julia> ClassicAlgorithmsCollections.insertion_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
@@ -357,6 +363,7 @@ see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Me
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [64, 34, 25, 12, 22, 11, 90] 
 julia> ClassicAlgorithmsCollections.merge_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
@@ -395,7 +402,7 @@ For more information see: https://en.wikipedia.org/wiki/Heapsort
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `n::Int64`: Length of the array
-- `::Int64`: Current index of the array
+- `i::Int64`: Current index of the array
 
 """
 function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
@@ -443,6 +450,7 @@ more information see: [https://en.wikipedia.org/wiki/Heapsort](https://en.wikipe
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [64, 34, 25, 12, 22, 11, 90] 
 julia> ClassicAlgorithmsCollections.heap_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
@@ -529,6 +537,7 @@ subarrays' merging is an organized array. For more information see:
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [64, 34, 25, 12, 22, 11, 90] 
 julia> ClassicAlgorithmsCollections.quick_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]

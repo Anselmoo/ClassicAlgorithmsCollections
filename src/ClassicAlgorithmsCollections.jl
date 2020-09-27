@@ -25,5 +25,5 @@ export binary_search,
     closest_pair_searching
 
 include("StringAndArray.jl")
-export reverse_pure_string
+export reverse_pure_string, zigzag_ordering
 end # module

@@ -93,4 +93,9 @@ end
     old_string = "a!!!b.c79.d,e'f,ghi3###"
     reversed_string = "i!!!h.g79.f,e'd,cba3###"
     @test ClassicAlgorithmsCollections.reverse_pure_string(old_string) == reversed_string
+
+    array_before_zigzag = [4, 3, 7, 8, 6, 2, 1, 10, 13, 3]
+    array_after_zigzag = [3, 7, 4, 8, 2, 6, 1, 13, 3, 10]
+    @test ClassicAlgorithmsCollections.zigzag_ordering(array_before_zigzag) ==
+          array_after_zigzag
 end
