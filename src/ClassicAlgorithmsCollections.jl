@@ -32,7 +32,8 @@ export reverse_pure_string,
     combinations_of_2arrays,
     find_maxlength_subarray,
     find_smallest_nonelement,
-    smallest_subset4sum
+    smallest_subset4sum,
+    sum_of_postive_gradients
     
 
 end # module

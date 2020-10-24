@@ -132,4 +132,6 @@ end
     sort_array = [1, 2, 5, 10, 20, 40]
     @test ClassicAlgorithmsCollections.find_smallest_nonelement(sort_array) == 4
 
+    gradients_in_array = [100, 180, 260, 310, 40, 535, 695]
+    @test ClassicAlgorithmsCollections.sum_of_postive_gradients(gradients_in_array) == 865
 end

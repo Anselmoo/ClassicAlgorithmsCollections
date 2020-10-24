@@ -175,6 +175,173 @@ end
 
 
 """
+    find_maxlength_subarray(array::Array{Int64,1})
+
+Find the maximum length of a subarray with a given continuous depending sequence of numbers.
+For this reason, the minimum and maximum element in every subarray will be tracked and
+compared with the incremental distance. So if the difference of the value is equal to the
+difference of the increment in the array, the length will be updated.
+
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [10, 12, 11, 9, 13, 14, 17, 18, 15]
+julia> ClassicAlgorithmsCollections.find_maxlength_subarray(arr)
+5
+```
+"""
+function find_maxlength_subarray(array::Array{Int64,1})
+
+    # Initialize result
+    max_len = 1
+    n = length(array)
+    for i in 1:n
+        min_array = array[i]
+        max_array = array[i]
+
+        for j in (i+1):n
+            if min_array > array[j]
+                min_array = array[j]
+            end
+            if max_array < array[j]
+                max_array = array[j]
+            end
+            if ((max_array - min_array) == (j - i))
+                if max_len < (max_array - min_array)
+                    max_len = max_array - min_array + 1
+                end
+            end
+        end
+    end
+    return max_len
+end
+
+
+"""
+    find_smallest_nonelement(array::Array{Int64,1})
+
+Returns the smallest number of a sorted array that cannot be represented as sum of subset of
+elements from this array.
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [1, 2, 5, 10, 20, 40]
+julia> ClassicAlgorithmsCollections.find_smallest_nonelement(arr)
+4
+```
+"""
+function find_smallest_nonelement(array::Array{Int64,1})
+
+    result = 1
+    for i in 1:length(array)
+        if array[i] <= result
+            result += array[i]
+        else
+            break
+        end
+    end
+    return result
+end
+
+"""
+    smallest_subset4sum(array::Array{Int64,1}, target::Int64)
+
+Returns length of smallest subarray-unit with sum greater than the target.
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+- `target::Int64`: Target number to reach
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr =  [10, 12, 11, 9, 13, 14, 17, 18, 15]
+julia> ClassicAlgorithmsCollections.smallest_subarray4sum(arr)
+4
+```
+"""
+function smallest_subset4sum(array::Array{Int64,1}, target::Int64)
+    n = length(array)
+    min_length = n
+
+    for i in 1:n
+        current_sum = array[i]
+        if current_sum > target
+            return 1
+        end
+        for j in (i+1):n
+            current_sum += array[j]
+            if current_sum > target && (j - i + 1) < min_length
+                min_length = (j - i + 1)
+            end
+        end
+    end
+    if min_length != n
+        return min_length
+    else
+        return nothing
+    end
+end
+
+
+"""
+    sum_of_postive_gradients(array::Array{Int64,1}, m = nothing, n = nothing)
+
+Estimates the sum of all positive gradients in array-sequence, calling the function itself
+recursively. Every time if the `array[j] > array[i]` will be check, it will test the
+monotony of the previous of the following elements.
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+- `m::Int64`: index for the nested `for-loops`; optional
+- `n::Int64`: index for the nested `for-loops`; optional
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr =  arr = [100, 180, 260, 310, 40, 535, 695]
+julia> ClassicAlgorithmsCollections.sum_of_postive_gradients(arr)
+865
+```
+"""
+function sum_of_postive_gradients(array::Array{Int64,1}, m = nothing, n = nothing)
+
+    if isnothing(m) && isnothing(n)
+        m = 1
+        n = length(array)
+    end
+    gradient = 0
+
+    for i in m:n
+        for j in (i+1):n
+            if array[j] > array[i]
+                tmp_gradient =
+                    array[j] - array[i] +
+                    sum_of_postive_gradients(array, m, i - 1) +
+                    sum_of_postive_gradients(array, j + 1, n)
+
+                if tmp_gradient > gradient
+                    gradient = tmp_gradient
+                end
+            end
+        end
+    end
+
+    return gradient
+end
+
+sum_of_postive_gradients(arr)
+
+"""
     generate_array(
         array_1::Array{Int64},
         array_2::Array{Int64},
@@ -316,121 +483,3 @@ function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1
     )
 
 end
-
-
-"""
-    find_maxlength_subarray(array::Array{Int64,1})
-
-Find the maximum length of a subarray with a given continuous depending sequence of numbers.
-For this reason, the minimum and maximum element in every subarray will be tracked and
-compared with the incremental distance. So if the difference of the value is equal to the
-difference of the increment in the array, the length will be updated.
-
-
-# Arguments
-- `array::Array{Int64,1}`: Unsorted array
-
-# Examples
-```julia-repl
-julia> import ClassicAlgorithmsCollections
-julia> arr = [10, 12, 11, 9, 13, 14, 17, 18, 15]
-julia> ClassicAlgorithmsCollections.find_maxlength_subarray(arr)
-5
-```
-"""
-function find_maxlength_subarray(array::Array{Int64,1})
-
-    # Initialize result
-    max_len = 1
-    n = length(array)
-    for i in 1:n
-        min_array = array[i]
-        max_array = array[i]
-
-        for j in (i+1):n
-            if min_array > array[j]
-                min_array = array[j]
-            end
-            if max_array < array[j]
-                max_array = array[j]
-            end
-            if ((max_array - min_array) == (j - i))
-                if max_len < (max_array - min_array)
-                    max_len = max_array - min_array + 1
-                end
-            end
-        end
-    end
-    return max_len
-end
-
-
-"""
-    find_smallest_nonelement(array::Array{Int64,1})
-
-Returns the smallest number of a sorted array that cannot be represented as sum of subset of
-elements from this array.
-
-# Arguments
-- `array::Array{Int64,1}`: Unsorted array
-
-# Examples
-```julia-repl
-julia> import ClassicAlgorithmsCollections
-julia> arr = [1, 2, 5, 10, 20, 40]
-julia> ClassicAlgorithmsCollections.find_smallest_nonelement(arr)
-4
-```
-"""
-function find_smallest_nonelement(array::Array{Int64,1})
-
-    result = 1
-    for i in 1:length(array)
-        if array[i] <= result
-            result += array[i]
-        else
-            break
-        end
-    end
-    return result
-end
-
-"""
-    smallest_subset4sum(array::Array{Int64,1}, target::Int64)
-
-Returns length of smallest subarray-unit with sum greater than the target.
-
-# Arguments
-- `array::Array{Int64,1}`: Unsorted array
-- `target::Int64`: Target number to reach
-
-# Examples
-```julia-repl
-julia> import ClassicAlgorithmsCollections
-julia> arr =  [10, 12, 11, 9, 13, 14, 17, 18, 15
-julia> ClassicAlgorithmsCollections.smallest_subarray4sum(arr)
-4
-"""
-function smallest_subset4sum(array::Array{Int64,1}, target::Int64)
-    n = length(array)
-    min_length = n
-
-    for i in 1:n
-        current_sum = array[i]
-        if current_sum > target
-            return 1
-        end
-        for j in (i+1):n
-            current_sum += array[j]
-            if current_sum > target && (j - i + 1) < min_length
-                min_length = (j - i + 1)
-            end
-        end
-    end
-    if min_length != n
-        return min_length
-    else
-        return nothing
-    end
-end
-
