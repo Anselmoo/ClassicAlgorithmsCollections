@@ -111,13 +111,13 @@ end
     arr_1 = [10, 15, 25]
     arr_2 = [5, 20, 30]
     sorted_combinations = [
-        [10, 20]
-        [10, 20, 25, 30]
-        [10, 30]
-        [15, 20]
-        [15, 20, 25, 30]
-        [15, 30]
-        [25, 30]
+        [10, 20],
+        [10, 20, 25, 30],
+        [10, 30],
+        [15, 20],
+        [15, 20, 25, 30],
+        [15, 30],
+        [25, 30],
     ]
     @test ClassicAlgorithmsCollections.combinations_of_2arrays(arr_1, arr_2) ==
           sorted_combinations

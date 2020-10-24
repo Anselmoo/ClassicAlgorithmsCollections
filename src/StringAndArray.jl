@@ -212,7 +212,7 @@ function generate_array(
     size::Int64,
     flag::Bool,
     result::Array{Any,1},
-)
+    )
     if flag
         if size > 1
             push!(result, array_merged[1:size])
@@ -291,6 +291,7 @@ julia> ClassicAlgorithmsCollections.combinations_of_2arrays(arr_1, arr_2)
 [15, 20, 25, 30]
 [15, 30]
 [25, 30]
+```
 """
 function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1})
     length_array_1,  length_array_2 = length(array_1),  length(array_2)
