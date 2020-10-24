@@ -1,8 +1,8 @@
 """
     find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
 
-Find the total global maximum based on a comparsion between the intial vertex 
-(`global_maximum = 0`), the current dictionary key, and the accesible vertexes from 
+Find the total global maximum based on a comparsion between the intial vertex
+(`global_maximum = 0`), the current dictionary key, and the accesible vertexes from
 the array-list (value).
 
 
@@ -33,9 +33,9 @@ end
 """
     find_global_maximum_complex(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
 
-`find_global_maximum_complex` is similar to `find_global_maximum` instead is desigend 
-for handling graphs with weights.    
-    
+`find_global_maximum_complex` is similar to `find_global_maximum` instead is desigend
+for handling graphs with weights.
+
 
 # Arguments
 - `graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}`: Graph of the connected nodes with weights
@@ -68,9 +68,9 @@ end
 """
     breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
-The breadth-first search (BFS) is an algorithm dedicated to traversing or searching for 
-tree or graph data structures. It starts at a specified tree root (start) for exploring 
-all connected neighbor nodes. The important feature is that the BFS automatically leaves 
+The breadth-first search (BFS) is an algorithm dedicated to traversing or searching for
+tree or graph data structures. It starts at a specified tree root (start) for exploring
+all connected neighbor nodes. The important feature is that the BFS automatically leaves
 the present depth and passes on to the next nodes at a deeper level. BFS is queue-based.
 For more information see: [https://en.wikipedia.org/wiki/Breadth-first_search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
@@ -90,28 +90,28 @@ julia> ClassicAlgorithmsCollections.breadth_first_search(graph, 3)
 """
 function breadth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
-    # Mark all the vertices as not visited 
+    # Mark all the vertices as not visited
     # visited = zeros(Bool, (length(collect(keys(graph))))) # Old
     visited = zeros(Bool, (find_global_maximum(graph)))
 
-    # Create a queue for BFS 
+    # Create a queue for BFS
     queue = zeros(Int64, false)
 
-    # Create array-list for the searching solution 
+    # Create array-list for the searching solution
     solution = zeros(Int64, false)
 
-    # Mark the source node as visited and enqueue it 
+    # Mark the source node as visited and enqueue it
     visited[start] = true
     append!(queue, start)
 
     while !isempty(queue)
 
-        # Dequeue a vertex from  
-        # queue and print it 
+        # Dequeue a vertex from
+        # queue and print it
         start = popat!(queue, 1)
         append!(solution, start)
-        # Get all adjacent vertices of the dequeued vertex s. If a adjacent 
-        # has not been visited, then mark it visited and enqueue it 
+        # Get all adjacent vertices of the dequeued vertex s. If a adjacent
+        # has not been visited, then mark it visited and enqueue it
         for i in graph[start]
             # Check if vertex has already been visited
             if visited[i] == false
@@ -132,7 +132,7 @@ end
         solution::Array{Int64,1},
     )
 
-The recursively call of the dfs_recrusive is essential for exploring each single branch 
+The recursively call of the dfs_recrusive is essential for exploring each single branch
 of the graph.
 
 
@@ -166,10 +166,10 @@ end
 """
     depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
-The depth-first search (DFS) is an algorithm dedicated to traversing or searching for 
-tree or graph data structures. It starts at a specified tree root (start) for exploring 
-as far as possible at each branch. Afterthat the BFS starts automatically backtracking. 
-DFS is stack-based. 
+The depth-first search (DFS) is an algorithm dedicated to traversing or searching for
+tree or graph data structures. It starts at a specified tree root (start) for exploring
+as far as possible at each branch. Afterthat the BFS starts automatically backtracking.
+DFS is stack-based.
 For more information see: [https://en.wikipedia.org/wiki/Depth-first_search](https://en.wikipedia.org/wiki/Depth-first_search)
 
 
@@ -188,11 +188,11 @@ julia> ClassicAlgorithmsCollections.breadth_first_search(graph, 3)
 """
 function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
-    # Mark all the vertices as not visited 
+    # Mark all the vertices as not visited
     # visited = zeros(Bool, (length(collect(keys(graph))))) # Old
     visited = zeros(Bool, (find_global_maximum(graph)))
 
-    # Create array-list for the searching solution 
+    # Create array-list for the searching solution
     solution = zeros(Int64, false)
 
     result = dfs_recrusive(graph, start, visited, solution)
@@ -263,8 +263,8 @@ end
 """
     shortest_path_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}, u=nothing, v=nothing)
 
-The Shortest Path Tree (SPT) algorithm solves the shortest path problem between every 
-pair of vertices in a given edge-weighted directed Graph based on the Floyd–Warshall 
+The Shortest Path Tree (SPT) algorithm solves the shortest path problem between every
+pair of vertices in a given edge-weighted directed Graph based on the Floyd–Warshall
 algorithm. Optional, the SPT also provides the total parts between a start- (u) and end-
 point (v). For more information see: [https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm](https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm)
 
@@ -291,7 +291,7 @@ function shortest_path_tree(
 
     dist, next, vertex_size = initialize_matrices(graph)
 
-    # Floyd–Warshall-Algorithm 
+    # Floyd–Warshall-Algorithm
     for k in 1:vertex_size
         for i in 1:vertex_size
             for j in 1:vertex_size
@@ -318,7 +318,7 @@ end
 """
     find_parent_in_cycle(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
 
-The find parent algorithm is a recursive function to find the subeset of an item i for 
+The find parent algorithm is a recursive function to find the subeset of an item i for
 graph test of being cycling.
 
 # Arguments
@@ -337,7 +337,7 @@ end
 """
     find_parent_in_spanning_tree(parent::Array{Int64,1}, i::Int64, ref_key::Int64)
 
-The find parent algorithm is a recursive function to find the subeset of an item i for 
+The find parent algorithm is a recursive function to find the subeset of an item i for
 graph test of having a spanning tree.
 
 # Arguments
@@ -355,11 +355,11 @@ end
 """
     graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
 
-The disjoint-set data structure principle is used to check if a direct or undirect 
-graph contains a cycle. For this reason, the algorithm keeps the first track of a set 
-of items partitioned into several disjoint (non-overlapping) subsets to find which 
-subset a particular item is kept. This procedure is essential to figure out if two 
-items are in the same subgroup. Next, the two subsets have to be merged into a single 
+The disjoint-set data structure principle is used to check if a direct or undirect
+graph contains a cycle. For this reason, the algorithm keeps the first track of a set
+of items partitioned into several disjoint (non-overlapping) subsets to find which
+subset a particular item is kept. This procedure is essential to figure out if two
+items are in the same subgroup. Next, the two subsets have to be merged into a single
 subset. For more information see: [https://en.wikipedia.org/wiki/Disjoint-set_data_structure](https://en.wikipedia.org/wiki/Disjoint-set_data_structure)
 
 
@@ -382,12 +382,12 @@ function graph_cycle_check(graph::Dict{Int64,Array{Int64,1}})
     # Get the maximum length of the vertex
     vertex_size = find_global_maximum(graph)
 
-    # Create array-list for finding the parents and intialize all subsets to vertex_size, because 
+    # Create array-list for finding the parents and intialize all subsets to vertex_size, because
     # negative indixing is forbidden in Julia.
     parent = fill(vertex_size, vertex_size)
 
-    # Iterate through all edges of graph for finding the subset of both vertices of every edge. 
-    # If the two subsets are equal, then graph has a cycle inside. 
+    # Iterate through all edges of graph for finding the subset of both vertices of every edge.
+    # If the two subsets are equal, then graph has a cycle inside.
     for (i, values) in graph
         for j in values
             x = find_parent_in_cycle(parent, i, vertex_size)
@@ -430,13 +430,13 @@ end
 """
     minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}}))
 
-The minimum spanning tree (MST) algorithm detects a subset of the edges of a connected, 
-edge-weighted undirected graph that connects all the vertices together. The MST algorithms 
-focus is a) to exclude any cycles and b) to find the minimum possible total edge weight, 
-which will create a spanning tree whose sum of edge weights is as small as possible. 
-The Kruskal's algorithm is used to find the minimum spanning forest of an undirected 
-edge-weighted graph. 
-For more information see: [https://en.wikipedia.org/wiki/Minimum_spanning_tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree) 
+The minimum spanning tree (MST) algorithm detects a subset of the edges of a connected,
+edge-weighted undirected graph that connects all the vertices together. The MST algorithms
+focus is a) to exclude any cycles and b) to find the minimum possible total edge weight,
+which will create a spanning tree whose sum of edge weights is as small as possible.
+The Kruskal's algorithm is used to find the minimum spanning forest of an undirected
+edge-weighted graph.
+For more information see: [https://en.wikipedia.org/wiki/Minimum_spanning_tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree)
 and [https://en.wikipedia.org/wiki/Kruskal%27s_algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
 
 
@@ -466,15 +466,15 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
         end
     end
 
-    # Retransform from 1D-array to 2D-array with three columns for node, connected node, 
+    # Retransform from 1D-array to 2D-array with three columns for node, connected node,
     # and weight.
     graph_array = adjoint(reshape(graph_array, (3, :)))
-    # Because step on is sorting all the edges in non-decreasing order of their 
-    # weight, the dictionary has to be translated into an array to be able to be 
+    # Because step on is sorting all the edges in non-decreasing order of their
+    # weight, the dictionary has to be translated into an array to be able to be
     # sorted.
     graph_array = sortrows(graph_array, graph_array[:, [3]])
 
-    # Create array-list for finding the parents and intialize all subsets to vertex_size 
+    # Create array-list for finding the parents and intialize all subsets to vertex_size
     # with an increasing range, because it has to be reordered by the ranking later.
     parent = collect(Int64, 1:vertex_size)
 
@@ -484,32 +484,32 @@ function minimum_spanning_tree(graph::Dict{Int64,Array{Tuple{Int64,Int64},1}})
     # Create a array list for the results
     result = zeros(Int64, false)
 
-    # Number of edges to be taken is equal to vertex_size 
-    i = 1 # An index variable, used for sorted edges 
-    e = 1 # An index variable, used for result[] 
+    # Number of edges to be taken is equal to vertex_size
+    i = 1 # An index variable, used for sorted edges
+    e = 1 # An index variable, used for result[]
     while e < vertex_size
-        # Step 2: Pick the smallest edge and increment the index for next iteration 
+        # Step 2: Pick the smallest edge and increment the index for next iteration
         u, v, w = graph_array[i, :]
         i += 1
         x = find_parent_in_spanning_tree(parent, u)
         y = find_parent_in_spanning_tree(parent, v)
 
-        # If including this edge does't cause cycle, include it in result and 
-        # increment the index of result for next edge 
+        # If including this edge does't cause cycle, include it in result and
+        # increment the index of result for next edge
         if x != y
             e += 1
             append!(result, [u, v, w])
-            #  union of two sets of x and y by ranking 
+            #  union of two sets of x and y by ranking
             xroot = find_parent_in_spanning_tree(parent, x)
             yroot = find_parent_in_spanning_tree(parent, y)
 
-            # Attach smaller rank tree under root of high rank tree (Union by Rank) 
+            # Attach smaller rank tree under root of high rank tree (Union by Rank)
             if rank[xroot] < rank[yroot]
                 parent[xroot] = yroot
             elseif rank[xroot] > rank[yroot]
                 parent[yroot] = xroot
 
-                # If ranks are same, then make one as root and increment its rank by one 
+                # If ranks are same, then make one as root and increment its rank by one
             else
                 parent[yroot] = xroot
                 rank[xroot] += 1
@@ -534,9 +534,9 @@ bridge_check(
     time::Int64,
 )
 
-For finding a bridge belonging to the current vertex, the algorithm has to remove firstly 
-one by one all edges. Next, the algorithm has to see if the removal of an edge causes a 
-disconnected graph. If yes, for the current pair of `u` and `v`, are a bridge between the 
+For finding a bridge belonging to the current vertex, the algorithm has to remove firstly
+one by one all edges. Next, the algorithm has to see if the removal of an edge causes a
+disconnected graph. If yes, for the current pair of `u` and `v`, are a bridge between the
 endpoints is found.
 
 
@@ -546,8 +546,8 @@ endpoints is found.
 - `result::Array{Int64,1}`: Results of the graph bridges; start and endpoint of the bridge
 - `visited::Array{Bool,1}`: Visited vertex
 - `parent::Array{Int64,1}`: Parent vertices in DFS tree'
-- `low::Array{Int64,1}`: Lowest vertex reachable from subtree 
-- `disc::Array{Int64,1}`: Discovery time of the visited vertex 
+- `low::Array{Int64,1}`: Lowest vertex reachable from subtree
+- `disc::Array{Int64,1}`: Discovery time of the visited vertex
 - `time::Int64`: Current time
 """
 function bridge_check(
@@ -561,39 +561,39 @@ function bridge_check(
     time::Int64,
 )
 
-    # Mark the current node as visited and print it 
+    # Mark the current node as visited and print it
     visited[u] = true
 
     # Initialize discovery time
     disc[u] = time
 
-    # Initialize low value 
+    # Initialize low value
     low[u] = time
 
     # Update time
     time += 1
 
 
-    #Recur for all the vertices adjacent to this vertex 
+    #Recur for all the vertices adjacent to this vertex
     for v in graph[u]
-        # If v is not visited yet, then make it a child of u 
-        # in DFS tree and recur for it 
+        # If v is not visited yet, then make it a child of u
+        # in DFS tree and recur for it
         if visited[v] == false
             parent[v] = u
             time, _ = bridge_check(graph, v, result, visited, parent, low, disc, time)
 
-            # Check if the subtree rooted with v has a connection to 
-            # one of the ancestors of u 
+            # Check if the subtree rooted with v has a connection to
+            # one of the ancestors of u
             low[u] = min(low[u], low[v])
 
 
-            # If the lowest vertex reachable from subtree under v is below u in DFS tree, 
+            # If the lowest vertex reachable from subtree under v is below u in DFS tree,
             # then u-v is a bridge
             if low[v] > disc[u]
                 # This returns goes up to the recursive function
                 append!(result, (u, v))
             end
-        elseif v != parent[u] # Update low value of u for parent function calls. 
+        elseif v != parent[u] # Update low value of u for parent function calls.
             low[u] = min(low[u], disc[v])
         end
     end
@@ -604,9 +604,9 @@ end
 """
     graph_bridge_check(graph::Dict{Int64,Array{Int64,1}}))
 
-For finding a bridge or more bridges in an undirect connected graph, the kind of connection 
-has to be found, which can disconnect the graph by removing it. In case of disconnected 
-undirected graphs, the bridge is the connection which increases number of disconnected 
+For finding a bridge or more bridges in an undirect connected graph, the kind of connection
+has to be found, which can disconnect the graph by removing it. In case of disconnected
+undirected graphs, the bridge is the connection which increases number of disconnected
 components by removing it.
 
 
@@ -624,7 +624,7 @@ julia> ClassicAlgorithmsCollections.graph_bridge_check(graph_bridge)
 """
 function graph_bridge_check(graph::Dict{Int64,Array{Int64,1}})
 
-    # Mark all the vertices as not visited and Initialize parent and visited,  
+    # Mark all the vertices as not visited and Initialize parent and visited,
     # and ap(articulation point) arrays
     vertex_size = find_global_maximum(graph)
 
@@ -635,15 +635,15 @@ function graph_bridge_check(graph::Dict{Int64,Array{Int64,1}})
 
     low = fill(99999, vertex_size)
 
-    # 
+    #
     parent = fill(vertex_size, vertex_size)
 
     # Intialze the time
     time = 0
     # Create a array list for the results
     result = zeros(Int64, false)
-    # Call the recursive helper function to find bridges 
-    # in DFS tree rooted with vertex 'i'     
+    # Call the recursive helper function to find bridges
+    # in DFS tree rooted with vertex 'i'
     for i in 1:vertex_size
         time, result = bridge_check(graph, i, result, visited, parent, low, disc, time)
     end
@@ -665,10 +665,10 @@ end
         result::Array{String,1},
     )
 
-Based on the Depth First Traversal algorithm, words will be find for a current char by 
-going through the graph up and down and keep track of the visited nodes. Important is that 
-the travelling happens in both direction up and down and left and right. Everythign will be 
-stacked in the visited list. If no word will be found the `current_word` has to be deleted. 
+Based on the Depth First Traversal algorithm, words will be find for a current char by
+going through the graph up and down and keep track of the visited nodes. Important is that
+the travelling happens in both direction up and down and left and right. Everythign will be
+stacked in the visited list. If no word will be found the `current_word` has to be deleted.
 
 
 # Arguments
@@ -745,9 +745,9 @@ end
         reference_words::Array{String,1},
     )
 
-For finding words (`reference_words`) in a field of chars, the boogle word check algorithm 
-goes for every single char up and down to see if the sum of the chars build a word 
-contained in th refernce word list. For this porpose the  Depth First Traversal algorithm 
+For finding words (`reference_words`) in a field of chars, the boogle word check algorithm
+goes for every single char up and down to see if the sum of the chars build a word
+contained in th refernce word list. For this porpose the  Depth First Traversal algorithm
 in function find_word is used.
 
 

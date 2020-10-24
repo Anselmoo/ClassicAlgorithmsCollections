@@ -88,3 +88,50 @@ end
         target_unsorted_searching,
     ) == ref_unsorted_searching
 end
+
+@testset "String & Array" begin
+    old_string = "a!!!b.c79.d,e'f,ghi3###"
+    reversed_string = "i!!!h.g79.f,e'd,cba3###"
+    @test ClassicAlgorithmsCollections.reverse_pure_string(old_string) == reversed_string
+
+    array_before_zigzag = [4, 3, 7, 8, 6, 2, 1, 10, 13, 3]
+    array_after_zigzag = [3, 7, 4, 8, 2, 6, 1, 13, 3, 10]
+    @test ClassicAlgorithmsCollections.zigzag_ordering(array_before_zigzag) ==
+          array_after_zigzag
+
+
+    arr = [5, 1, 3, 4, 7]
+    sum = 12
+    @test ClassicAlgorithmsCollections.count_triplet_elements(arr, sum) == 2
+
+    array_pythagorean = [5, 1, 3, 4, 17, 8, 15, 2, 2, 13, 12]
+    @test ClassicAlgorithmsCollections.count_pythagorean_elements(array_pythagorean) == 3
+
+
+    arr_1 = [10, 15, 25]
+    arr_2 = [5, 20, 30]
+    sorted_combinations = [
+        [10, 20],
+        [10, 20, 25, 30],
+        [10, 30],
+        [15, 20],
+        [15, 20, 25, 30],
+        [15, 30],
+        [25, 30],
+    ]
+    @test ClassicAlgorithmsCollections.combinations_of_2arrays(arr_1, arr_2) ==
+          sorted_combinations
+    subarray_in_array = [10, 12, 11, 9, 13, 14, 17, 18, 15]
+    @test ClassicAlgorithmsCollections.find_maxlength_subarray(subarray_in_array) == 5
+
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 52) == 4
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 2) == 1
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 5555) ==
+          nothing
+
+    sort_array = [1, 2, 5, 10, 20, 40]
+    @test ClassicAlgorithmsCollections.find_smallest_nonelement(sort_array) == 4
+
+    gradients_in_array = [100, 180, 260, 310, 40, 535, 695]
+    @test ClassicAlgorithmsCollections.sum_of_postive_gradients(gradients_in_array) == 865
+end

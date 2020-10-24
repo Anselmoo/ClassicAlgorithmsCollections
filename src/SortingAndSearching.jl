@@ -1,23 +1,24 @@
 """
     binary_search(array::Array{Int64,1}, target::Int64)
 
-The binary search algorithm (BSA) finds a target value's position within a sorted array by 
-using a half-interval cut per each cycle. Thus, the BSA compares the target value to the 
-value of the array's middle element. In the case of inequality, the half array-piece in 
-which the target cannot be will be erased. Next, the search continues on the remaining 
+The binary search algorithm (BSA) finds a target value's position within a sorted array by
+using a half-interval cut per each cycle. Thus, the BSA compares the target value to the
+value of the array's middle element. In the case of inequality, the half array-piece in
+which the target cannot be will be erased. Next, the search continues on the remaining
 half array-piece and starts taking the middle element to compare it to the target value.
-This procedure has to be continued until the target value is found. The search may have to 
-be stopped with a remaining empty half array-piece; consequently, the target is not in the 
+This procedure has to be continued until the target value is found. The search may have to
+be stopped with a remaining empty half array-piece; consequently, the target is not in the
 array. For more information see: [https://en.wikipedia.org/wiki/Binary_search_algorithm](https://en.wikipedia.org/wiki/Binary_search_algorithm)
 
 
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
-- `target::Int64`: Target-value to find the position 
+- `target::Int64`: Target-value to find the position
 
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
 julia> target = 12
 julia> ClassicAlgorithmsCollections.binary_search(arr, target)
@@ -31,13 +32,13 @@ function binary_search(array::Array{Int64,1}, target::Int64)
     while left <= right
         # Generating the middle element position
         mid = fld((left + right), 2)
-        # If element is larger than mid, then it  can only be present in right subarray 
+        # If element is larger than mid, then it  can only be present in right subarray
         if array[mid] < target
             left = mid + 1
-            # If element is smaller than mid, then it can only be present in left subarray 
+            # If element is smaller than mid, then it can only be present in left subarray
         elseif array[mid] > target
             right = mid - 1
-            # If element is present at the middle itself 
+            # If element is present at the middle itself
         else
             return mid
         end
@@ -49,18 +50,19 @@ end
 """
     binary_pivot_search(array::Array{Int64,1}, target::Int64)
 
-The idea is to find the pivot point for finding the target in an unsorted array. For this 
-reason, the array has to be divided into two subarrays; a binary search is performed on 
+The idea is to find the pivot point for finding the target in an unsorted array. For this
+reason, the array has to be divided into two subarrays; a binary search is performed on
 the subarrays.
 
 
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
-- `target::Int64`: Target-value to find the position 
+- `target::Int64`: Target-value to find the position
 
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
 julia> target = 3
 julia> ClassicAlgorithmsCollections.binary_pivot_search(arr, target)
@@ -104,22 +106,23 @@ end
 """
     interpolation_searching(array::Array{Int64,1}, target::Int64)
 
-The Interpolation search algorithm (ISA) finds a target-position in a sorted array by using 
-a numerical procedure. The sorting procedure uses a linear fitting for finding the target 
-position of the remaining search space in the array in more detail. The array's target 
-position is calculated by the straight slope between the lowest and largest boundary of the 
-remaining array and the lowest array position itself during each optimization cycle. If the 
-target-position cannot be found, the array-space will be shrink for the lower or higher 
+The Interpolation search algorithm (ISA) finds a target-position in a sorted array by using
+a numerical procedure. The sorting procedure uses a linear fitting for finding the target
+position of the remaining search space in the array in more detail. The array's target
+position is calculated by the straight slope between the lowest and largest boundary of the
+remaining array and the lowest array position itself during each optimization cycle. If the
+target-position cannot be found, the array-space will be shrink for the lower or higher
 boundary region based on a comparison. For more information see: [https://en.wikipedia.org/wiki/Interpolation_search](https://en.wikipedia.org/wiki/Interpolation_search)
 
 
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
-- `target::Int64`: Target-value to find the position 
+- `target::Int64`: Target-value to find the position
 
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10,11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47]
 julia> target = 12
 julia> ClassicAlgorithmsCollections.interpolation_searching(arr, target)
@@ -127,11 +130,11 @@ julia> ClassicAlgorithmsCollections.interpolation_searching(arr, target)
 ```
 """
 function interpolation_searching(array::Array{Int64,1}, target::Int64)
-    # Find indexs of two low and high array-boundary 
+    # Find indexs of two low and high array-boundary
     low = 1
     high = length(array)
 
-    # Since array is sorted, an element present in array must be in range defined by boundary 
+    # Since array is sorted, an element present in array must be in range defined by boundary
     while low <= high && target >= array[low] && target <= array[high]
 
         # Check if array contains only one element
@@ -142,7 +145,7 @@ function interpolation_searching(array::Array{Int64,1}, target::Int64)
             return nothing
         end
 
-        # Linear fitting of the new position pos and transforming to an integer value. 
+        # Linear fitting of the new position pos and transforming to an integer value.
         pos =
             low + floor(
                 Int64,
@@ -154,10 +157,10 @@ function interpolation_searching(array::Array{Int64,1}, target::Int64)
             return pos
         end
 
-        # If x is larger, x is in upper part 
+        # If x is larger, x is in upper part
         if array[pos] < target
             low = pos + 1
-            # Else x has to be smaller, x is in lower part 
+            # Else x has to be smaller, x is in lower part
         else
             high = pos - 1
         end
@@ -170,18 +173,19 @@ end
 """
     closest_pair_searching(array::Array{Int64,1}, target::Int64)
 
-Finding the closet pair of values for a given target in a sorted array. For this reason, 
+Finding the closet pair of values for a given target in a sorted array. For this reason,
 the distance between a pair of of values has to be minimazied with respect to the target.
 For more information see: [https://en.wikipedia.org/wiki/Closest_pair_of_points_problem](https://en.wikipedia.org/wiki/Closest_pair_of_points_problem)
 
 
 # Arguments
 - `array::Array{Int64,1}`: Sorted array of integers
-- `target::Int64`: Target-value to find the position 
+- `target::Int64`: Target-value to find the position
 
 
 # Examples
 ```julia-repl
+julia> import ClassicAlgorithmsCollections
 julia> arr = [10, 22, 28, 29, 30, 40]
 julia> target = 56
 julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
@@ -190,17 +194,17 @@ julia> ClassicAlgorithmsCollections.closest_pair_searching(arr, target)
 """
 function closest_pair_searching(array::Array{Int64,1}, target::Int64)
 
-    # To store indexes of result pair 
+    # To store indexes of result pair
     res_left, res_right = 1, 1
 
-    #Initialize left, right array boundaries, and their difference 
+    #Initialize left, right array boundaries, and their difference
     left, right, diff = 1, length(array), 999999
 
-    # While there are elements between left and right array boundaries 
+    # While there are elements between left and right array boundaries
     while right > left
-        
-        # Check if the distance between the current pair is closer than the closest 
-        # previous pair so far 
+
+        # Check if the distance between the current pair is closer than the closest
+        # previous pair so far
         if abs(array[left] + array[right] - target) < diff
             res_left = left
             res_right = right
@@ -208,9 +212,9 @@ function closest_pair_searching(array::Array{Int64,1}, target::Int64)
             diff = abs(array[left] + array[right] - target)
         end
 
-        # If this pair has more sum than the target, shrink the array to a smaller value 
+        # If this pair has more sum than the target, shrink the array to a smaller value
         if array[left] + array[right] > target
-            
+
             right -= 1
         # Otherwise, shrink the array to a larger value
         else
@@ -223,9 +227,9 @@ end
 """
     bubble_sorting(array::Array{Int64,1})
 
-The Bubble sorting algorithm (BSA) is a primitive sorting algorithm that repeatedly steps 
-through the array by using a double for-loop with n and n-1 size. During the walkthrough, 
-the BSA compares adjacent elements and swaps wrong ordered elements until the array is 
+The Bubble sorting algorithm (BSA) is a primitive sorting algorithm that repeatedly steps
+through the array by using a double for-loop with n and n-1 size. During the walkthrough,
+the BSA compares adjacent elements and swaps wrong ordered elements until the array is
 sorted. For more information see: [https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
 
 
@@ -235,7 +239,8 @@ sorted. For more information see: [https://en.wikipedia.org/wiki/Bubble_sort](ht
 
 # Examples
 ```julia-repl
-julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> import ClassicAlgorithmsCollections
+julia> arr = [64, 34, 25, 12, 22, 11, 90]
 julia> ClassicAlgorithmsCollections.bubble_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
 ```
@@ -243,13 +248,13 @@ julia> ClassicAlgorithmsCollections.bubble_sorting(arr)
 function bubble_sorting(array::Array{Int64,1})
     n = length(array)
 
-    # Traverse through all array elements 
+    # Traverse through all array elements
     for i in 1:n
-        # Last i elements are already in place 
+        # Last i elements are already in place
         for j in 1:n-i-1
             # traverse the array from 1 to n-i-1
             if array[j] > array[j+1]
-                # Swap if the element found is greater than the next element 
+                # Swap if the element found is greater than the next element
                 array[j], array[j+1] = array[j+1], array[j]
             end
         end
@@ -261,8 +266,8 @@ end
 """
     insertion_sorting(array::Array{Int64,1})
 
-The insertion sorting algorithm builds the final sorted array by inserting elements that are 
-greater than the key, to one position ahead of their current position step one item at a 
+The insertion sorting algorithm builds the final sorted array by inserting elements that are
+greater than the key, to one position ahead of their current position step one item at a
 time. For more information see: [https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
 
 
@@ -272,16 +277,17 @@ time. For more information see: [https://en.wikipedia.org/wiki/Insertion_sort](h
 
 # Examples
 ```julia-repl
-julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> import ClassicAlgorithmsCollections
+julia> arr = [64, 34, 25, 12, 22, 11, 90]
 julia> ClassicAlgorithmsCollections.insertion_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
 ```
 """
 function insertion_sorting(array::Array{Int64,1})
 
-    # Traverse through 1 to len(array) 
+    # Traverse through 1 to len(array)
     for i in 2:length(array)
-        # 
+        #
         key = array[i]
         j = i - 1
         while j >= 1 && key < array[j]
@@ -297,7 +303,7 @@ end
 """
     merge(left::Array{Int64,1}, right::Array{Int64,1}))
 
-The merge algorithms (MA) merge the subarrays `left` and `right` to produce new sorted 
+The merge algorithms (MA) merge the subarrays `left` and `right` to produce new sorted
 subarrays until there is only one subarray remaining, which will be the sorted array. For
 more information see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
 
@@ -340,14 +346,14 @@ end
 """
     merge_sorting(array::Array{Int64,1})
 
-The merge sort algorithms (MSA) are a comparison-based sorting algorithm, which is referred 
-to as the divide and conquer algorithms.  The stable sort implementation is a widely used 
-method for the MSA, which means that the order of equal elements is the same in the input 
-and output. In the current implementation, a top-down implementation is used; however, a 
-Bottom-up implementation can be used, too. In the top-down implementation, the MSA 
-recursively splits the array into subarrays until the subarray size is < 2, merging those 
-subarrays to produce a sorted array by using a new function `merge`. The back copying is 
-blocked by alternating the direction of the merge with each recursion. For more information 
+The merge sort algorithms (MSA) are a comparison-based sorting algorithm, which is referred
+to as the divide and conquer algorithms.  The stable sort implementation is a widely used
+method for the MSA, which means that the order of equal elements is the same in the input
+and output. In the current implementation, a top-down implementation is used; however, a
+Bottom-up implementation can be used, too. In the top-down implementation, the MSA
+recursively splits the array into subarrays until the subarray size is < 2, merging those
+subarrays to produce a sorted array by using a new function `merge`. The back copying is
+blocked by alternating the direction of the merge with each recursion. For more information
 see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
 
 
@@ -357,7 +363,8 @@ see: [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Me
 
 # Examples
 ```julia-repl
-julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> import ClassicAlgorithmsCollections
+julia> arr = [64, 34, 25, 12, 22, 11, 90]
 julia> ClassicAlgorithmsCollections.merge_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
 ```
@@ -395,7 +402,7 @@ For more information see: https://en.wikipedia.org/wiki/Heapsort
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array of integers
 - `n::Int64`: Length of the array
-- `::Int64`: Current index of the array
+- `i::Int64`: Current index of the array
 
 """
 function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
@@ -405,18 +412,18 @@ function heapify(array::Array{Int64,1}, n::Int64, i::Int64)
     left = 2 * i
     right = 2 * i + 1
 
-    # See if left child of root exists and is greater than root 
+    # See if left child of root exists and is greater than root
     if left <= n && array[i] < array[left]
         largest = left
     end
-    # See if right child of root exists and is greater than root 
+    # See if right child of root exists and is greater than root
     if right <= n && array[largest] < array[right]
         largest = right
     end
-    # Change root, if needed 
+    # Change root, if needed
     if largest != i
         array[i], array[largest] = array[largest], array[i]
-        # Heapify the root again 
+        # Heapify the root again
         array = heapify(array, n, largest)
     end
     return array
@@ -426,14 +433,14 @@ end
 """
     heap_sorting(array::Array{Int64,1})
 
-As a comparison-based sorting algorithm, the heapsort algorithm (HSA) divides its input 
-into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by 
-extracting the largest element from it and inserting it into the sorted region. A specialty 
-is that the HSA keeps the unsorted region in a heap data structure to find the largest 
-element in each step more quickly. In more detail, in the first part of the HSA 
-(while-loop), the largest value has to be found and set to position one. In the second part 
-of the HSA (while-loop), the array's first and largest value has to be swap to the last 
-index of the array, and the swapping-procedure starts again for a new interval n-1. For 
+As a comparison-based sorting algorithm, the heapsort algorithm (HSA) divides its input
+into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by
+extracting the largest element from it and inserting it into the sorted region. A specialty
+is that the HSA keeps the unsorted region in a heap data structure to find the largest
+element in each step more quickly. In more detail, in the first part of the HSA
+(while-loop), the largest value has to be found and set to position one. In the second part
+of the HSA (while-loop), the array's first and largest value has to be swap to the last
+index of the array, and the swapping-procedure starts again for a new interval n-1. For
 more information see: [https://en.wikipedia.org/wiki/Heapsort](https://en.wikipedia.org/wiki/Heapsort)
 
 
@@ -443,7 +450,8 @@ more information see: [https://en.wikipedia.org/wiki/Heapsort](https://en.wikipe
 
 # Examples
 ```julia-repl
-julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> import ClassicAlgorithmsCollections
+julia> arr = [64, 34, 25, 12, 22, 11, 90]
 julia> ClassicAlgorithmsCollections.heap_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
 ```
@@ -461,7 +469,7 @@ function heap_sorting(array::Array{Int64,1})
 
     end
 
-    # One by one extract elements 
+    # One by one extract elements
     i = n
     while i > 1
         array[i], array[1] = array[1], array[i]
@@ -479,7 +487,7 @@ end
 """
     partition(array::Array{Int64,1}, low::Int64, high::Int64)
 
-The partion algorithm is shuffeling the array for a given interval of low and high 
+The partion algorithm is shuffeling the array for a given interval of low and high
 boundaries.
 
 
@@ -492,15 +500,15 @@ boundaries.
 function partition(array::Array{Int64,1}, low::Int64, high::Int64)
     # index of smaller element
     i = low - 1
-    # pivot         
+    # pivot
     pivot = array[high]
 
     for j in low:high
 
-        # If current element is smaller than the pivot 
+        # If current element is smaller than the pivot
         if array[j] < pivot
 
-            # increment index of smaller element 
+            # increment index of smaller element
             i = i + 1
             # Swap if the element found is greater than the next element
             array[i], array[j] = array[j], array[i]
@@ -513,11 +521,11 @@ end
 """
     quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
 
-The quick sort algorithm (QSA) works by selecting a pivot element from the array and 
-partitioning the other elements into two subarrays, according to whether they are less than 
-or greater than the pivot-window. Then the sorting of subarrays is recursively organized. 
-This procedure repeatedly happens until each subarray is organized; consequently, the 
-subarrays' merging is an organized array. For more information see: 
+The quick sort algorithm (QSA) works by selecting a pivot element from the array and
+partitioning the other elements into two subarrays, according to whether they are less than
+or greater than the pivot-window. Then the sorting of subarrays is recursively organized.
+This procedure repeatedly happens until each subarray is organized; consequently, the
+subarrays' merging is an organized array. For more information see:
 [https://en.wikipedia.org/wiki/Quicksort#Parallelization](https://en.wikipedia.org/wiki/Quicksort#Parallelization)
 
 
@@ -529,7 +537,8 @@ subarrays' merging is an organized array. For more information see:
 
 # Examples
 ```julia-repl
-julia> arr = [64, 34, 25, 12, 22, 11, 90] 
+julia> import ClassicAlgorithmsCollections
+julia> arr = [64, 34, 25, 12, 22, 11, 90]
 julia> ClassicAlgorithmsCollections.quick_sorting(arr)
 [11, 12, 22, 25, 34, 64, 90]
 ```
@@ -542,10 +551,10 @@ function quick_sorting(array::Array{Int64,1}, low = nothing, high = nothing)
     end
     if low < high
 
-        # p_i is partitioning index, array[p_i] is now at right place 
+        # p_i is partitioning index, array[p_i] is now at right place
         p_i = partition(array, low, high)
 
-        # Separately sort elements before partition and after partition 
+        # Separately sort elements before partition and after partition
         array = quick_sorting(array, low, p_i - 1)
         array = quick_sorting(array, p_i + 1, high)
     else
