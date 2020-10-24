@@ -124,6 +124,11 @@ end
     subarray_in_array = [10, 12, 11, 9, 13, 14, 17, 18, 15]
     @test ClassicAlgorithmsCollections.find_maxlength_subarray(subarray_in_array) == 5
 
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 52) == 4
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 2) == 1
+    @test ClassicAlgorithmsCollections.smallest_subset4sum(subarray_in_array, 5555) ==
+          nothing
+
     sort_array = [1, 2, 5, 10, 20, 40]
     @test ClassicAlgorithmsCollections.find_smallest_nonelement(sort_array) == 4
 

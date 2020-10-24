@@ -31,6 +31,8 @@ export reverse_pure_string,
     count_pythagorean_elements,
     combinations_of_2arrays,
     find_maxlength_subarray,
-    find_smallest_nonelement
+    find_smallest_nonelement,
+    smallest_subset4sum
+    
 
 end # module
