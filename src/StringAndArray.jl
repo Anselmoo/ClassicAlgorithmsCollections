@@ -170,3 +170,91 @@ function count_pythagorean_elements(array::Array{Int64,1})
     return ans
 end
 
+function generate_array(
+    array_1::Array{Int64},
+    array_2::Array{Int64},
+    array_merged::Array{Int64},
+    i::Int64,
+    j::Int64,
+    k::Int64,
+    l::Int64,
+    size::Int64,
+    flag::Bool,
+    result
+)
+    if flag
+        if size > 1
+
+            println(array_merged[1:size]) 
+            
+
+        end
+        for m in i:k
+            if size < 2
+                array_merged[size] = array_1[m]
+                generate_array(array_1, 
+                array_2, array_merged, m + 1, j, k, l, size, !flag, 
+                result)
+            else
+                if array_1[m] > array_merged[size]
+                    array_merged[size+1] = array_1[m]
+                    generate_array(
+                        array_1,
+                        array_2,
+                        array_merged,
+                        m + 1,
+                        j,
+                        k,
+                        l,
+                        size + 1,
+                        !flag,result
+                    )
+                end
+            end
+        end
+
+    else
+        for n in j:l
+            if array_2[n] > array_merged[size]
+                array_merged[size+1] = array_2[n]
+                generate_array(
+                    array_1,
+                    array_2,
+                    array_merged,
+                    i,
+                    n + 1,
+                    k,
+                    l,
+                    size + 1,
+                    !flag,result
+                )
+
+            end
+        end
+
+    end
+    return result
+end
+
+function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1})
+    length_array_1,  length_array_2 = length(array_1),  length(array_2)
+    init_array = zeros(Int64, (length_array_1 +  length_array_2))
+     # Create array-list for the searching solution 
+    result =zeros(Int64, (false,false))
+    return generate_array(
+        array_1,
+        array_2,
+        init_array,
+        1,
+        1,
+        length_array_1,  length_array_2,
+        1,
+        true,
+        result
+    )
+
+end
+
+B = [10, 15, 25]
+A = [5, 20, 30]
+combinations_of_2arrays(A, B)

@@ -6,3 +6,4 @@ cross_check
 .vscode/tasks.json
 docs/build/
 src/PlotGraphs.jl
+.dccache
