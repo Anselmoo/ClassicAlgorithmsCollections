@@ -314,6 +314,7 @@ function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1
 
 end
 
+
 """
     find_maxlength_subarray(array::Array{Int64,1})
 
@@ -339,7 +340,6 @@ function find_maxlength_subarray(array::Array{Int64,1})
     max_len = 1
     n = length(array)
     for i in 1:n
-
         min_array = array[i]
         max_array = array[i]
 
@@ -347,20 +347,16 @@ function find_maxlength_subarray(array::Array{Int64,1})
             if min_array > array[j]
                 min_array = array[j]
             end
-            if max_array < array[j] 
-                max_array = array[j] 
-            end 
-            
+            if max_array < array[j]
+                max_array = array[j]
+            end
             if ((max_array - min_array) == (j - i))
-                if max_len < (max_array - min_array )
-                    max_len = max_array - min_array +1 
+                if max_len < (max_array - min_array)
+                    max_len = max_array - min_array + 1
                 end
-                
             end
         end
     end
-
     return max_len
-
 end
                                       
