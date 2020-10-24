@@ -124,4 +124,7 @@ end
     subarray_in_array = [10, 12, 11, 9, 13, 14, 17, 18, 15]
     @test ClassicAlgorithmsCollections.find_maxlength_subarray(subarray_in_array) == 5
 
+    sort_array = [11, 2, 5, 10, 20, 40]
+    @test ClassicAlgorithmsCollections.find_smallest_nonelement(sort_array) == 4
+
 end

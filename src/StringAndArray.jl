@@ -17,6 +17,7 @@ julia> import ClassicAlgorithmsCollections
 julia> string = "a!!!b.c79.d,e'f,ghi3###""
 julia> ClassicAlgorithmsCollectionsreverse_pure_string(string)
 "a!!!b.c79.d,e'f,ghi3###""
+```
 """
 function reverse_pure_string(text::String)
     low = 1
@@ -59,6 +60,7 @@ julia> import ClassicAlgorithmsCollections
 julia> arr = [4, 3, 7, 8, 6, 2, 1, 10, 13, 3]
 julia> ClassicAlgorithmsCollections.zigzag_ordering(arr)
 [3, 7, 4, 8, 2, 6, 1, 13, 3, 10]
+```
 """
 function zigzag_ordering(array::Array{Int64,1})
     # Intialize the flag
@@ -144,6 +146,7 @@ julia> import ClassicAlgorithmsCollections
 julia> arr = [5, 1, 3, 4, 17, 8, 15, 2, 2, 13 ,12]
 julia> ClassicAlgorithmsCollections.count_pythagorean_elements(arr, sum)
 3
+```
 """
 function count_pythagorean_elements(array::Array{Int64,1})
 
@@ -169,7 +172,6 @@ function count_pythagorean_elements(array::Array{Int64,1})
     end
     return ans
 end
-
 
 """
     generate_array(
@@ -201,7 +203,7 @@ ascending ordering.
 - `size::Int64`: Current size
 - `flag::Bool`: Switching between first and second array
 - `result::Array{Any,1}`: Result list of the merged arrays
-""" 
+"""
 function generate_array(
     array_1::Array{Int64},
     array_2::Array{Int64},
@@ -319,8 +321,8 @@ end
     find_maxlength_subarray(array::Array{Int64,1})
 
 Find the maximum length of a subarray with a given continuous depending sequence of numbers.
-For this reason, the minimum and maximum element in every subarray will be tracked and 
-compared with the incremental distance. So if the difference of the value is equal to the 
+For this reason, the minimum and maximum element in every subarray will be tracked and
+compared with the incremental distance. So if the difference of the value is equal to the
 difference of the increment in the array, the length will be updated.
 
 
@@ -333,10 +335,11 @@ julia> import ClassicAlgorithmsCollections
 julia> arr = [10, 12, 11, 9, 13, 14, 17, 18, 15]
 julia> ClassicAlgorithmsCollections.find_maxlength_subarray(arr)
 5
+```
 """
 function find_maxlength_subarray(array::Array{Int64,1})
 
-    # Initialize result 
+    # Initialize result
     max_len = 1
     n = length(array)
     for i in 1:n
@@ -359,4 +362,35 @@ function find_maxlength_subarray(array::Array{Int64,1})
     end
     return max_len
 end
-                                      
+
+
+"""
+
+    find_smallest_nonelement(array::Array{Int64,1})
+
+Returns the smallest number of a sorted array that cannot be represented as sum of subset of
+elements from this array.
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [1, 2, 5, 10, 20, 40]
+julia> ClassicAlgorithmsCollections.find_smallest_nonelement(arr)
+4
+```
+"""
+function find_smallest_nonelement(array::Array{Int64,1})
+
+    result = 1
+    for i in 1:length(array)
+        if array[i] <= result
+            result += array[i]
+        else
+            break
+        end
+    end
+    return result
+end

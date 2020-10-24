@@ -30,6 +30,7 @@ export reverse_pure_string,
     count_triplet_elements,
     count_pythagorean_elements,
     combinations_of_2arrays,
-    find_maxlength_subarray
+    find_maxlength_subarray,
+    find_smallest_nonelement
 
 end # module
