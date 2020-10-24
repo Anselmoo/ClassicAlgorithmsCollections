@@ -121,4 +121,7 @@ end
     ]
     @test ClassicAlgorithmsCollections.combinations_of_2arrays(arr_1, arr_2) ==
           sorted_combinations
+    subarray_in_array = [10, 12, 11, 9, 13, 14, 17, 18, 15]
+    @test ClassicAlgorithmsCollections.find_maxlength_subarray(subarray_in_array) == 5
+
 end

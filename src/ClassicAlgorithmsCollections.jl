@@ -29,5 +29,7 @@ export reverse_pure_string,
     zigzag_ordering,
     count_triplet_elements,
     count_pythagorean_elements,
-    combinations_of_2arrays
+    combinations_of_2arrays,
+    find_maxlength_subarray,
+    
 end # module

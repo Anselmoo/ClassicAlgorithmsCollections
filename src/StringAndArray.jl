@@ -63,16 +63,16 @@ julia> ClassicAlgorithmsCollections.zigzag_ordering(arr)
 function zigzag_ordering(array::Array{Int64,1})
     # Intialize the flag
     flag = true
-    for i in 1:length(array) - 1
+    for i in 1:length(array)-1
         # If flag is true, then check if next array element is greater than previous
         if flag
-            if array[i] > array[i + 1]
-                array[i], array[i + 1] = array[i + 1], array[i]
+            if array[i] > array[i+1]
+                array[i], array[i+1] = array[i+1], array[i]
             end
             # If flag is true, then check if next array element is smaller than previous
         else
-            if array[i] < array[i + 1]
-                array[i], array[i + 1] = array[i + 1], array[i]
+            if array[i] < array[i+1]
+                array[i], array[i+1] = array[i+1], array[i]
             end
         end
         # Swapt the flag after every turn
@@ -115,9 +115,9 @@ function count_triplet_elements(array::Array{Int64,1}, sum::Int64)
     ans = 0
     n = length(array)
 
-    for i in 1:n - 2
-        for j in i + 1:n - 1
-            for k in j + 1:n
+    for i in 1:n-2
+        for j in i+1:n-1
+            for k in j+1:n
                 if (array[i] + array[j] + array[k] == sum)
                     ans += 1
                 end
@@ -151,9 +151,9 @@ function count_pythagorean_elements(array::Array{Int64,1})
     ans = 0
     n = length(array)
 
-    for i in 1:n - 2
-        for j in i + 1:n - 1
-            for k in j + 1:n
+    for i in 1:n-2
+        for j in i+1:n-1
+            for k in j+1:n
                 AA = array[i]^2
                 BB = array[j]^2
                 CC = array[k]^2
@@ -169,6 +169,7 @@ function count_pythagorean_elements(array::Array{Int64,1})
     end
     return ans
 end
+
 
 """
     generate_array(
@@ -267,6 +268,7 @@ function generate_array(
     return result
 end
 
+
 """
     combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1}))
 
@@ -311,3 +313,54 @@ function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1
     )
 
 end
+
+"""
+    find_maxlength_subarray(array::Array{Int64,1})
+
+Find the maximum length of a subarray with a given continuous depending sequence of numbers.
+For this reason, the minimum and maximum element in every subarray will be tracked and 
+compared with the incremental distance. So if the difference of the value is equal to the 
+difference of the increment in the array, the length will be updated.
+
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [10, 12, 11, 9, 13, 14, 17, 18, 15]
+julia> ClassicAlgorithmsCollections.find_maxlength_subarray(arr)
+5
+"""
+function find_maxlength_subarray(array::Array{Int64,1})
+
+    # Initialize result 
+    max_len = 1
+    n = length(array)
+    for i in 1:n
+
+        min_array = array[i]
+        max_array = array[i]
+
+        for j in (i+1):n
+            if min_array > array[j]
+                min_array = array[j]
+            end
+            if max_array < array[j] 
+                max_array = array[j] 
+            end 
+            
+            if ((max_array - min_array) == (j - i))
+                if max_len < (max_array - min_array )
+                    max_len = max_array - min_array +1 
+                end
+                
+            end
+        end
+    end
+
+    return max_len
+
+end
+                                      
