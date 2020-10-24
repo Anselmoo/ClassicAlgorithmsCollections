@@ -23,4 +23,17 @@ export binary_search,
     quick_sorting,
     interpolation_searching,
     closest_pair_searching
+
+include("StringAndArray.jl")
+export reverse_pure_string,
+    zigzag_ordering,
+    count_triplet_elements,
+    count_pythagorean_elements,
+    combinations_of_2arrays,
+    find_maxlength_subarray,
+    find_smallest_nonelement,
+    smallest_subset4sum,
+    sum_of_postive_gradients
+    
+
 end # module
