@@ -26,5 +26,8 @@ export binary_search,
 
 include("StringAndArray.jl")
 export reverse_pure_string,
-    zigzag_ordering, count_triplet_elements, count_pythagorean_elements
+    zigzag_ordering,
+    count_triplet_elements,
+    count_pythagorean_elements,
+    combinations_of_2arrays
 end # module

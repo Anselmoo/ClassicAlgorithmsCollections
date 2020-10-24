@@ -63,16 +63,16 @@ julia> ClassicAlgorithmsCollections.zigzag_ordering(arr)
 function zigzag_ordering(array::Array{Int64,1})
     # Intialize the flag
     flag = true
-    for i in 1:length(array)-1
+    for i in 1:length(array) - 1
         # If flag is true, then check if next array element is greater than previous
         if flag
-            if array[i] > array[i+1]
-                array[i], array[i+1] = array[i+1], array[i]
+            if array[i] > array[i + 1]
+                array[i], array[i + 1] = array[i + 1], array[i]
             end
             # If flag is true, then check if next array element is smaller than previous
         else
-            if array[i] < array[i+1]
-                array[i], array[i+1] = array[i+1], array[i]
+            if array[i] < array[i + 1]
+                array[i], array[i + 1] = array[i + 1], array[i]
             end
         end
         # Swapt the flag after every turn
@@ -115,9 +115,9 @@ function count_triplet_elements(array::Array{Int64,1}, sum::Int64)
     ans = 0
     n = length(array)
 
-    for i in 1:n-2
-        for j in i+1:n-1
-            for k in j+1:n
+    for i in 1:n - 2
+        for j in i + 1:n - 1
+            for k in j + 1:n
                 if (array[i] + array[j] + array[k] == sum)
                     ans += 1
                 end
@@ -151,9 +151,9 @@ function count_pythagorean_elements(array::Array{Int64,1})
     ans = 0
     n = length(array)
 
-    for i in 1:n-2
-        for j in i+1:n-1
-            for k in j+1:n
+    for i in 1:n - 2
+        for j in i + 1:n - 1
+            for k in j + 1:n
                 AA = array[i]^2
                 BB = array[j]^2
                 CC = array[k]^2
@@ -170,6 +170,37 @@ function count_pythagorean_elements(array::Array{Int64,1})
     return ans
 end
 
+"""
+    generate_array(
+        array_1::Array{Int64},
+        array_2::Array{Int64},
+        array_merged::Array{Int64},
+        i::Int64,
+        j::Int64,
+        k::Int64,
+        l::Int64,
+        size::Int64,
+        flag::Bool,
+        result::Array{Any,1}
+    )
+
+generate_array is a modified [Breadth-First-Search]https://en.wikipedia.org/wiki/Breadth-first_search]
+for generating the result-array with the possible combinations of two merged arrays with
+ascending ordering.
+
+
+# Arguments
+- `array_1::Array{Int64}`: First sorted array
+- `array_2::Array{Int64}`: Second sorted array
+- `array_merged::Array{Int64}`: Merged sorted array
+- `i::Int64`: Outer lower increment of first array
+- `j::Int64`: Outer higher increment of first array
+- `k::Int64`: Outer lower increment of second array
+- `l::Int64`: Outer higher increment of second array
+- `size::Int64`: Current size
+- `flag::Bool`: Switching between first and second array
+- `result::Array{Any,1}`: Result list of the merged arrays
+""" 
 function generate_array(
     array_1::Array{Int64},
     array_2::Array{Int64},
@@ -180,24 +211,23 @@ function generate_array(
     l::Int64,
     size::Int64,
     flag::Bool,
-    result
+    result::Array{Any,1},
 )
     if flag
         if size > 1
-
-            println(array_merged[1:size])
-
-
+            push!(result, array_merged[1:size])
         end
         for m in i:k
+            # Define the first element
             if size < 2
                 array_merged[size] = array_1[m]
                 generate_array(array_1,
                 array_2, array_merged, m + 1, j, k, l, size, !flag,
                 result)
             else
+                # Going to the third and higher element of array_1
                 if array_1[m] > array_merged[size]
-                    array_merged[size+1] = array_1[m]
+                    array_merged[size + 1] = array_1[m]
                     generate_array(
                         array_1,
                         array_2,
@@ -214,9 +244,10 @@ function generate_array(
         end
 
     else
+        # Going to the second of array_2
         for n in j:l
             if array_2[n] > array_merged[size]
-                array_merged[size+1] = array_2[n]
+                array_merged[size + 1] = array_2[n]
                 generate_array(
                     array_1,
                     array_2,
@@ -244,20 +275,28 @@ idea
 
 
 # Arguments
-- `array::Array{Int64,1}`: Unsorted array
+- `array_1::Array{Int64,1}`: First sorted array
+- `array_2::Array{Int64,1}`: Second sorted array
 
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
-julia> arr = [5, 1, 3, 4, 17, 8, 15, 2, 2, 13 ,12]
-julia> ClassicAlgorithmsCollections.count_pythagorean_elements(arr, sum)
-3
+julia> arr_1 = [10, 15, 25]
+julia> arr_2 = [5, 20, 30]
+julia> ClassicAlgorithmsCollections.combinations_of_2arrays(arr_1, arr_2)
+[10, 20]
+[10, 20, 25, 30]
+[10, 30]
+[15, 20]
+[15, 20, 25, 30]
+[15, 30]
+[25, 30]
 """
 function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1})
     length_array_1,  length_array_2 = length(array_1),  length(array_2)
     init_array = zeros(Int64, (length_array_1 +  length_array_2))
      # Create array-list for the searching solution
-    result =zeros(Int64, (false,false))
+    result = Array{Any,1}()
     return generate_array(
         array_1,
         array_2,
@@ -271,7 +310,3 @@ function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1
     )
 
 end
-
-B = [10, 15, 25]
-A = [5, 20, 30]
-combinations_of_2arrays(A, B)
