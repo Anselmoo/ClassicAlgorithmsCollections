@@ -394,3 +394,4 @@ function find_smallest_nonelement(array::Array{Int64,1})
     end
     return result
 end
+
