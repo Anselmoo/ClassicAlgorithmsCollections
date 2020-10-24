@@ -339,7 +339,6 @@ function sum_of_postive_gradients(array::Array{Int64,1}, m = nothing, n = nothin
     return gradient
 end
 
-sum_of_postive_gradients(arr)
 
 """
     generate_array(
@@ -481,5 +480,4 @@ function combinations_of_2arrays(array_1::Array{Int64,1}, array_2::Array{Int64,1
         true,
         result
     )
-
 end
