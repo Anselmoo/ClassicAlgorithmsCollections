@@ -18,6 +18,7 @@ makedocs(
         "Algorithms" => Any[
             "Sorting and Searching"=>"man/SortingAndSearching.md",
             "Graph"=>"man/Graph.md",
+            "String and Arrays"=>"man/StringsAndArrays.md",
         ],
     ],
 )
