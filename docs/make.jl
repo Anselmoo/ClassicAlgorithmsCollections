@@ -17,8 +17,8 @@ makedocs(
         "Guide" => "man/guide.md",
         "Algorithms" => Any[
             "Sorting and Searching"=>"man/SortingAndSearching.md",
-            "Graph"=>"man/Graph.md",
             "String and Arrays"=>"man/StringsAndArrays.md",
+            "Graph"=>"man/Graph.md",
         ],
     ],
 )
