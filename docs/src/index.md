@@ -16,7 +16,7 @@ Pages = [
     "man/guide.md",
     "man/filler.md",
     "man/SortingAndSearching.md",
-    "man/StringAndArrays.md",
+    "man/StringsAndArrays.md",
     "man/Graph.md",
 ]
 Depth = 2
