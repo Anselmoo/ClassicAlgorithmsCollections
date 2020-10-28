@@ -7,6 +7,7 @@ as an array, and if the current character is not special, it will reverse the el
 swapping; vice versa, if the current character is a special element, the boundaries will be
 modified.
 
+
 # Arguments
 - `text::String`: String with special character like !,<#
 
@@ -140,6 +141,7 @@ A^2 + B^2 = C^2.
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array
 
+
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
@@ -185,6 +187,7 @@ difference of the increment in the array, the length will be updated.
 
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array
+
 
 # Examples
 ```julia-repl
@@ -260,6 +263,7 @@ Returns length of smallest subarray-unit with sum greater than the target.
 - `array::Array{Int64,1}`: Unsorted array
 - `target::Int64`: Target number to reach
 
+
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
@@ -298,6 +302,7 @@ end
 Estimates the sum of all positive gradients in array-sequence, calling the function itself
 recursively. Every time if the `array[j] > array[i]` will be check, it will test the
 monotony of the previous of the following elements.
+
 
 # Arguments
 - `array::Array{Int64,1}`: Unsorted array
@@ -448,6 +453,7 @@ idea
 # Arguments
 - `array_1::Array{Int64,1}`: First sorted array
 - `array_2::Array{Int64,1}`: Second sorted array
+
 
 # Examples
 ```julia-repl

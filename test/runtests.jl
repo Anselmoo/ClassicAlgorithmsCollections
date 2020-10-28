@@ -1,11 +1,12 @@
 using Test
 using ClassicAlgorithmsCollections
 
-@testset "Number Theory" begin
-    # Tests for Number Theory
-    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
+@testset "BIT Manipulation" begin
+    # Tests for BIT Manipulation
+    arr = [8, 1, 2, 12, 45, 100, 43]
+    @test ClassicAlgorithmsCollections.maximum_xor_subarray(arr) == 110
+    @test ClassicAlgorithmsCollections.magic_number(5) == 130
 end
-
 
 @testset "Graph Theory" begin
     # Tests for Graph Theory
@@ -49,6 +50,12 @@ end
 
     @test ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list) ==
           ["GEEKS", "QUIZ", "FOR"]
+end
+
+
+@testset "Number Theory" begin
+    # Tests for Number Theory
+    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
 end
 
 

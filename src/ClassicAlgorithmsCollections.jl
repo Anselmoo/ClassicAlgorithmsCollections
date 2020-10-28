@@ -1,7 +1,7 @@
 module ClassicAlgorithmsCollections
 
-include("NumberTheory.jl")
-export modular_exponentiation
+include("BitManipulation.jl")
+export maximum_xor_subarray, magic_number
 
 include("Graph.jl")
 export breadth_first_search,
@@ -12,6 +12,8 @@ export breadth_first_search,
     graph_bridge_check,
     boogle_word_check
 
+include("NumberTheory.jl")
+export modular_exponentiation
 
 include("SortingAndSearching.jl")
 export binary_search,
