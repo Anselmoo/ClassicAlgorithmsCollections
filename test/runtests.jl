@@ -5,6 +5,7 @@ using ClassicAlgorithmsCollections
     # Tests for BIT Manipulation
     arr = [8, 1, 2, 12, 45, 100, 43]
     @test ClassicAlgorithmsCollections.maximum_xor_subarray(arr) == 110
+    @test ClassicAlgorithmsCollections.sum_of_bit_difference(arr) == 104
     @test ClassicAlgorithmsCollections.magic_number(5) == 130
 end
 

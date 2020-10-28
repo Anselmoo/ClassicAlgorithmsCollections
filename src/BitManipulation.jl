@@ -13,9 +13,9 @@ and compared the current value with the temporary largest value.
 # Examples
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
-julia> arr = [5, 1, 3, 4, 17, 8, 15, 2, 2, 13 ,12]
-julia> ClassicAlgorithmsCollections.count_pythagorean_elements(arr, sum)
-    3
+julia> arr = [8, 1, 2, 12, 45, 100, 43]
+julia> ClassicAlgorithmsCollections.maximum_xor_subarray(arr)
+110
 ```
 """
 function maximum_xor_subarray(array::Array{Int64,1})
@@ -39,7 +39,7 @@ end
 
 A magic number has to build as the power of 5 or the sum of unique powers of 5. First few
 magic numbers are:
-    1. 5 
+    1. 5
     2. 5^2 = 25
     3. 5 + 25 = 30
     4. 5^3 = 125
@@ -54,7 +54,7 @@ magic numbers are:
 ```julia-repl
 julia> import ClassicAlgorithmsCollections
 julia> ClassicAlgorithmsCollections.magic_number(5)
-    130
+130
 ```
 """
 function magic_number(n::Int64)
@@ -71,3 +71,37 @@ function magic_number(n::Int64)
     end
     return result
 end
+
+"""
+    sum_of_bit_difference(array::Array{Int64,1})
+
+For finding the sum of bit differences in all pairs of an array, the array will be
+transformed into a series of subarrays  for a given bit-length.
+
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [8, 1, 2, 12, 45, 100, 43]
+julia> ClassicAlgorithmsCollections.maximum_xor_subarray(arr)
+104
+"""
+function sum_of_bit_difference(array::Array{Int64,1}, bit = 32)
+    n = length(array)
+    result = 0
+    for i in 1:bit
+        count = 0
+        for j in 1:n
+            if (array[j] & (1 << i)) != 0
+                count += 1
+            end
+        end
+        result += count * (n - count) * 2
+    end
+    return result
+end
+

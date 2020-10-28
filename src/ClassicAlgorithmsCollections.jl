@@ -1,7 +1,7 @@
 module ClassicAlgorithmsCollections
 
 include("BitManipulation.jl")
-export maximum_xor_subarray, magic_number
+export maximum_xor_subarray, magic_number, sum_of_bit_difference
 
 include("Graph.jl")
 export breadth_first_search,
@@ -36,6 +36,6 @@ export reverse_pure_string,
     find_smallest_nonelement,
     smallest_subset4sum,
     sum_of_postive_gradients
-    
+
 
 end # module
