@@ -9,7 +9,7 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.magic_number(5) == 130
     @test ClassicAlgorithmsCollections.swapping_even_odd_bits(23) == 43
     arr_three_one = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
-    @test ClassicAlgorithmsCollections.get_single_integer(arr_arr_three_one2) == 2
+    @test ClassicAlgorithmsCollections.get_single_integer(arr_arr_three_one) == 2
     @test ClassicAlgorithmsCollections.int2binary(131) == ([1,0,0,0,0,0,1,1],1)
 end
 
