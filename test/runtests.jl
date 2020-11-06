@@ -7,6 +7,7 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.maximum_xor_subarray(arr) == 110
     @test ClassicAlgorithmsCollections.sum_of_bit_difference(arr) == 104
     @test ClassicAlgorithmsCollections.magic_number(5) == 130
+    @test ClassicAlgorithmsCollections.swapping_even_odd_bits(23) == 43
 end
 
 @testset "Graph Theory" begin
