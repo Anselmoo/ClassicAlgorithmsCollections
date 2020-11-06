@@ -8,6 +8,8 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.sum_of_bit_difference(arr) == 104
     @test ClassicAlgorithmsCollections.magic_number(5) == 130
     @test ClassicAlgorithmsCollections.swapping_even_odd_bits(23) == 43
+    arr_three_one = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
+    @test ClassicAlgorithmsCollections.get_single_integer(arr_arr_three_one2) == 2
 end
 
 @testset "Graph Theory" begin

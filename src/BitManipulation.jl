@@ -124,11 +124,46 @@ julia> ClassicAlgorithmsCollections.function swapping_even_odd_bits(23)
 ```
 """
 function swapping_even_odd_bits(n::Int64)
+    # Defining even and odd bits
     even_bits = n & 0xAAAAAAAA
     odd_bits = n & 0x55555555
 
+    # Shifting the even and odd bits
     even_bits >>= 1
     odd_bits <<= 1
-    return (even_bits | odd_bits)  
+    return (even_bits | odd_bits)
+end
+
+
+"""
+    get_single_integer(array::Array{Int64,1})
+
+For finding the single element in an array, where every other elements appear three times.
+
+
+# Arguments
+- `array::Array{Int64,1}`: Unsorted array
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
+julia> ClassicAlgorithmsCollections.get_single_integer(arr)
+2
+"""
+function get_single_integer(array::Array{Int64,1})
+    first_appear_bits = 0
+    second_appear_bits = 0
+
+    for i in 1:length(array)
+        second_appear_bits = second_appear_bits | (first_appear_bits & array[i])
+        first_appear_bits = first_appear_bits ⊻ array[i]
+        # Third times appearing bit
+        third_appear_bits = ~(first_appear_bits & second_appear_bits)
+        first_appear_bits &= third_appear_bits
+        second_appear_bits &= third_appear_bits
+    end
+    return first_appear_bits
 end
 
