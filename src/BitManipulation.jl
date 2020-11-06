@@ -113,7 +113,7 @@ For a given integer value, all odd bits will be swapped with even bits.
 
 
 # Arguments
-- `n::Int64`: Integer value of the number, which has to become a magic number
+- `n::Int64`: Integer value of the number, which has to be swapped.
 
 
 # Examples
@@ -142,7 +142,7 @@ For finding the single element in an array, where every other elements appear th
 
 
 # Arguments
-- `array::Array{Int64,1}`: Unsorted array
+- `array::Array{Int64,1}`: Unsorted array with threetimes elements and one single element.
 
 
 # Examples
@@ -167,3 +167,28 @@ function get_single_integer(array::Array{Int64,1})
     return first_appear_bits
 end
 
+"""
+    int2binary(n::Int64, array=zeros(Int64,0))
+
+Converts any integer to a binary representation as initiger array with 0, 1.
+
+
+# Arguments
+- `n::Int64`: Integer value which has to be converted
+- `array=zeros(Int64,0)`: Empty array for return.
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> ClassicAlgorithmsCollections.int2binary(131)
+([1,0,0,0,0,0,1,1],1)
+"""
+function int2binary(n::Int64, array = zeros(Int64, 0))
+    if n > 1
+        int2binary(n >> 1, array)
+    end
+    n &= 1
+    append!(array, n)
+    return array, n
+end

@@ -2,7 +2,11 @@ module ClassicAlgorithmsCollections
 
 include("BitManipulation.jl")
 export maximum_xor_subarray,
-    magic_number, sum_of_bit_difference, swapping_even_odd_bits, get_single_integer
+    magic_number,
+    sum_of_bit_difference,
+    swapping_even_odd_bits,
+    get_single_integer,
+    int2binary
 
 include("Graph.jl")
 export breadth_first_search,
