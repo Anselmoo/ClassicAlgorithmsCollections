@@ -6,7 +6,8 @@ export maximum_xor_subarray,
     sum_of_bit_difference,
     swapping_even_odd_bits,
     get_single_integer,
-    int2binary
+    int2binary,
+    count_total_bits
 
 include("Graph.jl")
 export breadth_first_search,

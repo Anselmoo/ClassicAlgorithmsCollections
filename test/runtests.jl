@@ -11,6 +11,7 @@ using ClassicAlgorithmsCollections
     arr_three_one = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
     @test ClassicAlgorithmsCollections.get_single_integer(arr_three_one) == 2
     @test ClassicAlgorithmsCollections.int2binary(131) == ([1,0,0,0,0,0,1,1],1)
+    @test ClassicAlgorithmsCollections.count_total_bits(17) == 35
 end
 
 @testset "Graph Theory" begin
