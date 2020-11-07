@@ -5,5 +5,4 @@ cross_check
 .vscode/settings.json
 .vscode/tasks.json
 docs/build/
-src/PlotGraphs.jl
 .dccache
