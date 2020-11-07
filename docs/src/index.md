@@ -18,6 +18,7 @@ Pages = [
     "man/SortingAndSearching.md",
     "man/StringsAndArrays.md",
     "man/Graph.md",
+    "man/Bits.md",
 ]
 Depth = 2
 ```

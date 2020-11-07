@@ -19,6 +19,7 @@ makedocs(
             "Sorting and Searching"=>"man/SortingAndSearching.md",
             "String and Arrays"=>"man/StringsAndArrays.md",
             "Graph"=>"man/Graph.md",
+            "BITS"=>"man/Bits.md",
         ],
     ],
 )

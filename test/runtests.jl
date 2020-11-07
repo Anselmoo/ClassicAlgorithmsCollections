@@ -1,11 +1,18 @@
 using Test
 using ClassicAlgorithmsCollections
 
-@testset "Number Theory" begin
-    # Tests for Number Theory
-    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
+@testset "BIT Manipulation" begin
+    # Tests for BIT Manipulation
+    arr = [8, 1, 2, 12, 45, 100, 43]
+    @test ClassicAlgorithmsCollections.maximum_xor_subarray(arr) == 110
+    @test ClassicAlgorithmsCollections.sum_of_bit_difference(arr) == 104
+    @test ClassicAlgorithmsCollections.magic_number(5) == 130
+    @test ClassicAlgorithmsCollections.swapping_even_odd_bits(23) == 43
+    arr_three_one = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
+    @test ClassicAlgorithmsCollections.get_single_integer(arr_three_one) == 2
+    @test ClassicAlgorithmsCollections.int2binary(131) == ([1,0,0,0,0,0,1,1],1)
+    @test ClassicAlgorithmsCollections.count_total_bits(17) == 35
 end
-
 
 @testset "Graph Theory" begin
     # Tests for Graph Theory
@@ -49,6 +56,12 @@ end
 
     @test ClassicAlgorithmsCollections.boogle_word_check(graph_boogle, word_list) ==
           ["GEEKS", "QUIZ", "FOR"]
+end
+
+
+@testset "Number Theory" begin
+    # Tests for Number Theory
+    @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
 end
 
 
