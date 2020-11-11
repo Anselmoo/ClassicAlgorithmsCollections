@@ -9,7 +9,7 @@ export maximum_xor_subarray,
     int2binary,
     count_total_bits
 include("DynamicProgramming.jl")
-export lcs_length, lis_length
+export lcs_length, lis_length, minumum_operations
 
 include("Graph.jl")
 export breadth_first_search,

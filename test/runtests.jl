@@ -20,6 +20,9 @@ end
     @test ClassicAlgorithmsCollections.lcs_length("AGGTAB","GXTXAYB") == 4
     arr = [10, 22, 9, 33, 21, 50, 41, 60] 
     ClassicAlgorithmsCollections.lis_length(arr) == 5
+    str1 = "sunday"
+    str2 = "saturday"
+    ClassicAlgorithmsCollections.minumum_operations(str1,str2) == 3
 end
 
 
