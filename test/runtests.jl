@@ -23,6 +23,7 @@ end
     str1 = "sunday"
     str2 = "saturday"
     ClassicAlgorithmsCollections.minumum_operations(str1,str2) == 3
+    ClassicAlgorithmsCollections.number_of_steps(8, 3) == 81
 end
 
 
