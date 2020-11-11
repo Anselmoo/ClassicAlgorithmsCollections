@@ -8,6 +8,8 @@ export maximum_xor_subarray,
     get_single_integer,
     int2binary,
     count_total_bits
+include("DynamicProgramming.jl")
+export lcs_lenght
 
 include("Graph.jl")
 export breadth_first_search,

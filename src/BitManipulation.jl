@@ -89,6 +89,7 @@ julia> import ClassicAlgorithmsCollections
 julia> arr = [8, 1, 2, 12, 45, 100, 43]
 julia> ClassicAlgorithmsCollections.maximum_xor_subarray(arr)
 104
+```
 """
 function sum_of_bit_difference(array::Array{Int64,1}, bit = 32)
     n = length(array)
@@ -160,6 +161,7 @@ julia> import ClassicAlgorithmsCollections
 julia> arr = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
 julia> ClassicAlgorithmsCollections.get_single_integer(arr)
 2
+```
 """
 function get_single_integer(array::Array{Int64,1})
     first_appear_bits = 0
@@ -192,6 +194,7 @@ Converts any integer to a binary representation as initiger array with 0, 1.
 julia> import ClassicAlgorithmsCollections
 julia> ClassicAlgorithmsCollections.int2binary(131)
 ([1,0,0,0,0,0,1,1],1)
+```
 """
 function int2binary(n::Int64, array = zeros(Int64, 0))
     if n > 1
@@ -219,6 +222,7 @@ while-loop for building the binary subsets with a range for-loop for counting th
 julia> import ClassicAlgorithmsCollections
 julia> ClassicAlgorithmsCollections.count_total_bits(17)
 35
+```
 """
 function count_total_bits(n::Int64)
 

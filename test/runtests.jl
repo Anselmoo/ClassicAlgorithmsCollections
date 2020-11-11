@@ -14,6 +14,13 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.count_total_bits(17) == 35
 end
 
+@testset "Dynamic Programming" begin
+    # Tests for BIT Manipulation
+    arr = [8, 1, 2, 12, 45, 100, 43]
+    @test ClassicAlgorithmsCollections.lcs_lenght("AGGTAB","GXTXAYB") == 4
+end
+
+
 @testset "Graph Theory" begin
     # Tests for Graph Theory
     graph = Dict(1 => [2, 3], 2 => [3], 3 => [1, 4], 4 => [4])
