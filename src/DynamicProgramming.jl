@@ -1,6 +1,6 @@
 
 """
-    lcs_lenght(str_1::String, str_2::String)
+    lcs_length(str_1::String, str_2::String)
 
 The longest common subsequence (LCS) algorithm is dedicated to solve the problem of finding
 the longest subsequence common to all sequences in a set of two sequences. For finding these
@@ -27,7 +27,7 @@ julia> ClassicAlgorithmsCollections.lcs_lenght("AGGTAB","GXTXAYB")
 4
 ```
 """
-function lcs_lenght(str_1::String, str_2::String)
+function lcs_length(str_1::String, str_2::String)
     len_1 = length(str_1)
     len_2 = length(str_2)
     C = zeros(Int64, (len_1, len_2))
@@ -53,3 +53,50 @@ function lcs_lenght(str_1::String, str_2::String)
     return C[len_1, len_2]
 end
 
+"""
+    lis_length(str_1::String, str_2::String)
+
+The longest increasing subsequence (LIS) algorithm is dedicated to finding the longest
+increasing subsequence for a given array.  This subsequence does not have to be contiguous
+or unique. 
+    
+    1. Figure out the number of possible different subsequences of a string with length `len_1` and `len_2`.
+    2. Recontracted `for-loops` for defining the outer layer of the storing matrix `C`.
+    3. Checking if `str_1[i] == str_2[j]` and updating the count in  matrix `C`.
+    4.Return the latest element of `C[len_1,len_2]`.
+    
+For more information see: [https://en.wikipedia.org/wiki/Longest_increasing_subsequence](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)
+
+
+# Arguments
+- `str_1::String`: Graph of the connected nodes
+- `str_2::String`: Startpoint (first selected vertex) of the graph-traveling process
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> arr = [10, 22, 9, 33, 21, 50, 41, 60] 
+julia> ClassicAlgorithmsCollections.lis_length(arr)
+4
+```
+"""
+function lis_length(array::Array{Int64,1})
+    n = length(array)
+    list = fill(1, n)
+    for i in 2:n
+        for j in 1:i
+            if array[i] > array[j] && list[i] < list[j] +1
+                list[i] = list[j] + 1
+            end
+        end
+    end
+    
+    result = 0
+     for i in 1:n
+        if list[i] > result
+            result = list[i]
+        end
+    end
+    return result
+end
