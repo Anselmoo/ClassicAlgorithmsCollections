@@ -23,7 +23,7 @@ export breadth_first_search,
     boogle_word_check
 
 include("NumberTheory.jl")
-export modular_exponentiation
+export modular_exponentiation, modular_inverse
 
 include("SortingAndSearching.jl")
 export binary_search,

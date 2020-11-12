@@ -1,15 +1,15 @@
 """
-    modular_exponentiation(base::Int, exponent::Int, modulus::Int)
+    modular_exponentiation(base::Int64, exponent::Int64, modulus::Int64)
 
-Compute the residuum of the base raised to the exponent, which is divided by the modulus.
+Compute the `residuum` of the base raised to the `exponent`, which is divided by the
+`modulus`.
 
 
-...
 # Arguments
-- `base::Integer`: base
-- `exponent::Integer`: exponent
-- `modulus ::Integer`: modulus
-...
+- `base::Int64`: base
+- `exponent::Int64`: exponent
+- `modulus ::Int64`: modulus
+
 
 # Examples
 ```julia-repl
@@ -18,7 +18,7 @@ julia> ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15)
 8
 ```
 """
-function modular_exponentiation(base::Int, exponent::Int, modulus::Int)
+function modular_exponentiation(base::Int64, exponent::Int64, modulus::Int64)
     residuum = 1     # Initialize result
 
     # Update base if it is more
@@ -43,3 +43,32 @@ function modular_exponentiation(base::Int, exponent::Int, modulus::Int)
 
     return residuum
 end
+
+"""
+    modular_inverse(base::Int64, modulus::Int64)
+
+Compute the multiplicative inverse of the `base` under the `modulus`.
+
+
+# Arguments
+- `base::Int64`: base
+- `modulus ::Int64`: modulus
+
+
+# Examples
+```julia-repl
+julia> import ClassicAlgorithmsCollections
+julia> ClassicAlgorithmsCollections.modular_inverse(3, 11)
+4
+```
+"""
+function modular_inverse(base::Int64, modulus::Int64)
+    base = base % modulus
+    for i in 1:modulus
+        if (base * i ) % modulus == 1
+            return i
+        end
+    end
+    return 1
+end
+

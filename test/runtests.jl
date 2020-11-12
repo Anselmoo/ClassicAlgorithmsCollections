@@ -86,6 +86,8 @@ end
 @testset "Number Theory" begin
     # Tests for Number Theory
     @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
+    @test ClassicAlgorithmsCollections.modular_inverse( 3, 11) == 4
+    @test ClassicAlgorithmsCollections.modular_inverse( 3, 1) == 1
 end
 
 
