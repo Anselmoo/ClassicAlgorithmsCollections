@@ -90,6 +90,8 @@ end
     @test ClassicAlgorithmsCollections.modular_inverse(3, 1) == 1
     @test ClassicAlgorithmsCollections.euler_totient(20) ==
           [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8]
+    @test ClassicAlgorithmsCollections.sieve_of_eratosthenes(50) ==
+          [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 end
 
 
