@@ -24,6 +24,11 @@ end
     str2 = "saturday"
     ClassicAlgorithmsCollections.minumum_operations(str1,str2) == 3
     ClassicAlgorithmsCollections.number_of_steps(8, 3) == 81
+    set = [3, 34, 4, 12, 5, 2]
+    sum_true = 9
+    sum_false = 19
+    ClassicAlgorithmsCollections.subset_sum_test(set, sum_true) == true
+    ClassicAlgorithmsCollections.subset_sum_test(set, sum_false) == false
 end
 
 

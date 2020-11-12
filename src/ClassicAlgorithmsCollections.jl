@@ -8,8 +8,9 @@ export maximum_xor_subarray,
     get_single_integer,
     int2binary,
     count_total_bits
+
 include("DynamicProgramming.jl")
-export lcs_length, lis_length, minumum_operations, number_of_steps
+export lcs_length, lis_length, minumum_operations, number_of_steps, subset_sum_test
 
 include("Graph.jl")
 export breadth_first_search,
