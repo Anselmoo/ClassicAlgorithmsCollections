@@ -1,6 +1,6 @@
-## Dynamic-DynamicProgramming
+## Dynamic-Programming
 
-```@Doc
+```@docs
 lis_length
 minumum_operations
 number_of_steps
