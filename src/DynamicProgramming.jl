@@ -216,11 +216,11 @@ function subset_sum_test(array::Array{Int64,1}, target::Int64)
         return false
     end
     if array[n-1] > target
-        return subset_sum_testt(array[1:n-1], target)
+        return subset_sum_test(array[1:n-1], target)
     end
 
-    return subset_sum_testt(array[1:n-1], target) ||
-           subset_sum_testt(array[1:n-1], target - array[n-1])
+    return subset_sum_test(array[1:n-1], target) ||
+           subset_sum_test(array[1:n-1], target - array[n-1])
 end
 
 """
