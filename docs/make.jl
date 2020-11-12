@@ -20,6 +20,7 @@ makedocs(
             "String and Arrays"=>"man/StringsAndArrays.md",
             "Graph"=>"man/Graph.md",
             "BITS"=>"man/Bits.md",
+            "Dynamic Programming"=>"man/DynamicProgramming.md",
         ],
     ],
 )
