@@ -269,4 +269,3 @@ function knapsack_solver(array::Array{Int64,1}, weight::Array{Int64,1}, capacity
         return item_old
     end
 end
-
