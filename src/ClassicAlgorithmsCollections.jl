@@ -10,7 +10,8 @@ export maximum_xor_subarray,
     count_total_bits
 
 include("DynamicProgramming.jl")
-export lcs_length, lis_length, minumum_operations, number_of_steps, subset_sum_test
+export lcs_length,
+    lis_length, minumum_operations, number_of_steps, subset_sum_test, knapsack_solver
 
 include("Graph.jl")
 export breadth_first_search,

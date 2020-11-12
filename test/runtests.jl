@@ -29,6 +29,10 @@ end
     sum_false = 19
     ClassicAlgorithmsCollections.subset_sum_test(set, sum_true) == true
     ClassicAlgorithmsCollections.subset_sum_test(set, sum_false) == false
+    val = [60, 100, 120, 230, 220]
+    wt = [10, 20, 25, 30, 25]
+    W = 50
+    ClassicAlgorithmsCollections.napsack_solver(val, wt, W) == 340
 end
 
 
