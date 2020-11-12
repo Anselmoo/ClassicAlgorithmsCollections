@@ -14,6 +14,30 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.count_total_bits(17) == 35
 end
 
+@testset "Dynamic Programming" begin
+    # Tests for BIT Manipulation
+    arr = [8, 1, 2, 12, 45, 100, 43]
+    @test ClassicAlgorithmsCollections.lcs_length("AGGTAB","GXTXAYB") == 4
+    arr = [10, 22, 9, 33, 21, 50, 41, 60] 
+    ClassicAlgorithmsCollections.lis_length(arr) == 5
+    str1 = "sunday"
+    str2 = "saturday"
+    ClassicAlgorithmsCollections.minumum_operations(str1,str2) == 3
+    ClassicAlgorithmsCollections.number_of_steps(8, 3) == 81
+    set = [3, 34, 4, 12, 5, 2]
+    sum_true = 9
+    sum_false = 19
+    ClassicAlgorithmsCollections.subset_sum_test(set, sum_true) == true
+    ClassicAlgorithmsCollections.subset_sum_test(set, sum_false) == false
+    val = [60, 100, 120, 230, 220]
+    wt = [10, 20, 25, 30, 25]
+    W_1 = 50
+    W_2 = 10
+    ClassicAlgorithmsCollections.knapsack_solver(val, wt, W_1) == 340
+    ClassicAlgorithmsCollections.knapsack_solver(val, wt, W_2) == 60
+end
+
+
 @testset "Graph Theory" begin
     # Tests for Graph Theory
     graph = Dict(1 => [2, 3], 2 => [3], 3 => [1, 4], 4 => [4])
