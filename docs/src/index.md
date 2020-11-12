@@ -19,6 +19,7 @@ Pages = [
     "man/StringsAndArrays.md",
     "man/Graph.md",
     "man/Bits.md",
+    "man/DynamicProgramming.md",
 ]
 Depth = 2
 ```
