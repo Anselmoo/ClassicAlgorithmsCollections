@@ -32,7 +32,7 @@ end
     val = [60, 100, 120, 230, 220]
     wt = [10, 20, 25, 30, 25]
     W = 50
-    ClassicAlgorithmsCollections.napsack_solver(val, wt, W) == 340
+    ClassicAlgorithmsCollections.knapsack_solver(val, wt, W) == 340
 end
 
 
