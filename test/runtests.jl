@@ -10,19 +10,19 @@ using ClassicAlgorithmsCollections
     @test ClassicAlgorithmsCollections.swapping_even_odd_bits(23) == 43
     arr_three_one = [12, 1, 12, 3, 12, 1, 1, 2, 3, 3]
     @test ClassicAlgorithmsCollections.get_single_integer(arr_three_one) == 2
-    @test ClassicAlgorithmsCollections.int2binary(131) == ([1,0,0,0,0,0,1,1],1)
+    @test ClassicAlgorithmsCollections.int2binary(131) == ([1, 0, 0, 0, 0, 0, 1, 1], 1)
     @test ClassicAlgorithmsCollections.count_total_bits(17) == 35
 end
 
 @testset "Dynamic Programming" begin
     # Tests for BIT Manipulation
     arr = [8, 1, 2, 12, 45, 100, 43]
-    @test ClassicAlgorithmsCollections.lcs_length("AGGTAB","GXTXAYB") == 4
-    arr = [10, 22, 9, 33, 21, 50, 41, 60] 
+    @test ClassicAlgorithmsCollections.lcs_length("AGGTAB", "GXTXAYB") == 4
+    arr = [10, 22, 9, 33, 21, 50, 41, 60]
     ClassicAlgorithmsCollections.lis_length(arr) == 5
     str1 = "sunday"
     str2 = "saturday"
-    ClassicAlgorithmsCollections.minumum_operations(str1,str2) == 3
+    ClassicAlgorithmsCollections.minumum_operations(str1, str2) == 3
     ClassicAlgorithmsCollections.number_of_steps(8, 3) == 81
     set = [3, 34, 4, 12, 5, 2]
     sum_true = 9
@@ -86,6 +86,12 @@ end
 @testset "Number Theory" begin
     # Tests for Number Theory
     @test ClassicAlgorithmsCollections.modular_exponentiation(2, 3, 15) == 8
+    @test ClassicAlgorithmsCollections.modular_inverse(3, 11) == 4
+    @test ClassicAlgorithmsCollections.modular_inverse(3, 1) == 1
+    @test ClassicAlgorithmsCollections.euler_totient(20) ==
+          [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8]
+    @test ClassicAlgorithmsCollections.sieve_of_eratosthenes(50) ==
+          [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 end
 
 
