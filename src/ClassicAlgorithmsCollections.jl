@@ -24,7 +24,7 @@ export breadth_first_search,
 
 include("NumberTheory.jl")
 export modular_exponentiation,
-    modular_inverse, euler_totient, sieve_of_eratosthenes, chinese_reminder_theorem
+    modular_inverse, euler_totient, sieve_of_eratosthenes, chinese_remainder_theorem
 
 include("SortingAndSearching.jl")
 export binary_search,
