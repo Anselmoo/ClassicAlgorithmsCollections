@@ -23,7 +23,8 @@ export breadth_first_search,
     boogle_word_check
 
 include("NumberTheory.jl")
-export modular_exponentiation, modular_inverse, euler_totient, sieve_of_eratosthenes
+export modular_exponentiation,
+    modular_inverse, euler_totient, sieve_of_eratosthenes, chinese_remainder_theorem
 
 include("SortingAndSearching.jl")
 export binary_search,

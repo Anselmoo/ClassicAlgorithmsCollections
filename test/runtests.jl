@@ -92,6 +92,9 @@ end
           [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8]
     @test ClassicAlgorithmsCollections.sieve_of_eratosthenes(50) ==
           [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+    num = [3, 4, 5]
+    rem = [2, 3, 1]
+    @test ClassicAlgorithmsCollections.chinese_remainder_theorem(num, rem) == 11
 end
 
 

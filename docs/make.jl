@@ -21,6 +21,7 @@ makedocs(
             "Graph"=>"man/Graph.md",
             "BITS"=>"man/Bits.md",
             "Dynamic Programming"=>"man/DynamicProgramming.md",
+            "Number Theory"=>"man/NumberTheory.md",
         ],
     ],
 )
