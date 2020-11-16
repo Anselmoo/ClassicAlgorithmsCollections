@@ -20,6 +20,7 @@ Pages = [
     "man/Graph.md",
     "man/Bits.md",
     "man/DynamicProgramming.md",
+    "man/NumberTheory.md",
 ]
 Depth = 2
 ```
