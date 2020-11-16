@@ -196,7 +196,7 @@ function chinese_remainder_theorem(array::Array{Int64}, remainder::Array{Int64})
     n = length(array)
     while true
         i = 1
-        while j < n
+        while i < n
             if x % array[i] != remainder[i]
                 break
             end
