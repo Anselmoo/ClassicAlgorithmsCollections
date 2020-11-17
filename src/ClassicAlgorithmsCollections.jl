@@ -22,9 +22,16 @@ export breadth_first_search,
     graph_bridge_check,
     boogle_word_check
 
-include("NumberTheory.jl")
-export modular_exponentiation,
-    modular_inverse, euler_totient, sieve_of_eratosthenes, chinese_remainder_theorem
+include("NumberTheory/ModularExponentiation.jl")
+export modular_exponentiation
+include("NumberTheory/ModularInverse.jl")
+export modular_inverse
+include("NumberTheory/EulerTotient.jl")
+export euler_totient
+include("NumberTheory/SieveOfEratosthenes.jl")
+export sieve_of_eratosthenes
+include("NumberTheory/ChineseRemainderTheorem.jl")
+export chinese_remainder_theorem
 
 include("SortingAndSearching.jl")
 export binary_search,
