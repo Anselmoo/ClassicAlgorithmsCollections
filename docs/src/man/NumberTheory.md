@@ -1,9 +1,9 @@
 ## Number-Theory
 
 ```@docs
+chinese_remainder_theorem
+euler_totient
 modular_exponentiation
 modular_inverse
-euler_totient
 sieve_of_eratosthenes
-chinese_remainder_theorem
 ```

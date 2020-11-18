@@ -112,7 +112,7 @@ end
     ref_searching = 3
     @test ClassicAlgorithmsCollections.binary_search(array_searching, target_searching) ==
           ref_searching
-    @test ClassicAlgorithmsCollections.interpolation_searching(
+    @test ClassicAlgorithmsCollections.interpolation_search(
         array_searching,
         target_searching,
     ) == ref_searching
@@ -120,7 +120,7 @@ end
     array_searching_pair = [10, 22, 28, 29, 30, 40]
     target_searching_pair = 56
     ref_searching_pair = (28, 29)
-    @test ClassicAlgorithmsCollections.closest_pair_searching(
+    @test ClassicAlgorithmsCollections.closest_pair_search(
         array_searching_pair,
         target_searching_pair,
     ) == ref_searching_pair

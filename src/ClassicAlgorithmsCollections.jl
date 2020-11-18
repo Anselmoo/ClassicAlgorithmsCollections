@@ -1,5 +1,6 @@
 module ClassicAlgorithmsCollections
 
+# Bit-Manipulation
 include("BitManipulation/CountTotalBits.jl")
 export count_total_bits
 include("BitManipulation/GetSingleInteger.jl")
@@ -15,10 +16,21 @@ export sum_of_bit_difference
 include("BitManipulation/SwappingBits.jl")
 export swapping_even_odd_bits
 
-include("DynamicProgramming.jl")
-export lcs_length,
-    lis_length, minumum_operations, number_of_steps, subset_sum_test, knapsack_solver
+# Dynamic-Programming
+include("DynamicProgramming/KnackPackSolver.jl")
+export knack_pack_solver
+include("DynamicProgramming/LongestCommonSubsequence.jl")
+export longest_common_subsequence
+include("DynamicProgramming/LongestIncreasingSubsequence.jl")
+export longest_increasing_subsequence
+include("DynamicProgramming/MinimumOperations.jl")
+export minimum_operations
+include("DynamicProgramming/NumberOfSteps.jl")
+export number_of_steps
+include("DynamicProgramming/SubsetSumTest.jl")
+export subset_sum_test
 
+# Graph
 include("Graph/BoogleWordCheck.jl")
 export boogle_word_check
 include("Graph/BreadthFirstSearch.jl")
@@ -34,7 +46,7 @@ export minimum_spanning_tree
 include("Graph/ShortestPathTree.jl")
 export shortest_path_tree
 
-
+# Number-Theory
 include("NumberTheory/ChineseRemainderTheorem.jl")
 export chinese_remainder_theorem
 include("NumberTheory/EulerTotient.jl")
@@ -46,27 +58,42 @@ export modular_inverse
 include("NumberTheory/SieveOfEratosthenes.jl")
 export sieve_of_eratosthenes
 
-include("SortingAndSearching.jl")
-export binary_search,
-    binary_pivot_search,
-    bubble_sorting,
-    insertion_sorting,
-    merge_sorting,
-    heap_sorting,
-    quick_sorting,
-    interpolation_searching,
-    closest_pair_searching
+# Sorting and Searching
+include("SortingAndSearching/BinaryPivotSearch.jl")
+export binary_pivot_search
+include("SortingAndSearching/BinarySearch.jl")
+export binary_search
+include("SortingAndSearching/BubbleSorting.jl")
+export bubble_sorting
+include("SortingAndSearching/ClosetPairSearch.jl")
+export closet_pair_search
+include("SortingAndSearching/HeapSorting.jl")
+export heap_sorting
+include("SortingAndSearching/InsertionSorting.jl")
+export insertion_sorting
+include("SortingAndSearching/InterpolationSearch.jl")
+export interpolation_search
+include("SortingAndSearching/MergeSorting.jl")
+export merge_sorting
+include("SortingAndSearching/QuickSorting.jl")
+export quick_sorting
 
-include("StringAndArray.jl")
-export reverse_pure_string,
-    zigzag_ordering,
-    count_triplet_elements,
-    count_pythagorean_elements,
-    combinations_of_2arrays,
-    find_maxlength_subarray,
-    find_smallest_nonelement,
-    smallest_subset4sum,
-    sum_of_postive_gradients
-
+# String and Array
+include("StringAndArray/CombinationsOf2Arrays.jl")
+export combinations_of_2arrays
+include("StringAndArray/CountPythagoreanElements.jl")
+export count_pythagorean_elements
+include("StringAndArray/CountTripletElements.jl")
+export count_triplet_elements
+include("StringAndArray/FindMaxLengthSubarray.jl")
+export find_max_length_subarray
+include("StringAndArray/FindSmallestNonelement.jl")
+export find_smallest_nonelement
+include("StringAndArray/ReversePureString.jl")
+export reverse_pure_string
+include("StringAndArray/SmallestSubset4Sum.jl")
+export smallest_subset4_sum
+include("StringAndArray/ZigZagOrdering.jl")
+export zig_zag_ordering
 
 end # module
