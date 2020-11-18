@@ -93,6 +93,8 @@ include("StringAndArray/ReversePureString.jl")
 export reverse_pure_string
 include("StringAndArray/SmallestSubset4Sum.jl")
 export smallest_subset4_sum
+include("StringAndArray/SumOfPositiveGradients.jl")
+export sum_of_positive_gradients
 include("StringAndArray/ZigZagOrdering.jl")
 export zig_zag_ordering
 
