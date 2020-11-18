@@ -95,8 +95,8 @@ julia> ClassicAlgorithmsCollections.depth_first_search(graph, 3)
 function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
     # Mark all the vertices as not visited
-    # visited = zeros(Bool, (length(collect(keys(graph))))) # Old
-    visited = zeros(Bool, (find_global_maximum(graph)))
+    n = find_global_maximum(graph)
+    visited = zeros(Bool, n)
 
     # Create array-list for the searching solution
     solution = zeros(Int64, false)
