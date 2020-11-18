@@ -6,3 +6,5 @@ cross_check
 .vscode/tasks.json
 docs/build/
 .dccache
+src/Graph.jl
+src/NumberTheory.jl
