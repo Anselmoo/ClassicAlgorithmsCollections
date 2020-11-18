@@ -3,8 +3,8 @@
 ```@docs
 binary_search
 binary_pivot_search
-interpolation_searching
-closest_pair_searching
+closest_pair_search
+interpolation_search
 ```
 
 ## Array-Sorting
@@ -12,7 +12,7 @@ closest_pair_searching
 ```@docs
 bubble_sorting
 insertion_sorting
-merge_sorting
 heap_sorting
+merge_sorting
 quick_sorting
 ```
