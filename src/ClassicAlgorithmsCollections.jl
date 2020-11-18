@@ -16,9 +16,9 @@ export lcs_length,
 include("Graph/BoogleWordCheck.jl")
 export boogle_word_check
 include("Graph/BreadthFirstSearch.jl")
-export breadth_first_search
+export breadth_first_search, find_global_maximum
 include("Graph/DepthFirstSearch.jl")
-export depth_first_search
+export depth_first_search, find_global_maximum
 include("Graph/GraphBridgeCheck.jl")
 export graph_bridge_check
 include("Graph/GraphCycleCheck.jl")
