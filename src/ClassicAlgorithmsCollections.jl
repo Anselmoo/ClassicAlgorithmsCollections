@@ -13,25 +13,33 @@ include("DynamicProgramming.jl")
 export lcs_length,
     lis_length, minumum_operations, number_of_steps, subset_sum_test, knapsack_solver
 
-include("Graph.jl")
-export breadth_first_search,
-    depth_first_search,
-    shortest_path_tree,
-    graph_cycle_check,
-    minimum_spanning_tree,
-    graph_bridge_check,
-    boogle_word_check
+include("Graph/BoogleWordCheck.jl")
+export boogle_word_check
+include("Graph/BreadthFirstSearch.jl")
+export breadth_first_search
+include("Graph/DepthFirstSearch.jl")
+export depth_first_search
+include("Graph/GraphBridgeCheck.jl")
+export graph_bridge_check
+include("Graph/GraphCycleCheck.jl")
+export graph_cycle_check
+include("Graph/MinimumSpanningTree.jl")
+export minimum_spanning_tree
+include("Graph/ShortestPathTree.jl")
+export shortest_path_tree
 
+
+
+include("NumberTheory/ChineseRemainderTheorem.jl")
+export chinese_remainder_theorem
+include("NumberTheory/EulerTotient.jl")
+export euler_totient
 include("NumberTheory/ModularExponentiation.jl")
 export modular_exponentiation
 include("NumberTheory/ModularInverse.jl")
 export modular_inverse
-include("NumberTheory/EulerTotient.jl")
-export euler_totient
 include("NumberTheory/SieveOfEratosthenes.jl")
 export sieve_of_eratosthenes
-include("NumberTheory/ChineseRemainderTheorem.jl")
-export chinese_remainder_theorem
 
 include("SortingAndSearching.jl")
 export binary_search,
