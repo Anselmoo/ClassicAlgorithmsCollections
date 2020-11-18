@@ -1,13 +1,19 @@
 module ClassicAlgorithmsCollections
 
-include("BitManipulation.jl")
-export maximum_xor_subarray,
-    magic_number,
-    sum_of_bit_difference,
-    swapping_even_odd_bits,
-    get_single_integer,
-    int2binary,
-    count_total_bits
+include("BitManipulation/CountTotalBits.jl")
+export count_total_bits
+include("BitManipulation/GetSingleInteger.jl")
+export get_single_integer
+include("BitManipulation/Integer2Binary.jl")
+export int2binary
+include("BitManipulation/MagicNumber.jl")
+export magic_number
+include("BitManipulation/MaximumXorSubarray.jl")
+export maximum_xor_subarray
+include("BitManipulation/SumOfBitDifference.jl")
+export sum_of_bit_difference
+include("BitManipulation/SwappingBits.jl")
+export swapping_even_odd_bits
 
 include("DynamicProgramming.jl")
 export lcs_length,
@@ -16,9 +22,9 @@ export lcs_length,
 include("Graph/BoogleWordCheck.jl")
 export boogle_word_check
 include("Graph/BreadthFirstSearch.jl")
-export breadth_first_search, find_global_maximum
+export breadth_first_search
 include("Graph/DepthFirstSearch.jl")
-export depth_first_search, find_global_maximum
+export depth_first_search
 include("Graph/GraphBridgeCheck.jl")
 export graph_bridge_check
 include("Graph/GraphCycleCheck.jl")

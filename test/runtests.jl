@@ -180,13 +180,3 @@ end
     gradients_in_array = [100, 180, 260, 310, 40, 535, 695]
     @test ClassicAlgorithmsCollections.sum_of_postive_gradients(gradients_in_array) == 865
 end
-
-
-@testset "Static Functions" begin
-    @test ClassicAlgorithmsCollections.find_global_maximum(Dict(
-        1 => [2, 3],
-        2 => [3],
-        3 => [1, 4],
-        4 => [4],
-    )) == 4
-end

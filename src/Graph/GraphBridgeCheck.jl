@@ -1,5 +1,5 @@
 """
-    find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+    find_global_maximum_graph(graph::Dict{Int64,Array{Int64,1}})
 
 Find the total global maximum based on a comparsion between the intial vertex
 (`global_maximum = 0`), the current dictionary key, and the accesible vertexes from
@@ -9,7 +9,7 @@ the array-list (value).
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
 """
-function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+function find_global_maximum_graph(graph::Dict{Int64,Array{Int64,1}})
     global_maximum = 0
     # Going through the dictionary
     for (key, value) in graph
@@ -134,7 +134,7 @@ function graph_bridge_check(graph::Dict{Int64,Array{Int64,1}})
 
     # Mark all the vertices as not visited and Initialize parent and visited,
     # and ap(articulation point) arrays
-    vertex_size = find_global_maximum(graph)
+    vertex_size = find_global_maximum_graph(graph)
 
     #Create an array of visited nodes
     visited = zeros(Bool, vertex_size)

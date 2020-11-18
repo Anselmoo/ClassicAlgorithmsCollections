@@ -1,5 +1,5 @@
 """
-    find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+    find_global_maximum_dfs(graph::Dict{Int64,Array{Int64,1}})
 
 Find the total global maximum based on a comparsion between the intial vertex
 (`global_maximum = 0`), the current dictionary key, and the accesible vertexes from
@@ -9,7 +9,7 @@ the array-list (value).
 # Arguments
 - `graph::Dict{Int64,Array{Int64,1}}`: Graph of the connected nodes
 """
-function find_global_maximum(graph::Dict{Int64,Array{Int64,1}})
+function find_global_maximum_dfs(graph::Dict{Int64,Array{Int64,1}})
     global_maximum = 0
     # Going through the dictionary
     for (key, value) in graph
@@ -95,7 +95,7 @@ julia> ClassicAlgorithmsCollections.depth_first_search(graph, 3)
 function depth_first_search(graph::Dict{Int64,Array{Int64,1}}, start::Int64)
 
     # Mark all the vertices as not visited
-    n = find_global_maximum(graph)
+    n = find_global_maximum_dfs(graph)
     visited = zeros(Bool, n)
 
     # Create array-list for the searching solution
