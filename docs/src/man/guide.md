@@ -20,6 +20,4 @@ using ClassicAlgorithmsCollections
 All docs found here can also be accessed via REPL through Julia's help functionality.
 ```julia-repl
 julia> using ClassicAlgorithmsCollections
-
-
 ```
