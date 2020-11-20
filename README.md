@@ -16,9 +16,11 @@
 
 ---
 
+
 <p align="center"> A set of classic and modern algorithm reimplementated in JULIA.
     <br> 
 </p>
+
 
 ## 📝 Table of Contents
 
@@ -27,6 +29,7 @@
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Example](#example)
+- [Requirements](#requirements)
 - [TODO](../TODO.md)
 - [Contributing](CONTRIBUTING.md)
 - [Authors](#authors)
@@ -49,7 +52,7 @@ Pkg.add("ClassicAlgorithmsCollections")
 
 This package supports Julia `≥1.5`.
 
-### 🎚 Usage <a name = "usage"></a>
+## 🎚 Usage <a name = "usage"></a>
 To use ```ClassicAlgorithmsCollections.jl``` in your project,
 
 ```julia
@@ -62,7 +65,7 @@ All docs found here can also be accessed via REPL through Julia's help functiona
 julia> using ClassicAlgorithmsCollections
 ```
 
-## Example: *The binary pivot search* <a name = "example"></a>
+## 🧪 Example: *The binary pivot search* <a name = "example"></a>
 ```julia
 julia> import ClassicAlgorithmsCollections
 julia> arr = [2, 5, 4, 7, 2, 8, 9, 3, 10, 2]
@@ -70,15 +73,17 @@ julia> target = 3
 julia> ClassicAlgorithmsCollections.binary_pivot_search(arr, target)
 8
 ```
-## ⚙️ Built Using <a name = "built_using"></a>
+## ⚙️ Requirements <a name = "requirements"></a>
 
-- [Julia](https://github.com/JuliaLang/julia) - Language
+- [Julia](https://github.com/JuliaLang/julia) - Language ≥ 1.5
 
 ## ✍️ Authors <a name = "authors"></a>
 
+- [@Anselmoo](https://github.com/Anselmoo)
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+
 - [@Geeksforgeeks](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/)
 - [@kylelobo](https://github.com/connietran-dev/readme-generator) For the **README.md** generator
