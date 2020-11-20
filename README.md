@@ -17,7 +17,7 @@
 ---
 
 
-<p align="center"> A set of classic and modern algorithm reimplementated in JULIA.
+<p align="center"> A set of classic and modern algorithm reimplemented in JULIA.
     <br> 
 </p>
 
