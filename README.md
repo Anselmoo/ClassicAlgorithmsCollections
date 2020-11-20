@@ -3,7 +3,7 @@
  <img width=200px height=200px src="docs/img/icon.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">AlgorithmCollection.jl</h3>
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A set of classic and modern algorithm reimplementated in JULIA.
     <br> 
 </p>
 
