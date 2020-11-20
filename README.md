@@ -26,7 +26,6 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
 - [Example](#example)
 - [Requirements](#requirements)
@@ -41,6 +40,8 @@
 1. Functionality
 2. Performance
 3. Maintainability
+
+Consequently, more pure `JULIA` and less `import`.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
